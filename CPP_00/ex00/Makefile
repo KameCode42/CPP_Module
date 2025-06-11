@@ -5,7 +5,7 @@ RM			= rm -f
 
 FLAGS		= -std=c++98 -Wall -Wextra -Werror
 
-SRCS 		= ./srcs/megaphone.cpp
+SRCS 		= megaphone.cpp
 
 OBJS 		= $(SRCS:.cpp=.o)
 
