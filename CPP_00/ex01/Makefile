@@ -5,7 +5,9 @@ RM			= rm -f
 
 FLAGS		= -std=c++98 -Wall -Wextra -Werror
 
-SRCS 		= 
+SRCS 		=	main.cpp \
+				Contact.cpp \
+				PhoneBook.cpp \
 
 OBJS 		= $(SRCS:.cpp=.o)
 
