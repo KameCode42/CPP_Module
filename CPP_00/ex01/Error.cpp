@@ -6,37 +6,69 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 14:39:33 by david             #+#    #+#             */
-/*   Updated: 2025/06/14 14:52:58 by david            ###   ########.fr       */
+/*   Updated: 2025/06/14 16:42:27 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Error.hpp"
 
-bool	isNotEmpty(const std::string& s)
-{
+bool	isNotEmpty(const std::string& s){
 	if (s.empty())
 	{
-		std::cout << "the string must not be empty" << std::endl;
+		std::cout << "The string must not be empty" << std::endl;
 		return false;
 	}
 	return true;
 }
 
-//hasNoWhitespace(s)
+bool	isWhiteSpace(const std::string& s){
+	for (size_t i = 0; i < s.size(); i++)
+	{
+		if (std::isspace(static_cast<unsigned char>(s[i])))
+		{
+			std::cout << "No spaces or tabs" << std::endl;
+			return false;
+		}
+	}
+	return true;
+}
 
-//isAlldigit(s);
+bool	isAllAlpha(const std::string& s){
+	for (size_t i = 0; i < s.length(); i++)
+	{
+		if (!std::isalpha(static_cast<unsigned char>(s[i])))
+		{
+			std::cout << "Must contain only letters" << std::endl;
+			return false;
+		}
+	}
+	return true;
+}
 
-//sAllLetters(s);
+bool	isAllDigit(const std::string& s){
+	for (size_t i = 0; i < s.length(); i++)
+	{
+		if (!std::isdigit(static_cast<unsigned char>(s[i])))
+		{
+			std::cout << "Must contain only numeric numbers" << std::endl;
+			return false;
+		}
+	}
+	return true;
+}
 
-//valdiatetext
-//return
-// sNotEmpty(s)
-// && hasNoWhitespace(s)
-        //&& isAllLetters(s);
+bool	validText(const std::string& s){
+	return isNotEmpty(s)
+		&& isWhiteSpace(s)
+		&& isAllAlpha(s);
+}
 
-		
-//validatenumber
-//return
-// sNotEmpty(s)
-// && hasNoWhitespace(s)
-        //&& isAlldigit(s);
+bool	validNumber(const std::string& s){
+	return isNotEmpty(s)
+		&& isWhiteSpace(s)
+		&& isAllDigit(s);
+}
+
+//dans les std::....
+//valeur de retour 1 si c est juste et 0 si y a une erreur
+//! == 0

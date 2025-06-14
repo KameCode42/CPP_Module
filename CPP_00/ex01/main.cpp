@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 10:48:47 by david             #+#    #+#             */
-/*   Updated: 2025/06/14 12:14:21 by david            ###   ########.fr       */
+/*   Updated: 2025/06/14 16:43:11 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,7 @@ int	main()
 	std::string	exit = "EXIT";
 
 	std::cout << "Welcome to your phonebook manager !" << std::endl;
-	while (1)
-	{
+	while (1){
 		std::cout << "Type a command : " << std::endl;
 		std::cout << "- ADD" << std::endl;
 		std::cout << "- SEARCH" << std::endl;

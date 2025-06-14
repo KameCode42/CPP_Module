@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 10:48:33 by david             #+#    #+#             */
-/*   Updated: 2025/06/14 14:48:33 by david            ###   ########.fr       */
+/*   Updated: 2025/06/14 16:43:01 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,45 +18,43 @@ PhoneBook::PhoneBook() : _nextIndex(0), _count(0), _maxContact(8){
 PhoneBook::~PhoneBook(){
 }
 
-void	PhoneBook::add_contact()
-{
+void	PhoneBook::add_contact(){
 	std::string	firstName;
 	std::string	lastName;
 	std::string	nickName;
 	std::string	phoneNumber;
 	std::string	darkSecret;
 
-	if (_count >= _maxContact)
-	{
+	if (_count >= _maxContact){
 		std::cout << "The address book is full (8 contacts max). Unable to add." << std::endl;
 		return;
 	}
-	do
-	{
+	do{
 		std::cout << "Type a first name : ";
 		std::getline(std::cin, firstName);
-	}while (!isNotEmpty(firstName));
+	}while (!validText(firstName));//tant que c est false
 	system("clear");
-
-
-
-
-
-	
-	std::cout << "Type a last name : ";
-	std::getline(std::cin, lastName);
+	do{
+		std::cout << "Type a last name : ";
+		std::getline(std::cin, lastName);
+	}while (!validText(lastName));
 	system("clear");
-	std::cout << "Type a nick name : ";
-	std::getline(std::cin, nickName);
+	do{
+		std::cout << "Type a nick name : ";
+		std::getline(std::cin, nickName);
+	}while (!validText(nickName));
 	system("clear");
-	std::cout << "Type a phone number : ";
-	std::getline(std::cin, phoneNumber);
+	do{
+		std::cout << "Type a phone number : ";
+		std::getline(std::cin, phoneNumber);
+	}while (!validNumber(phoneNumber));
 	system("clear");
-	std::cout << "Type a dark secret : ";
-	std::getline(std::cin, darkSecret);
+	do{
+		std::cout << "Type a dark secret : ";
+		std::getline(std::cin, darkSecret);
+	}while (!validText(darkSecret));
 	system("clear");
-	if (_count <= _maxContact)
-	{
+	if (_count <= _maxContact){
 		std::cout << "Contact save" << std::endl;
 		_count++;
 	}
