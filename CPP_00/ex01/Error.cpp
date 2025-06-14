@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 14:39:33 by david             #+#    #+#             */
-/*   Updated: 2025/06/14 16:42:27 by david            ###   ########.fr       */
+/*   Updated: 2025/06/14 16:44:40 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ bool	isNotEmpty(const std::string& s){
 }
 
 bool	isWhiteSpace(const std::string& s){
-	for (size_t i = 0; i < s.size(); i++)
+	for (size_t i = 0; i < s.length(); i++)
 	{
 		if (std::isspace(static_cast<unsigned char>(s[i])))
 		{
