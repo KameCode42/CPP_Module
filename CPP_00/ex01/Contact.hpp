@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 10:47:56 by david             #+#    #+#             */
-/*   Updated: 2025/06/14 11:01:11 by david            ###   ########.fr       */
+/*   Updated: 2025/06/14 14:33:33 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 #include <iostream>
 #include <string>
 #include <iomanip>
+#include <cstdlib>
+#include <cctype>
 
 class	Contact
 {

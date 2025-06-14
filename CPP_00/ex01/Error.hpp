@@ -1,34 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PhoneBook.hpp                                      :+:      :+:    :+:   */
+/*   Error.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/12 10:48:18 by david             #+#    #+#             */
-/*   Updated: 2025/06/14 14:31:58 by david            ###   ########.fr       */
+/*   Created: 2025/06/14 14:38:16 by david             #+#    #+#             */
+/*   Updated: 2025/06/14 14:39:21 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHONEBOOK_H
-# define PHONEBOOK_H
+#ifndef ERROR_H
+# define ERROR_H
 
+#include "PhoneBook.hpp"
 #include "Contact.hpp"
 
-class PhoneBook
-{
-	public:
-		PhoneBook();
-		~PhoneBook();
-
-		void	add_contact();
-		void	search_contact();
-
-	private:
-		Contact	_array[8];
-		int		_nextIndex;
-		int		_count;
-		int		_maxContact;
-};
+bool	isNotEmpty(const std::string& s);
 
 #endif

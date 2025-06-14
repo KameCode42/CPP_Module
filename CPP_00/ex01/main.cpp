@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 10:48:47 by david             #+#    #+#             */
-/*   Updated: 2025/06/14 11:00:39 by david            ###   ########.fr       */
+/*   Updated: 2025/06/14 12:14:21 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,17 @@ int	main()
 	std::cout << "Welcome to your phonebook manager !" << std::endl;
 	while (1)
 	{
-		std::cout << "type a command ADD, SEARCH or EXIT : ";
+		std::cout << "Type a command : " << std::endl;
+		std::cout << "- ADD" << std::endl;
+		std::cout << "- SEARCH" << std::endl;
+		std::cout << "- EXIT" << std::endl;
 		std::getline(std::cin, line);
-		//if (!line.compare(add))
-			//PhoneBook.add_contact();
+		system("clear");
+		if (!line.compare(add))
+			PhoneBook.add_contact();
 		//else if(!line.compare(search))
 			//PhoneBook.search_contact()
-		if (!line.compare(exit))
+		else if (!line.compare(exit))
 		{
 			std::cout << "GoodBye !" << std::endl;
 			break;

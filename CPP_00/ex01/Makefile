@@ -8,6 +8,7 @@ FLAGS		= -std=c++98 -Wall -Wextra -Werror
 SRCS 		=	main.cpp \
 				Contact.cpp \
 				PhoneBook.cpp \
+				Error.cpp
 
 OBJS 		= $(SRCS:.cpp=.o)
 
