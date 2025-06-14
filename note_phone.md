@@ -1,48 +1,132 @@
-std::string
-Qu’est-ce que c’est ?
+NOTE PHONEBOOK :
 
-    Une classe de la bibliothèque standard (<string>) qui encapsule une suite de caractères de longueur dynamique.
+LES FT UTILES :
 
-    Internement, elle gère automatiquement l’allocation et la libération mémoire, évitant les fuites et la complexité liée aux C-strings (char*).
-
-Caractéristiques principales
-Méthode	Description
-size()/length()	Nombre de caractères
-empty()	Teste si la chaîne est vide
-operator[]/at()	Accès direct à un caractère (avec vérification via at)
-append(), +	Concaténation
-substr(pos, len)	Extraction d’une sous-chaîne
-find(str)	Recherche d’une sous-chaîne
-compare()	Comparaison lexicographique
-c_str()	Conversion en C-string (const char*)
-Pourquoi l’utiliser dans PhoneBook ?
-
-    Sécurité
-
-        Pas de buffer overflow : on n’a pas à prévoir manuellement la taille du buffer.
-
-    Simplicité
-
-        Concaténation aisée (s1 + " " + s2), comparaison lexicographique (if (a < b)), conversion aisée pour affichage ou envoi à std::ostream.
-
-    Richesse fonctionnelle
-
-        Recherche, découpage, insertion, suppression… indispensables pour manipuler noms, prénoms, numéros, etc.
-
-    Exemple
-
-#include <string>
-#include <iostream>
-
+- getline
+stocke dans une chaîne de caractères (std::string ou un tableau de char, selon la version utilisée)
 int main() {
-    std::string firstName = "Jean";
-    std::string lastName = "Dupont";
-    std::string fullName = firstName + " " + lastName;
-    std::cout << "Nom complet : " << fullName << " (" 
-              << fullName.size() << " caractères)\n";
+	std::string ligne;
+	std::cout << "Entrez une ligne de texte : ";
+	std::getline(std::cin, ligne);
+	std::cout << "Vous avez entré : " << ligne << std::endl;
+	return 0;
 }
 
-================================================================================
+- std::cin	->	agit comme un scanf
+
+- compare
+
+
+===================================================================================================
+
+CLASS CONTACT:
+
+void setFirstName(const std::string& firstName);
+- set permet de stocker l information, la saisie
+
+const std::string& firstName
+- const std::string = const str
+- le & permet d eviter des stockage temp inutile
+
+const std::string&	getFirstName()const;
+- get va recuperer l'information, la saisie
+- const signifie que le fichier sera lu en mode lecture et ne pourra pas etre modifier
+
+std::string :
+- Une classe de la lib standard (<string>) qui encapsule une suite de caractères de longueur dynamique
+- std::string gère automatiquement la mémoire
+- pas besoin d'allouer ni libérer manuellement un buffer (pas de new[]/delete[])
+- La taille s’adapte : peux stocker aussi bien "Al" que "Alexandre" ou même une phrase plus longue
+- pas beosin de gerer la taille
+- gère automatiquement l’allocation et la libération mémoire, évitant les fuites
+
+Caractéristiques principales :
+- size()/length()	Nombre de caractères
+- empty()	Teste si la chaîne est vide
+- operator[]/at()	Accès direct à un caractère (avec vérification via at)
+- append(), +	Concaténation
+- substr(pos, len)	Extraction d’une sous-chaîne
+- find(str)	Recherche d’une sous-chaîne
+- compare()	Comparaison lexicographique
+- c_str()	Conversion en C-string (const char*)
+
+Private :
+- En le déclarant private, tu empêches tout accès direct depuis l’extérieur
+- seuls les getters et setters que tu exposes en public pourront lire ou modifier cette valeur
+- Cela te permet de contrôler la validité (ex. refuser une chaîne vide)
+- ou de déclencher d’autres actions lors du changement
+
+===================================================================================================
+
+CLASS PHONEBOOK:
+
+void add_contact();		->	Ajoute un contact, écrase le plus ancien si le tableau est plein
+void search_contact();	-> pour rechercher un contact et l'afficher
+- ce sont les fonction auquelle l'utilisateur aura le droit
+
+Private :
+Contact array[8];	->	tableau pour 8 contacts
+int _nextIndex;		->	où ajouter le prochain contact (0..7)
+int _count;			->	nb de contacts actuellement (<=8)
+
+===================================================================================================
+
+IMPLEMENTATION DE LA CLASS CONTACT :
+
+void	Contact::setFirstName(const std::string& firstName)
+{
+	this->_firstName = firstName;
+}
+- Ces méthodes servent uniquement à modifier l’attribut interne, pas à retourner une valeur
+- this->... = .....
+- Ajouter une valeur (setFirstName("Alice"))
+- Action : tu appelles le setter depuis ton code (par exemple dans main.cpp).
+- Effet : la méthode copie la chaîne "Alice" dans l’attribut privé _firstName de l’objet.
+
+const std::string&	Contact::getFirstName()const
+{
+	return this->_firstName;
+}
+- Paramètres const std::string& : performance, pas de copies inutiles.
+- std::string signifie que la fonction rend une copie de la chaîne stockée dans l’objet.
+- return copie = return this->....
+- Applicables uniquement aux getters :
+- const : Si tu tentes d’écrire dans un attribut privé à l’intérieur de getName(), pas de compilation
+- set va stocker la saisie et get l afficher
+
+===================================================================================================
+
+IMPLEMENTATION DE LA CLASS PHONEBOOK :
+
+PhoneBook::PhoneBook() : _nextIndex(0), _count(0){
+}
+- permet d'inititer les valeur a 0 lors de la construction, el list
+
+BUT DE PHONEBOOK.CPP
+- implementer les ft add_contact et search_contact
+- lire les saisie de l'utilisateur et les enregistrer dans set(ce sera dans add_contact)
+- afficher les saisie de l'utilisateur avec get(ce sera dans search_contact)
+
+===================================================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <iomanip>
 Qu’est-ce que c’est ?
@@ -163,66 +247,3 @@ En résumé, pour être optimal dans votre PhoneBook, maîtrisez avant tout std:
 
 ========================================================================================
 
-void addContact(const Contact& c);
-// Ajoute un contact, écrase le plus ancien si le tableau est plein
-
-void displaySummary() const;
-// Affiche l’en-tête puis un résumé (tableau) de tous les contacts
-
-bool displayContact(int idx) const;
-// Affiche tous les détails d’un contact donné par son index (0-based)
-// Renvoie false si index invalide
-
-=====================================================================
-
-
-class contact :
-
-const signifie que le fichier sera lu en mode lecture et ne pourra pas etre modifier
-
-std::string :
-std::string gère automatiquement la mémoire : tu n’as pas à allouer ni libérer manuellement un buffer (pas de new[]/delete[]).
-La taille s’adapte : tu peux stocker aussi bien "Al" que "Alexandre" ou même une phrase plus longue, sans te soucier de dépasser une taille fixe.
-
-En le déclarant private, tu empêches tout accès direct depuis l’extérieur : seuls les getters et setters que tu exposes en public pourront lire ou modifier cette valeur.
-Cela te permet de contrôler la validité (ex. refuser une chaîne vide) ou de déclencher d’autres actions lors du changement.
-
-void setName(str name);
-Ces méthodes servent uniquement à modifier l’attribut interne, pas à retourner une valeur.
-this->... = .....
-
-str getName() const;
-std::string signifie que la fonction rend une copie de la chaîne stockée dans l’objet.
-return copie = return this->....
-Applicables uniquement aux getters :
-Le const : Si tu tentes d’écrire dans un attribut privé à l’intérieur de getName(), le compilateur te refusera la compilation.
-
-Ajouter une valeur (setFirstName("Alice"))
-this->... = .....
-Action : tu appelles le setter depuis ton code (par exemple dans main.cpp).
-Effet : la méthode copie la chaîne "Alice" dans l’attribut privé _firstName de l’objet.
-
-Lire une valeur (getFirstName())
-return copie = return this->....
-Action : tu appelles le getter pour récupérer la valeur stockée.
-Effet : la méthode retourne une copie de la chaîne _firstName.
-
-Paramètres const std::string& : performance, pas de copies inutiles.
-
-set va stocker la saisie et get l afficher
-
-Contact c;
-std::string input;
-
-// Saisie utilisateur
-std::cout << "First Name: ";
-std::getline(std::cin, input);
-c.setFirstName(input);    // ← on stocke la saisie dans l’attribut _firstName via le setter
-
-// Plus tard, pour afficher ou traiter :
-std::cout << "You entered: " << c.getFirstName() << std::endl;
-          // ← on récupère la valeur via le getter (copie ou référence const)
-
-
-#include <cstdlib>
-pour utiliser : system("clear") : permet d avoir un interface propre

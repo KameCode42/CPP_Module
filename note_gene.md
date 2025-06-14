@@ -14,6 +14,7 @@ l’usage des Containers (vector/list/map/etc.) et des Algorithmes (tout ce qui 
 
 libraries :
 #include <iostream>
+#include <cstdlib> -> pour utiliser : system("clear") : permet d avoir un interface propre
 
 --------------------------------------------------------------------------------------------------------------------------------------
 

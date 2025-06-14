@@ -6,23 +6,17 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 10:47:56 by david             #+#    #+#             */
-/*   Updated: 2025/06/12 15:01:00 by david            ###   ########.fr       */
+/*   Updated: 2025/06/14 11:01:11 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CONTACT_CLASS_H
-# define CONTACT_CLASS_H
+#ifndef CONTACT_H
+# define CONTACT_H
 
 #include <iostream>
 #include <string>
 #include <iomanip>
-/*
-set permet de stocker l information
-get va la recuperer
-les const permettent de ne pas pouvoir modifier les chaine
-le & permet d eviter des stockage temp inutile
-const std::string = const str
-*/
+
 class	Contact
 {
 	public:
