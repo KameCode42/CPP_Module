@@ -6,17 +6,23 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 10:47:56 by david             #+#    #+#             */
-/*   Updated: 2025/06/12 14:08:10 by david            ###   ########.fr       */
+/*   Updated: 2025/06/12 15:01:00 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include <iostream>
-#include <string>
-#include <iomanip>
 
 #ifndef CONTACT_CLASS_H
 # define CONTACT_CLASS_H
 
+#include <iostream>
+#include <string>
+#include <iomanip>
+/*
+set permet de stocker l information
+get va la recuperer
+les const permettent de ne pas pouvoir modifier les chaine
+le & permet d eviter des stockage temp inutile
+const std::string = const str
+*/
 class	Contact
 {
 	public:
@@ -28,7 +34,6 @@ class	Contact
 		void	setNickName(const std::string& nickName);
 		void	setPhoneNumber(const std::string& phoneNumber);
 		void	setDarkSecret(const std::string& darkSecret);
-
 		const std::string&	getFirstName()const;
 		const std::string&	getLastName()const;
 		const std::string&	getNickName()const;

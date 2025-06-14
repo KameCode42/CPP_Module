@@ -6,17 +6,21 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 10:48:09 by david             #+#    #+#             */
-/*   Updated: 2025/06/12 14:12:26 by david            ###   ########.fr       */
+/*   Updated: 2025/06/12 15:08:20 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Contact.hpp"
 
+/*
+constructeur et destructeur ne return rien
+les set stock l info
+les get les return
+Les std::string sont initialisés à "" automatiquement
+*/
 Contact::Contact(){
-	return;
 }
 Contact::~Contact(){
-	return;
 }
 void	Contact::setFirstName(const std::string& firstName){
 	this->_firstName = firstName;

@@ -222,3 +222,7 @@ c.setFirstName(input);    // ← on stocke la saisie dans l’attribut _firstNam
 // Plus tard, pour afficher ou traiter :
 std::cout << "You entered: " << c.getFirstName() << std::endl;
           // ← on récupère la valeur via le getter (copie ou référence const)
+
+
+#include <cstdlib>
+pour utiliser : system("clear") : permet d avoir un interface propre
