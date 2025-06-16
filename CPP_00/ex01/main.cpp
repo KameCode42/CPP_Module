@@ -6,22 +6,28 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 10:48:47 by david             #+#    #+#             */
-/*   Updated: 2025/06/16 13:57:18 by david            ###   ########.fr       */
+/*   Updated: 2025/06/16 14:13:58 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
 
-int	main()
+int	main(int argc, char **argv)
 {
 	PhoneBook	PhoneBook;
 	std::string	line;
 	std::string	add = "ADD";
 	std::string	search = "SEARCH";
 	std::string	exit = "EXIT";
+	(void)argv;
 
+	if (argc != 1){
+		std::cout << "Use './phonebook'" << std::endl;
+		return 1;
+	}
 	system("clear");
 	std::cout << "Welcome to your phonebook manager !" << std::endl;
+	std::cout << std::endl;
 	while (1){
 		std::cout << "Type a command : " << std::endl;
 		std::cout << "- ADD" << std::endl;
@@ -33,8 +39,7 @@ int	main()
 			PhoneBook.add_contact();
 		else if(!line.compare(search))
 			PhoneBook.search_contact();
-		else if (!line.compare(exit))
-		{
+		else if (!line.compare(exit)){
 			std::cout << "GoodBye !" << std::endl;
 			break;
 		}

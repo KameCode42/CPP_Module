@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 10:48:33 by david             #+#    #+#             */
-/*   Updated: 2025/06/16 13:49:28 by david            ###   ########.fr       */
+/*   Updated: 2025/06/16 14:26:10 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ void	PhoneBook::add_contact(){
 	std::string	phoneNumber;
 	std::string	darkSecret;
 
-	if (_nextIndex == 8)
-		_nextIndex = 0;
 	do{
 		std::cout << "Type a first name : ";
 		std::getline(std::cin, firstName);
@@ -72,6 +70,11 @@ void	PhoneBook::search_contact(){
 	std::string	nick;
 	int	i = 0;
 
+	if (_count == 0){
+		std::cout << "No contact is recorded" << std::endl;
+		std::cout << std::endl;
+		return;
+	}
 	std::cout << "|";
 	std::cout << std::right << std::setw(10) << "index";
 	std::cout << "|";
@@ -109,6 +112,7 @@ void	PhoneBook::search_contact(){
 		std::getline(std::cin, index);
 	}while(!validIndex(index));
 	i = index[0] - '0';
+	std::cout << std::endl;
 	std::cout << "First Name : " << this->_array[i].getFirstName() << std::endl;
 	std::cout << "Last Name : " << this->_array[i].getLastName() << std::endl;
 	std::cout << "Nick Name : " << this->_array[i].getNickName() << std::endl;
