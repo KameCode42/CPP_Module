@@ -14,6 +14,12 @@ int main() {
 
 - std::cin	->	agit comme un scanf
 
+- std::setw : dans <iomanip>
+utilise std::setw pour chaque champ de largeur fixe.
+Ajuste std::left ou std::right selon que tu veuilles l’alignement à gauche ou à droit
+<< std::left << std::setw(10) << ton instance
+<< std::right << std::setw(10) << ton instance
+
 ===================================================================================================
 
 CLASS CONTACT:
@@ -112,6 +118,9 @@ add_contact :
 - this->_array = instance sur laquelle on veut travailler
 - [this->_nextIndex] = utilises ton indice current_nb (de 0 à 7) pour sélectionner la bonne case du tableau
 - .setFirstName(firstName); = setter copie alors la valeur dans l’attribut privé _lastName de ce contact
+
+search_contact :
+- afficher le tableau des contact en utilisant les get
 
 ===================================================================================================
 

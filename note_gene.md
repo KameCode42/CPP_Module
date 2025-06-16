@@ -355,6 +355,9 @@ int	main()
 	instance.setFoo(-42);
 	std::cout << instance.getFoo() << std::endl;
 
+	pour get
+
+	Sample.getFoo()
 	return 0;
 }
 
