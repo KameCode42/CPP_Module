@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 10:48:33 by david             #+#    #+#             */
-/*   Updated: 2025/06/16 18:15:31 by david            ###   ########.fr       */
+/*   Updated: 2025/06/16 18:25:00 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ void	PhoneBook::add_contact(){
 	std::string	phoneNumber;
 	std::string	darkSecret;
 
-	if (_nextIndex == 8)
+	//ici il faut remplacer le derneir par le plus ancien
+	//if (_nextIndex == 8)
 	do{
 		std::cout << "Type a first name : ";
 		std::getline(std::cin, firstName);
@@ -77,12 +78,9 @@ void	PhoneBook::search_contact(){
 		return;
 	}
 	std::cout << "|";
-	std::cout << std::right << std::setw(10) << "index";
-	std::cout << "|";
-	std::cout << std::right << std::setw(10) << "First Name";
-	std::cout << "|";
-	std::cout << std::right << std::setw(10) << "Last Name";
-	std::cout << "|";
+	std::cout << std::right << std::setw(10) << "index" << "|";
+	std::cout << std::right << std::setw(10) << "First Name" << "|";
+	std::cout << std::right << std::setw(10) << "Last Name" << "|";
 	std::cout << std::right << std::setw(10) << "Nick Name";
 	std::cout << "|" << std::endl;
 	std::cout << "---------------------------------------------" << std::endl;
