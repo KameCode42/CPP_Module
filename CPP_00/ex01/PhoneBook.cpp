@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 10:48:33 by david             #+#    #+#             */
-/*   Updated: 2025/06/14 16:43:01 by david            ###   ########.fr       */
+/*   Updated: 2025/06/16 09:48:48 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,12 @@ void	PhoneBook::add_contact(){
 	std::string	phoneNumber;
 	std::string	darkSecret;
 
-	if (_count >= _maxContact){
-		std::cout << "The address book is full (8 contacts max). Unable to add." << std::endl;
-		return;
-	}
+	if (_nextIndex == 8)
+		_nextIndex = 0;
 	do{
 		std::cout << "Type a first name : ";
 		std::getline(std::cin, firstName);
-	}while (!validText(firstName));//tant que c est false
+	}while (!validText(firstName));
 	system("clear");
 	do{
 		std::cout << "Type a last name : ";
@@ -54,19 +52,14 @@ void	PhoneBook::add_contact(){
 		std::getline(std::cin, darkSecret);
 	}while (!validText(darkSecret));
 	system("clear");
+	this->_array[this->_nextIndex].setFirstName(firstName);
+	this->_array[this->_nextIndex].setFirstName(lastName);
+	this->_array[this->_nextIndex].setFirstName(nickName);
+	this->_array[this->_nextIndex].setFirstName(phoneNumber);
+	this->_array[this->_nextIndex].setFirstName(darkSecret);
+	this->_nextIndex++;
 	if (_count <= _maxContact){
 		std::cout << "Contact save" << std::endl;
 		_count++;
 	}
-	//gere les erreur avant de set
-
-
-	//enregiste grace a set dans le tableau avec l index
-	/*
-	isNumeric(const std::string&)
-
-	isNotEmpty(const std::string&)
-
-	isValidPhone(const std::string&)
-	*/
 }

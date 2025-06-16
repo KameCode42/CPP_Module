@@ -14,9 +14,6 @@ int main() {
 
 - std::cin	->	agit comme un scanf
 
-- compare
-
-
 ===================================================================================================
 
 CLASS CONTACT:
@@ -106,6 +103,15 @@ BUT DE PHONEBOOK.CPP
 - implementer les ft add_contact et search_contact
 - lire les saisie de l'utilisateur et les enregistrer dans set(ce sera dans add_contact)
 - afficher les saisie de l'utilisateur avec get(ce sera dans search_contact)
+
+add_contact :
+- declare des variable locale
+- le do while permet de reposer la question en cas d'erreur
+- une fois, le contact on copie la valeur a l'attibut prive (il ne pourra pas etre modifier)
+
+- this->_array = instance sur laquelle on veut travailler
+- [this->_nextIndex] = utilises ton indice current_nb (de 0 à 7) pour sélectionner la bonne case du tableau
+- .setFirstName(firstName); = setter copie alors la valeur dans l’attribut privé _lastName de ce contact
 
 ===================================================================================================
 
