@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 14:39:33 by david             #+#    #+#             */
-/*   Updated: 2025/06/14 16:59:49 by david            ###   ########.fr       */
+/*   Updated: 2025/06/16 10:52:40 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 bool	isNotEmpty(const std::string& s){
 	if (s.empty())
 	{
-		std::cout << "The string must not be empty" << std::endl;
+		std::cout << "Error : the string must not be empty" << std::endl;
 		return false;
 	}
 	return true;
@@ -26,7 +26,7 @@ bool	isWhiteSpace(const std::string& s){
 	{
 		if (std::isspace(static_cast<unsigned char>(s[i])))
 		{
-			std::cout << "No spaces or tabs" << std::endl;
+			std::cout << "Error : no spaces or tabs" << std::endl;
 			return false;
 		}
 	}
@@ -38,7 +38,7 @@ bool	isAllAlpha(const std::string& s){
 	{
 		if (!std::isalpha(static_cast<unsigned char>(s[i])))
 		{
-			std::cout << "Must contain only letters" << std::endl;
+			std::cout << "Error : only letters" << std::endl;
 			return false;
 		}
 	}
@@ -50,9 +50,19 @@ bool	isAllDigit(const std::string& s){
 	{
 		if (!std::isdigit(static_cast<unsigned char>(s[i])))
 		{
-			std::cout << "Must contain only numeric numbers" << std::endl;
+			std::cout << "Error : only numeric numbers" << std::endl;
 			return false;
 		}
+	}
+	return true;
+}
+
+bool	validIndex(const std::string& idx)
+{
+	if ((idx.length() != 1) || (idx[0] < '0' || idx[0] > '7'))
+	{
+		std::cout << "Error : index between 0 and 7 and only one digit" << std::endl;
+		return false;
 	}
 	return true;
 }
@@ -68,7 +78,3 @@ bool	validNumber(const std::string& s){
 		&& isWhiteSpace(s)
 		&& isAllDigit(s);
 }
-
-//dans les std::....
-//valeur de retour 1 si c est juste et 0 si y a une erreur
-//! == 0

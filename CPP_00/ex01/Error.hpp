@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 14:38:16 by david             #+#    #+#             */
-/*   Updated: 2025/06/14 16:11:48 by david            ###   ########.fr       */
+/*   Updated: 2025/06/16 10:28:15 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,6 @@ bool	isAllDigit(const std::string& s);
 bool	isAllAlpha(const std::string& s);
 bool	validText(const std::string& s);
 bool	validNumber(const std::string& s);
+bool	validIndex(const std::string& idx);
 
 #endif

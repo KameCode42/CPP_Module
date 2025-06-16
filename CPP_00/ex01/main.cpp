@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 10:48:47 by david             #+#    #+#             */
-/*   Updated: 2025/06/14 16:43:11 by david            ###   ########.fr       */
+/*   Updated: 2025/06/16 10:24:12 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ int	main()
 		system("clear");
 		if (!line.compare(add))
 			PhoneBook.add_contact();
-		//else if(!line.compare(search))
-			//PhoneBook.search_contact()
+		else if(!line.compare(search))
+			PhoneBook.search_contact();
 		else if (!line.compare(exit))
 		{
 			std::cout << "GoodBye !" << std::endl;

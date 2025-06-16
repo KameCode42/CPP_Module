@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 10:48:33 by david             #+#    #+#             */
-/*   Updated: 2025/06/16 09:48:48 by david            ###   ########.fr       */
+/*   Updated: 2025/06/16 10:53:36 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,15 @@ void	PhoneBook::add_contact(){
 		std::cout << "Contact save" << std::endl;
 		_count++;
 	}
+}
+
+void	PhoneBook::search_contact()
+{
+	std::string	index;
+	do
+	{
+		std::cout << "Enter an index to display a contact" << std::endl;
+		std::getline(std::cin, index);
+	}while(!validIndex(index));
+	
 }
