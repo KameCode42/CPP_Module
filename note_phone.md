@@ -1,5 +1,19 @@
 NOTE PHONEBOOK :
 
+LIBRARY :
+<iomanip>
+- Un header qui fournit des « manipulateurs » de flux (std::cout, std::cin, etc.).
+- Permet de contrôler l’affichage (largeur de champ, alignement, précision, etc.) sans modifier la valeur des données.
+
+Principaux manipulateurs  :
+- std::setw(n)	Définit la largeur minimale du champ à n
+- std::setfill(c)	Caractère de remplissage si la largeur est trop grande
+- std::left / std::right	Alignement à gauche ou à droite
+- std::setprecision(p)	Nombre de chiffres significatifs (pour flottants)
+- std::fixed / std::scientific	Mode d’affichage des flottants
+
+===================================================================================================
+
 LES FT UTILES :
 
 - getline
@@ -19,6 +33,9 @@ utilise std::setw pour chaque champ de largeur fixe.
 Ajuste std::left ou std::right selon que tu veuilles l’alignement à gauche ou à droit
 << std::left << std::setw(10) << ton instance
 << std::right << std::setw(10) << ton instance
+
+- substr :
+Plutôt que de jouer sur des boucles ou des accès caractère par caractère, substr(0, 9) vous donne directement la portion que vous voulez extraire.
 
 ===================================================================================================
 
@@ -122,143 +139,19 @@ add_contact :
 search_contact :
 - afficher le tableau des contact en utilisant les get
 
+- std::cout << std::right << std::setw(10) << "index";
+permet d'afficher le text a droite dans une colonne de 10 caractere, setw utiliser dans iomanip
+
+if (first.size() > 10)
+	first = first.substr(0,9) + ".";
+permet de controler si notre entree a plus de 10 caractere si c est le cas on tronque avec un .
+grace a substr
+
 ===================================================================================================
 
+MAIN :
 
+if (!line.compare(add))
+- permet de comparer l entree utilisateur avec notre demande
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<iomanip>
-Qu’est-ce que c’est ?
-
-    Un header qui fournit des « manipulateurs » de flux (std::cout, std::cin, etc.).
-
-    Permet de contrôler l’affichage (largeur de champ, alignement, précision, etc.) sans modifier la valeur des données.
-
-Principaux manipulateurs
-Manipulateur	Usage
-std::setw(n)	Définit la largeur minimale du champ à n
-std::setfill(c)	Caractère de remplissage si la largeur est trop grande
-std::left / std::right	Alignement à gauche ou à droite
-std::setprecision(p)	Nombre de chiffres significatifs (pour flottants)
-std::fixed / std::scientific	Mode d’affichage des flottants
-Pourquoi l’utiliser dans PhoneBook ?
-
-Pour afficher votre répertoire sous forme de tableau propre :
-
-    Colonnes alignées
-
-        Exemple : prénoms, noms, numéros de téléphone sur des colonnes de largeur fixe.
-
-    Lisibilité accrue
-
-        Remplissage par espaces ou zéros (numéro formaté), alignement cohérent même si les longueurs varient.
-
-    Exemple d’usage pour un tableau PhoneBook
-
-#include <iostream>
-#include <iomanip>
-
-void printHeader() {
-    std::cout << std::setw(15) << std::left  << "Prénom"
-              << std::setw(15) << std::left  << "Nom"
-              << std::setw(12) << std::right << "Téléphone"
-              << '\n'
-              << std::string(42, '-') << '\n';
-}
-
-void printEntry(const std::string& first, 
-                const std::string& last, 
-                const std::string& phone) {
-    std::cout << std::setw(15) << std::left  << first
-              << std::setw(15) << std::left  << last
-              << std::setw(12) << std::right << phone
-              << '\n';
-}
-
-int main() {
-    printHeader();
-    printEntry("Alice", "Martin", "0123456789");
-    printEntry("Bob",   "Lefevre", "0987654321");
-}
-
-Cela donne :
-
-Prénom         Nom            Téléphone
-------------------------------------------
-Alice          Martin        0123456789
-Bob            Lefevre       0987654321
-
-======================================================================================================
-
-La méthode que vous appellerez le plus souvent pour répondre aux contraintes du PhoneBook
-(notamment la limite à 10 caractères et le « .» de troncature) sera :
-
-Pourquoi substr ?
-
-    Spécification du projet 42
-    Chaque champ (Prénom, Nom, Numéro) ne doit pas dépasser 10 caractères à l’affichage ; si la chaîne est plus longue, on prend les 9 premiers caractères puis on ajoute un « . ».
-
-    Fonction unique pour tronquer
-    Plutôt que de jouer sur des boucles ou des accès caractère par caractère, substr(0, 9) vous donne directement la portion que vous voulez extraire.
-
-    Clarté et simplicité
-    Une seule ligne pour tronquer, facile à relire et à maintenir :
-
-    std::string affichage = (s.size() > 10)
-        ? s.substr(0, 9) + '.'
-        : s;
-
-Le rôle de <iomanip> et std::setw
-
-Une fois vos chaînes tronquées, vous utiliserez aussi très souvent :
-
-std::setw(10)
-
-pour :
-
-    Aligner chaque colonne sur 10 positions,
-
-    Gérer automatiquement le remplissage (espaces par défaut) pour obtenir un tableau bien ordonné.
-
-Mais la vraie « bête de travail » reste substr, car tout champ qui dépasse devra systématiquement passer par elle avant d’entrer dans le flux de sortie formaté par std::setw.
-Exemple complet
-
-#include <iostream>
-#include <iomanip>
-#include <string>
-
-void printField(const std::string& s) {
-    std::string f = (s.size() > 10) ? s.substr(0, 9) + "." : s;
-    std::cout << std::setw(10) << f;
-}
-
-int main() {
-    printField("Jonathan");      // "  Jonathan"
-    printField("SuperLongName"); // "SuperLong."
-    std::cout << "\n";
-}
-
-    substr (tronquer + point) est appelé pour chaque champ trop long.
-
-    setw(10) aligne ensuite proprement les résultats.
-
-En résumé, pour être optimal dans votre PhoneBook, maîtrisez avant tout std::string::substr ; std::setw viendra compléter votre solution côté affichage.
-
-========================================================================================
-
+===================================================================================================

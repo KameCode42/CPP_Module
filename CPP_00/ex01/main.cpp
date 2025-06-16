@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 10:48:47 by david             #+#    #+#             */
-/*   Updated: 2025/06/16 10:24:12 by david            ###   ########.fr       */
+/*   Updated: 2025/06/16 13:57:18 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,13 @@
 
 int	main()
 {
-	PhoneBook	PhoneBook;//variable phonebook pour use phonebook.add_contact etc
+	PhoneBook	PhoneBook;
 	std::string	line;
 	std::string	add = "ADD";
 	std::string	search = "SEARCH";
 	std::string	exit = "EXIT";
 
+	system("clear");
 	std::cout << "Welcome to your phonebook manager !" << std::endl;
 	while (1){
 		std::cout << "Type a command : " << std::endl;

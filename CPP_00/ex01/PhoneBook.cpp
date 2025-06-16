@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 10:48:33 by david             #+#    #+#             */
-/*   Updated: 2025/06/16 12:10:44 by david            ###   ########.fr       */
+/*   Updated: 2025/06/16 13:49:28 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,12 @@ void	PhoneBook::add_contact(){
 	}
 }
 
-void	PhoneBook::search_contact()
-{
+void	PhoneBook::search_contact(){
 	std::string	index;
+	std::string	line = "";
+	std::string	first;
+	std::string	last;
+	std::string	nick;
 	int	i = 0;
 
 	std::cout << "|";
@@ -79,22 +82,40 @@ void	PhoneBook::search_contact()
 	std::cout << std::right << std::setw(10) << "Nick Name";
 	std::cout << "|" << std::endl;
 	std::cout << "---------------------------------------------" << std::endl;
-	while (i < _count)
-	{
+	while (i < _count){
 		std::cout << "|";
 		std::cout << std::right << std::setw(10) << i;
 		std::cout << "|";
-		std::cout << std::right << std::setw(10) << this->_array[i].getFirstName().substr(0,9) + ".";
+		first = this->_array[i].getFirstName();
+		if (first.size() > 10)
+			first = first.substr(0,9) + ".";
+		std::cout << std::right << std::setw(10) << first;
 		std::cout << "|";
-		std::cout << std::right << std::setw(10) << this->_array[i].getLastName().substr(0,9) + ".";;
+		last = this->_array[i].getLastName();
+		if (last.size() > 10)
+			last = last.substr(0,9) + ".";
+		std::cout << std::right << std::setw(10) << last;
 		std::cout << "|";
-		std::cout << std::right << std::setw(10) << this->_array[i].getNickName().substr(0,9) + ".";;
+		nick = this->_array[i].getNickName();
+		if (nick.size() > 10)
+			nick = nick.substr(0,9) + ".";
+		std::cout << std::right << std::setw(10) << nick;
 		std::cout << "|" << std::endl;
 		i++;
 	}
-	do
-	{
+	std::cout << std::endl;
+	do{
 		std::cout << "Enter an index to display a contact" << std::endl;
 		std::getline(std::cin, index);
 	}while(!validIndex(index));
+	i = index[0] - '0';
+	std::cout << "First Name : " << this->_array[i].getFirstName() << std::endl;
+	std::cout << "Last Name : " << this->_array[i].getLastName() << std::endl;
+	std::cout << "Nick Name : " << this->_array[i].getNickName() << std::endl;
+	std::cout << "Phone Number : " << this->_array[i].getPhoneNumber() << std::endl;
+	std::cout << "Dark Secret : " << this->_array[i].getDarkSecret() << std::endl;
+	std::cout << std::endl;
+	std::cout << "Press enter to return to the menu" << std::endl;
+	std::getline(std::cin, line);
+	system("clear");
 }
