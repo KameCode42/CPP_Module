@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 10:48:47 by david             #+#    #+#             */
-/*   Updated: 2025/06/16 14:13:58 by david            ###   ########.fr       */
+/*   Updated: 2025/06/16 18:21:19 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,14 @@ int	main(int argc, char **argv)
 		else if (!line.compare(exit)){
 			std::cout << "GoodBye !" << std::endl;
 			break;
+		}
+		else{
+			std::cout << "Error: command invalid" << std::endl;
+			std::cout << std::endl;
+		}
+		if (std::cin.eof()){
+			std::cout << "Error: program closing" << std::endl;
+			return 1;
 		}
 	}
 	return 0;
