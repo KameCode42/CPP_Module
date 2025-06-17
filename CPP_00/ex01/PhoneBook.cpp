@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PhoneBook.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
+/*   By: dle-fur <dle-fur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 10:48:33 by david             #+#    #+#             */
-/*   Updated: 2025/06/16 18:25:00 by david            ###   ########.fr       */
+/*   Updated: 2025/06/17 17:46:18 by dle-fur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ void	PhoneBook::add_contact(){
 	std::string	phoneNumber;
 	std::string	darkSecret;
 
-	//ici il faut remplacer le derneir par le plus ancien
-	//if (_nextIndex == 8)
 	do{
 		std::cout << "Type a first name : ";
 		std::getline(std::cin, firstName);
@@ -57,11 +55,11 @@ void	PhoneBook::add_contact(){
 	this->_array[this->_nextIndex].setNickName(nickName);
 	this->_array[this->_nextIndex].setPhoneNumber(phoneNumber);
 	this->_array[this->_nextIndex].setDarkSecret(darkSecret);
-	this->_nextIndex++;
-	if (_count <= _maxContact){
-		std::cout << "Contact saved" << std::endl;
+	this->_nextIndex = (this->_nextIndex + 1) % _maxContact;
+	if (_count < _maxContact){
 		_count++;
 	}
+	std::cout << "Contact saved" << std::endl;
 }
 
 void	PhoneBook::search_contact(){
