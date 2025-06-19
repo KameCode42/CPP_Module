@@ -35,7 +35,8 @@ Ajuste std::left ou std::right selon que tu veuilles l’alignement à gauche ou
 << std::right << std::setw(10) << ton instance
 
 - substr :
-Plutôt que de jouer sur des boucles ou des accès caractère par caractère, substr(0, 9) vous donne directement la portion que vous voulez extraire.
+Plutôt que de jouer sur des boucles ou des accès caractère par caractère,
+substr(0, 9) vous donne directement la portion que vous voulez extraire.
 
 ===================================================================================================
 
@@ -153,5 +154,12 @@ MAIN :
 
 if (!line.compare(add))
 - permet de comparer l entree utilisateur avec notre demande
+
+if (std::cin.eof())
+- Après une opération de lecture qui tombe sur la fin du fichier (ou sur Ctrl-D / Ctrl-Z en terminal), 
+  le drapeau EOF est levé et std::cin.eof() renvoie true.
+
+- sert à détecter cette situation pour, par exemple, quitter proprement ton programme
+  ou arrêter une boucle de lecture.
 
 ===================================================================================================
