@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 16:00:42 by david             #+#    #+#             */
-/*   Updated: 2025/06/20 10:52:44 by david            ###   ########.fr       */
+/*   Updated: 2025/06/20 11:27:19 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@ int	main(){
 	Zombie	*z = NULL;
 
 	std::cout << "-----------stack-----------" << std::endl;
-	z->randomChump("ratchet");
+	randomChump("ratchet");
 	std::cout << std::endl;
 	std::cout << "-----------heap------------" << std::endl;
-	z = z->newZombie("clank");
+	z = newZombie("clank");
 	delete z;
 	return 0;
 }
