@@ -42,3 +42,18 @@ Libération de la mémoire
 Pour la pile :
 - la variable local ne sera pas un pointeur
 - on peut l'implementer depuis la fonction membre variable.fonctionMembre
+
+===================================================================================================
+
+ALLOUER DES TABLEAUX ZOMBIE:
+- Zombie* horde = new Zombie[N];
+- delete[];
+
+- on alloue sur l'objet Zombie le "N" qui signifie le nombre d'entree dans le tableau
+- horde sera utiliser pour parcourir le tableau -> horde[i]
+
+- recuperation et affichage :
+for (int i = 0; i < N; i++){
+		horde[i].setName(name);	->	permet de set les informations (stocker la saisie)
+		horde[i].announce();	->	utilise la fonction membre
+	}
