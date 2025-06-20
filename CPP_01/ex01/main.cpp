@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 11:46:42 by david             #+#    #+#             */
-/*   Updated: 2025/06/20 17:11:57 by david            ###   ########.fr       */
+/*   Updated: 2025/06/20 18:19:43 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	main(){
 	std::cout << "--------VALID TEST 2------------" << std::endl;
 	testHordeZombie(10, "aloy");
 	std::cout << std::endl;
-	std::cout << "--------VALID TEST 2------------" << std::endl;
+	std::cout << "--------VALID TEST 3------------" << std::endl;
 	testHordeZombie(20, "astro");
 	std::cout << std::endl;
 	std::cout << std::endl;

@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 12:19:56 by david             #+#    #+#             */
-/*   Updated: 2025/06/20 15:33:37 by david            ###   ########.fr       */
+/*   Updated: 2025/06/20 18:19:03 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ Zombie*	zombieHorde(int N, std::string name){
 		std::cout << "Error: the string must not be empty" << std::endl;
 		return NULL;
 	}
-	if (N < 1 || N > 1000000){
+	if (N < 1){
 		std::cout << "Error: invalid entry" << std::endl;
 		return NULL;
 	}
