@@ -5,7 +5,10 @@ RM			= rm -f
 
 FLAGS		= -std=c++98 -Wall -Wextra -Werror
 
-SRCS 		=	main.cpp
+SRCS 		=	main.cpp \
+				Zombie.cpp \
+				newZombie.cpp \
+				randomChump.cpp
 
 OBJS 		= $(SRCS:.cpp=.o)
 

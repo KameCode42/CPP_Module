@@ -1,25 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   randomChump.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/19 16:00:42 by david             #+#    #+#             */
-/*   Updated: 2025/06/20 10:52:44 by david            ###   ########.fr       */
+/*   Created: 2025/06/19 16:01:20 by david             #+#    #+#             */
+/*   Updated: 2025/06/20 10:13:00 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
 
-int	main(){
-	Zombie	*z = NULL;
+void	Zombie::randomChump(std::string name){
+	Zombie	zombie(name);
 
-	std::cout << "-----------stack-----------" << std::endl;
-	z->randomChump("ratchet");
-	std::cout << std::endl;
-	std::cout << "-----------heap------------" << std::endl;
-	z = z->newZombie("clank");
-	delete z;
-	return 0;
+	zombie.announce();
+	return;
 }

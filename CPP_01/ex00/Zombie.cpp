@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Zombie.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/19 16:00:42 by david             #+#    #+#             */
-/*   Updated: 2025/06/20 10:52:44 by david            ###   ########.fr       */
+/*   Created: 2025/06/19 16:00:55 by david             #+#    #+#             */
+/*   Updated: 2025/06/20 10:24:21 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
 
-int	main(){
-	Zombie	*z = NULL;
+Zombie::Zombie(std::string name){
+	this->_name = name;
+	std::cout << "The zombie " << this->_name << " is create" << std::endl;
+}
 
-	std::cout << "-----------stack-----------" << std::endl;
-	z->randomChump("ratchet");
-	std::cout << std::endl;
-	std::cout << "-----------heap------------" << std::endl;
-	z = z->newZombie("clank");
-	delete z;
-	return 0;
+Zombie::~Zombie(void){
+	std::cout << "The zombie " << this->_name << " is destroy" << std::endl;
+}
+
+void	Zombie::announce(void){
+	std::cout << this->_name << " : BraiiiiiiinnnzzzZ..." << std::endl;
+	return;
 }
