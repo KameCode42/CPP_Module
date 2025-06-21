@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 11:46:42 by david             #+#    #+#             */
-/*   Updated: 2025/06/20 18:19:43 by david            ###   ########.fr       */
+/*   Updated: 2025/06/21 10:16:40 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	testHordeZombie(int size, std::string name){
 }
 
 int	main(){
+	system("clear");
 	std::cout << "--------VALID TEST 1------------" << std::endl;
 	testHordeZombie(3, "kratos");
 	std::cout << std::endl;

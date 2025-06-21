@@ -596,4 +596,24 @@ if (std::cin.eof())
 - sert à détecter cette situation pour, par exemple, quitter proprement ton programme
   ou arrêter une boucle de lecture.
 
-===================================================================================================
+--------------------------------------------------------------------------------------------------------------------------------------
+
+## 4. Les pointeurs
+
+std::string	str = "HI THIS IS BRAIN"
+- declarer la variable
+
+std::string	*stringPTR = &str
+- comme en c, c'est un pointeur vers la variable str
+
+std::string	&stringREF = str
+- référence à la variable string
+- Elle agit comme un alias, un autre nom pour la même variable
+- stringREF est exactement la même chose que string, juste un autre nom pour y accéder
+
+- std::string	str = "HI THIS IS BRAIN";	->	a une adresse memoire
+- std::string	*stringPTR = &str			->	&str récupère l’adresse mémoire de la variable str
+- std::string	&stringREF = str			->	&stringREF devient une référence à str (même adresse, même contenu)
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
