@@ -617,3 +617,33 @@ std::string	&stringREF = str
 
 --------------------------------------------------------------------------------------------------------------------------------------
 
+## 5. Weapon
+
+- REF : ne peut pas etre null donc a utiliser sur HumanA qui est de toute facon armee
+- PTR : peut etre null donc a utiliser sur HumanB qui peut ne pas etre armee au debut
+
+Class HumanA :
+
+HumanA(std::string name, Weapon &Weapon);
+- Recevoir une référence à l’arme (pas une copie)
+- L’enregistrer comme référence (puisque HumanA est toujours armé)
+- Cela permet que si le type de l’arme change en dehors de HumanA, il voie ce changement automatiquement
+
+- Voir le type de l’arme (affichage)	getType()
+- Modifier le type de l’arme	setType("nouveau nom")
+- Tu set pour changer (modifier une information)
+- Tu get pour afficher (lire une information)
+
+constructeur avec parametre :
+- Weapon::Weapon(const std::string& type)
+- Il permet de gagner du temps et de la clarté : tu crées directement une arme avec un type
+- dans main	->	Weapon club("crude spiked club");
+
+exemple :
+- Tu crées une arme avec le type "club".
+- Bob a cette arme
+- Tu fais bob.attack() → il affiche "club" (grâce à getType())
+- Tu fais setType("épée") sur la même arme
+- Tu refais bob.attack() → il affiche "épée"
+
+ Weapon club	-> weapon de type variable club appeler ("sdsdfs")
