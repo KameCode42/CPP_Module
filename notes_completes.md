@@ -647,3 +647,58 @@ exemple :
 - Tu refais bob.attack() → il affiche "épée"
 
  Weapon club	-> weapon de type variable club appeler ("sdsdfs")
+
+ --------------------------------------------------------------------------------------------------------------------------------------
+
+## 6. filestreams
+
+#include <fstream>
+- utiliser std::ifstream	->	input file stream, pour les fichiers
+- utiliser std::ofstream	->	output file stream
+- std::ios::in	->	open for reading
+- std::ios::out	->	open for writing
+- std::ios::trunc	->	iscard the contents of the stream when opening
+
+exemple input:
+std::ifstream	ifs("numbers");	->	un ifstream qui s appelle ifs qui prend en parametre numbers, ca ouvre le fichier numbers, dans lequelle on va pouvoir lire des chose
+int	dst;	-> les deux entier qu on va lire dans le fichier
+int	dst2;
+ifs >> dst >> dst;	-> permet de lire une entree comme cin
+std::cout << dst << " " << dst2 << std::endl;	-> on affiche le contenu des variable
+ifs.close();	-> on ferme le fichier ifs
+
+exemple output :
+std::ofstream	ofs("test.out");
+ofs << "oktestout" << std::endl;	->	creer le fichier test.cout
+ofs.close();
+
+is_open permet de verifier si le fichier existe
+exemple ifs.is_open(); ou if (!ifs) suffit
+
+ifs.open(argv[1]);
+if (!ifs.is_open())
+{
+	std::cout << "ouverture pas possible ou fichier inexisant" << std::endl;
+		return false;
+}
+- si : std::ifstream	ifs(argv[1]);//ouverture via constrcuteur donc pas besoin de open
+
+- ifs.open(argv[1]);
+utiliser open pour ouvrir le fichier
+utiliser is_open pour controler si le fichier peut etre ouvert ou non
+
+std::string		outName = argv[1];
+- range arv[1] dans outName car append prend un string
+outName.append(".replace");
+- on ajoute .replace au nom existant
+std::ofstream	ofs(outName.c_str());
+- c_str permet de cast en const char et obtenir l acces
+- equivalent a ofs.open(outName.c_str(), std::ios::out | std::ios::trunc);
+
+std::string::npos 
+- valeur renvoyée par find quand il ne trouve plus l’occurrence recherchée. 
+- C’est la manière canonique et la plus lisible en C++ pour détecter la fin de tes recherches
+if (pos == std::string::npos) {
+    // plus aucune occurrence
+}
+Si s1 vaut "clean" et que line vaut "make clean all", alors pos == 5, car le c de "clean" est en position 5.

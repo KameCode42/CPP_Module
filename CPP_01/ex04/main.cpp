@@ -1,0 +1,70 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/26 14:20:21 by david             #+#    #+#             */
+/*   Updated: 2025/06/26 17:56:42 by david            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <cstring>
+
+int	main(int argc, char **argv)
+{
+	std::string		s1;
+	std::string		s2;
+
+	if (argc != 4){
+		std::cout << "utilise 3 arguement" << std::endl;
+		return 1;
+	}
+	std::ifstream	ifs(argv[1]);//ouverture via constrcuteur donc pas besoin de open
+	s1 = argv[2];// chaine a rechercher
+	s2 = argv[3];//chaine a remplacer
+	if (s1.empty() || s2.empty()){
+		std::cout << "pas de chaine vide" << std::endl;
+		return 1;
+	}
+	if (!ifs){//controler ouverture
+		std::cout << "ouverture pas possible ou fichier inexisant, pas permission" << std::endl;
+		return 1;
+	}
+	std::string		outName = argv[1];
+	outName.append(".replace");
+	std::ofstream	ofs(outName.c_str());
+	if (!ofs){
+		std::cout << "impossible ouvrir en ecriture" << outName << std::endl;
+		return 1;
+	}
+	
+	//lire le fichier ligne par ligne
+	std::string	line;
+	while(std::getline(ifs, line))//parcours le fichier
+	{
+		std::string	result;//on va copier dans result
+		size_t	start = 0;//position de depart de la recherche
+		size_t	pos = line.find(argv[2], start);//pos recoit le resultat par ex pos = 5 qui est 'c' de clean
+		while(pos != std::string::npos)//tant qu il y a des occurence
+		{
+			//
+		}
+	}
+
+
+
+
+
+
+
+
+
+
+	
+	return 0;
+}
