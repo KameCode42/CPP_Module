@@ -646,60 +646,104 @@ exemple :
 - Tu fais setType("épée") sur la même arme
 - Tu refais bob.attack() → il affiche "épée"
 
- Weapon club	-> weapon de type variable club appeler ("sdsdfs")
+Weapon club	-> weapon de type variable club appeler ("sdsdfs")
 
- --------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------
 
 ## 6. filestreams
 
 #include <fstream>
-- utiliser std::ifstream	->	input file stream, pour les fichiers
-- utiliser std::ofstream	->	output file stream
-- std::ios::in	->	open for reading
-- std::ios::out	->	open for writing
-- std::ios::trunc	->	iscard the contents of the stream when opening
+- utiliser std::ifstream	->	input file stream, pour les fichiers / par defaut fais le test ::in
+- utiliser std::ofstream	->	output file stream / par defaut fais le test ::out et ::trunc
+- std::ios::in				->	open for reading
+- std::ios::out				->	open for writing
+- std::ios::trunc			->	discard the contents of the stream when opening
 
-exemple input:
-std::ifstream	ifs("numbers");	->	un ifstream qui s appelle ifs qui prend en parametre numbers, ca ouvre le fichier numbers, dans lequelle on va pouvoir lire des chose
-int	dst;	-> les deux entier qu on va lire dans le fichier
-int	dst2;
-ifs >> dst >> dst;	-> permet de lire une entree comme cin
-std::cout << dst << " " << dst2 << std::endl;	-> on affiche le contenu des variable
-ifs.close();	-> on ferme le fichier ifs
+#include <cstring>
+- c_str permet de cast en const char et obtenir l'acces
+- equivalent a ofs.open(outName.c_str(), std::ios::out | std::ios::trunc);
 
-exemple output :
+Exemple input:
+- std::ifstream	ifs("numbers");	->	un ifstream qui s appelle ifs qui prend en parametre numbers,
+  ca ouvre le fichier numbers, dans lequelle on va pouvoir lire des chose
+- int	dst;	-> les deux entier qu on va lire dans le fichier
+- int	dst2;
+- ifs >> dst >> dst;	-> permet de lire une entree comme cin
+- std::cout << dst << " " << dst2 << std::endl;	-> on affiche le contenu des variable
+- ifs.close();	-> on ferme le fichier ifs
+
+Exemple output :
 std::ofstream	ofs("test.out");
 ofs << "oktestout" << std::endl;	->	creer le fichier test.cout
 ofs.close();
 
-is_open permet de verifier si le fichier existe
-exemple ifs.is_open(); ou if (!ifs) suffit
-
-ifs.open(argv[1]);
-if (!ifs.is_open())
-{
-	std::cout << "ouverture pas possible ou fichier inexisant" << std::endl;
-		return false;
-}
-- si : std::ifstream	ifs(argv[1]);//ouverture via constrcuteur donc pas besoin de open
-
+open :
+- utiliser open pour ouvrir le fichier
 - ifs.open(argv[1]);
-utiliser open pour ouvrir le fichier
-utiliser is_open pour controler si le fichier peut etre ouvert ou non
+- si utilise std::ifstream ifs(argv[1]);	->	ouverture via constructeur donc pas besoin de open
 
-std::string		outName = argv[1];
-- range arv[1] dans outName car append prend un string
-outName.append(".replace");
-- on ajoute .replace au nom existant
-std::ofstream	ofs(outName.c_str());
-- c_str permet de cast en const char et obtenir l acces
-- equivalent a ofs.open(outName.c_str(), std::ios::out | std::ios::trunc);
+is_open :
+- permet de verifier si le fichier existe
+- exemple ifs.is_open(); ou if (!ifs) suffit
 
-std::string::npos 
+Exemple :
+if (!ifs){
+	std::cout << "Error, permission, inexistant" << std::endl;
+		return 1;
+}
+
+std::string outName = argv[1]		->	range dans un string argv[1], filename car apprend prend une string
+outName.append(".replace");			->	on concatene a filename le .replace
+std::ofstream ofs(outName.c_str())	->	c_str permet de renvoyer un pointeur const char* vers une représentation en C-string (terminée par '\0') de la  chaîne.
+									->equivalent a ofs.open(outName.c_str(), std::ios::out | std::ios::trunc);
+
+BOUCLE ALGO :
+
+while(std::getline(ifs, line))
+- std::getline lit jusqu’au prochain retour à la ligne (ou jusqu’à EOF), remplit line sans inclure le '\n', et retourne true tant qu’il reste des lignes valides à lire
+
+std::string	result;
+- string ou l'on va copier le texte
+
+size_t	start = 0;
+- position de depart de la recherche / debut du fichier
+
+size_t	pos = line.find(s1, start);
+- exemple : make clean all
+- start commence a m qui est 0
+- si s1 est trouvee, pos recoit le resultat par ex pos = 5 qui est 'c' de clean
+
+while(pos != std::string::npos)
+- tant qu il y a des occurence
+
+std::string::npos
 - valeur renvoyée par find quand il ne trouve plus l’occurrence recherchée. 
 - C’est la manière canonique et la plus lisible en C++ pour détecter la fin de tes recherches
 if (pos == std::string::npos) {
     // plus aucune occurrence
 }
 
-Si s1 vaut "clean" et que line vaut "make clean all", alors pos == 5, car le c de "clean" est en position 5
+result += line.substr(start, pos - start);
+- en premier on extrait les choses qui precedent l'occurence
+- dans l exemple make clean all, on extrait make qu on range dans result, result etant vide au debut
+- donc la result = make
+
+result += s2;
+- on ajoute la s2 (chaine de remplacement) au result
+
+start = pos + s1.length();
+- repositionne start au bon endroit
+- dans l'exemple make clean all, start sera placer apres clean
+- pos = 5, length = 5, donc position de start = 10 depuis le debut du texte
+
+pos = line.find(s1, start);
+- on place pos a la prochaine occurence si y en a une et on recommence jusqu a plus aucune occurence
+
+result += line.substr(start);
+- permet d'extraire le reste du texte
+
+ofs << result << std::endl;
+- ecrit la chaîne result dans le fichier (tout le texte que tu as construit pour cette ligne)
+- mettre std::endl car getline supprime le '\n'
+
+--------------------------------------------------------------------------------------------------------------------------------------
