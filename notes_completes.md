@@ -701,4 +701,5 @@ std::string::npos
 if (pos == std::string::npos) {
     // plus aucune occurrence
 }
-Si s1 vaut "clean" et que line vaut "make clean all", alors pos == 5, car le c de "clean" est en position 5.
+
+Si s1 vaut "clean" et que line vaut "make clean all", alors pos == 5, car le c de "clean" est en position 5
