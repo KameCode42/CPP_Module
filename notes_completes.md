@@ -759,5 +759,18 @@ std::string arrayLevel[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
 void (Harl::*arrayPtr[4])(void) = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
 - déclare et initialise un tableau de pointeurs vers les méthodes membres de Harl
 
+if (arrayLevel[i] == level)
 (this->*arrayPtr[i])();
-- désigne la fonction membre appeler dans le main
+- si la correspondance est juste on enregistre avec le pointeur l'adresse du message
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+## 8. switch case :
+
+if (arrayLevel[i] == level)
+break;
+- dès le bon niveau trouver, sort immédiatement de la boucle et i conserve la valeur de l’indice correspondant.
+
+- toujours finir par un default
+
+--------------------------------------------------------------------------------------------------------------------------------------
