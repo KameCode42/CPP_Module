@@ -747,3 +747,17 @@ ofs << result << std::endl;
 - mettre std::endl car getline supprime le '\n'
 
 --------------------------------------------------------------------------------------------------------------------------------------
+
+## 7. Les pointeurs sur fonction membre
+
+void Harl::complain(std::string level)
+- fonction membre
+
+std::string arrayLevel[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+- déclare un tableau de 4 objets std::string
+
+void (Harl::*arrayPtr[4])(void) = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
+- déclare et initialise un tableau de pointeurs vers les méthodes membres de Harl
+
+(this->*arrayPtr[i])();
+- désigne la fonction membre appeler dans le main
