@@ -774,3 +774,180 @@ break;
 - toujours finir par un default
 
 --------------------------------------------------------------------------------------------------------------------------------------
+
+## 9. Ad-hoc Polymorphisme :
+
+class	Sample
+{
+	public
+		Sample();
+		~Sample();
+	
+	void bar(char const c)const;
+	void bar(int const n)const;
+	void bar(float const z)const;
+	void bar(Sample const & i)const;
+};
+
+- 4 surcharges de la fonction membre bar
+- Meme nom de fonction mais avec des parametres differents
+- Permet d'utiliser seulement la fonction bar afin d'afficher les parametres differents
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+## 10. Operator overload  :
+
+std::ostream : 
+- met à disposition tous les operator<< nécessaires
+- Signature générique = std::ostream& operator<<(std::ostream& os, const T& value);
+- permet de chainer les arguments
+- Retourner le même flux par référence pour optimiser (pas de copie) et permettre le chaînage fluide d’opérations d’insertion.
+
+
+Operation arythmetique :
+
+1 + 1 = operateur infixe
++ 1 1 = operateur prefixe
+1 1 + = operateur postfixe
+
+Notation fonctionnelle :
++(1, 1)= operateur prefixe	->	permet de comprendre la surcharge en c++
+- simple fonction qui prend deux parametre
+
+1.+(1)
+- une instance appeler 1
+- qui appelle la fonction membre +
+- a laquelle on passe en parametre 1
+
+class	Integer
+{
+	public
+		Integer(int const n);	->	construite a partir d un entier n
+		~Integer(void);//
+
+		int getValue(void)const;	->	getter pour recuperer la valeur
+
+		Integer& operator=(Integer const& rhs);	->	operateur d assignation
+		Integer operator+(Integer const& rhs)const;	->	operator d addition
+
+	private:
+		int _n;
+};
+
+std::ostream& operator<<(std::ostream& other, Integer const& rhs);
+- But : définir comment un objet rhs est affiché dans un flux de sortie (std::cout, fichier, etc.).
+
+#endif
+
+Integer& operator=(Integer const& rhs);
+- this est le parametre cacher au debut des parametre a gauche
+- rhs = right sera la sortie a droite
+- on recupere la valeur avec get = this->_n = rhs.getValue();
+- return *this pour recupere l adresse de Integer
+
+Integer operator+(Integer const& rhs)const;
+return Integer(this->_n + rhs.getValue());
+- permet d additionner la valeur modifier + la valeur recupere par get
+- on renvoie une copie de la class integer
+
+std::ostream& operator<<(std::ostream& other, Integer const& rhs)
+- other << rhs.getValue();	->	chaine differents arguments
+- return other;	->	on sort sur ostream
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+## 11. Canonical form :
+- Constructeur par défaut
+- Constructeur de recopie
+- Opérateur d’affectation
+- Destructeur
+
+class	Sample
+	{
+		public
+			Sample(void);	->
+			Sample(Sample const& src);
+			~Sample(void);
+
+			Sample& operator=(Sample const& rhs);
+
+			int	getFoo(void);
+
+		private:
+			int _foo;
+	};
+
+	std::ostream& operator<<(std::ostream& other, Sample const& rhs);
+
+	#endif
+
+Canonical (4 choses obligatoire pour 42):
+
+Sample(void);
+- constructeur par defaut
+
+Sample(Sample const& src);
+- un constructeur par copie
+- prend en parametre une instance de la class qu on est entrain de definir pour faire une copie de cette class
+- dans fichier cpp :
+- *this = src	->	on pointe pour recuperer l adresse
+
+~Sample(void);
+- destructeur
+
+Sample& operator=(Sample const& rhs);
+- mise a jour de l instance courante
+- assigner une autre instance a partir de cette class
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+EXO FIXED :
+
+HPP : Canonical form :
+Fixed();
+- constructeur par defaut
+
+Fixed(Fixed const& src);
+- copie de la class
+
+~Fixed();
+- destructeur
+
+Fixed&	operator=(Fixed const& rhs);
+- surcharge de l’opérateur d’affectation
+- But : copier l’état (les données internes) d’un objet rhs dans un autre objet déjà existant (*this).
+
+static const int	bits = 8;
+- Cette constante sert à indiquer au lecteur (et au compilateur) que le nombre fixe utilise toujours 8 bits pour la partie fractionnaire.
+- _value << Fixed::bits    // pour convertir entier → fixe
+- _value >> Fixed::bits    // pour extraire la partie entière
+- valeur = 8 / float(256);  // soit 0.03125
+
+
+CPP :
+Fixed::Fixed() : _value(0)
+- definie _value a 0
+
+Fixed::Fixed(Fixed const& src)
+*this = src;
+Fixed::Fixed(Fixed const& src) : _value(src._value)
+- copie la class
+- deux facons de faire :
+- 1 : on recupere avec *this = src
+- 2 : on fait ini list et on copie la valeur (pas besoin de *this = src)
+
+Fixed&	Fixed::operator=(Fixed const& rhs)
+this->_value = rhs.getRawBits();
+return *this;
+- on recupere l info avec le get
+
+MAIN :
+- creer Fixed a = 0
+- copie la valeur de a dans b
+- creer Fixed c
+- copie la valeur de b dans c
+- chaque get affiche 0
+- on modifie la valeur de a
+- on get la valeur
+
+--------------------------------------------------------------------------------------------------------------------------------------
