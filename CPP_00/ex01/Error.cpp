@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 14:39:33 by david             #+#    #+#             */
-/*   Updated: 2025/06/16 10:52:40 by david            ###   ########.fr       */
+/*   Updated: 2025/07/03 18:27:05 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,22 +22,20 @@ bool	isNotEmpty(const std::string& s){
 }
 
 bool	isWhiteSpace(const std::string& s){
-	for (size_t i = 0; i < s.length(); i++)
-	{
-		if (std::isspace(static_cast<unsigned char>(s[i])))
-		{
-			std::cout << "Error : no spaces or tabs" << std::endl;
-			return false;
+	for (size_t i = 0; i < s.length(); ++i){
+		if (!std::isspace(static_cast<unsigned char>(s[i]))){
+			return true;
 		}
 	}
-	return true;
+	std::cout << "Error: no spaces or tabs only" << std::endl;
+	return false;
 }
 
 bool	isAllAlpha(const std::string& s){
 	for (size_t i = 0; i < s.length(); i++)
 	{
-		if (!std::isalpha(static_cast<unsigned char>(s[i])))
-		{
+		unsigned char c = static_cast<unsigned char>(s[i]);
+		if (!std::isalpha(c) && !std::isspace(c)){
 			std::cout << "Error : only letters" << std::endl;
 			return false;
 		}
@@ -48,8 +46,7 @@ bool	isAllAlpha(const std::string& s){
 bool	isAllDigit(const std::string& s){
 	for (size_t i = 0; i < s.length(); i++)
 	{
-		if (!std::isdigit(static_cast<unsigned char>(s[i])))
-		{
+		if (!std::isdigit(static_cast<unsigned char>(s[i]))){
 			std::cout << "Error : only numeric numbers" << std::endl;
 			return false;
 		}
@@ -59,8 +56,7 @@ bool	isAllDigit(const std::string& s){
 
 bool	validIndex(const std::string& idx)
 {
-	if ((idx.length() != 1) || (idx[0] < '0' || idx[0] > '7'))
-	{
+	if ((idx.length() != 1) || (idx[0] < '0' || idx[0] > '7')){
 		std::cout << "Error : index between 0 and 7 and only one digit" << std::endl;
 		return false;
 	}

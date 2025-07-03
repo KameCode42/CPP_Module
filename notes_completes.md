@@ -917,11 +917,12 @@ Fixed&	operator=(Fixed const& rhs);
 - surcharge de l’opérateur d’affectation
 - But : copier l’état (les données internes) d’un objet rhs dans un autre objet déjà existant (*this).
 
-static const int	bits = 8;
+static const int	bits = 8; = toujours 256
 - Cette constante sert à indiquer au lecteur (et au compilateur) que le nombre fixe utilise toujours 8 bits pour la partie fractionnaire.
 - _value << Fixed::bits    // pour convertir entier → fixe
 - _value >> Fixed::bits    // pour extraire la partie entière
-- valeur = 8 / float(256);  // soit 0.03125
+- 10,4 x 256 = 2662.4, arrondie a 2662
+- 2662 / 256 = 10,3984375
 
 
 CPP :
