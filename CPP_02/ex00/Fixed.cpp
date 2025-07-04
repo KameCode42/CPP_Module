@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
+/*   By: dle-fur <dle-fur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 14:54:38 by david             #+#    #+#             */
-/*   Updated: 2025/07/03 16:02:43 by david            ###   ########.fr       */
+/*   Updated: 2025/07/04 09:24:10 by dle-fur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ void	Fixed::setRawBits(int const raw){
 	
 }
 
-Fixed&	Fixed::operator=(Fixed const& rhs){
+Fixed&	Fixed::operator=(Fixed const& src){
 	std::cout << "Copy assignment operator called" << std::endl;
-	this->_value = rhs.getRawBits();
+	this->_value = src.getRawBits();
 	return *this;
 }

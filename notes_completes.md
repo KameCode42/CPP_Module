@@ -850,9 +850,12 @@ return Integer(this->_n + rhs.getValue());
 - permet d additionner la valeur modifier + la valeur recupere par get
 - on renvoie une copie de la class integer
 
-std::ostream& operator<<(std::ostream& other, Integer const& rhs)
-- other << rhs.getValue();	->	chaine differents arguments
-- return other;	->	on sort sur ostream
+std::ostream& operator<<(std::ostream& os, Fixed const& other) {
+    os << other.getRawBits();
+    return os;
+}
+- other quand on parle d’un second objet qu’on manipule ou qu’on affiche
+- on sort sur os
 
 --------------------------------------------------------------------------------------------------------------------------------------
 
@@ -917,38 +920,122 @@ Fixed&	operator=(Fixed const& rhs);
 - surcharge de l’opérateur d’affectation
 - But : copier l’état (les données internes) d’un objet rhs dans un autre objet déjà existant (*this).
 
-static const int	bits = 8; = toujours 256
-- Cette constante sert à indiquer au lecteur (et au compilateur) que le nombre fixe utilise toujours 8 bits pour la partie fractionnaire.
-- _value << Fixed::bits    // pour convertir entier → fixe
-- _value >> Fixed::bits    // pour extraire la partie entière
-- 10,4 x 256 = 2662.4, arrondie a 2662
-- 2662 / 256 = 10,3984375
-
-
 CPP :
-Fixed::Fixed() : _value(0)
-- definie _value a 0
 
-Fixed::Fixed(Fixed const& src)
-*this = src;
-Fixed::Fixed(Fixed const& src) : _value(src._value)
-- copie la class
-- deux facons de faire :
-- 1 : on recupere avec *this = src
-- 2 : on fait ini list et on copie la valeur (pas besoin de *this = src)
+Fixed::Fixed() : _value(0){
+	std::cout << "Default constructor called" << std::endl;
+}
+- Initialise le membre privé _value à 0. Utile pour garantir qu’un nouvel objet Fixed commence toujours avec une valeur connue.
 
-Fixed&	Fixed::operator=(Fixed const& rhs)
-this->_value = rhs.getRawBits();
-return *this;
-- on recupere l info avec le get
+
+Fixed::Fixed(Fixed const& src){
+	std::cout << "Copy constructor called" << std::endl;
+	*this = src;
+}
+- Permet d’instancier un nouvel objet à partir d’un autre
+- délègues la copie à l’opérateur = pour éviter de dupliquer le code de copie à deux endroits.
+
+
+Fixed&	Fixed::operator=(Fixed const& rhs){
+	std::cout << "Copy assignment operator called" << std::endl;
+	this->_value = rhs.getRawBits();
+	return *this;
+}
+- Permet de copier l’état (_value) d’un objet existant dans un autre déjà construit.
+- retourne *this pour pouvoir chaîner les affectations (a = b = c;).
+- a = Fixed(1234.4321f)	->	aussi un assignement par copie
+
+
 
 MAIN :
-- creer Fixed a = 0
-- copie la valeur de a dans b
-- creer Fixed c
-- copie la valeur de b dans c
-- chaque get affiche 0
-- on modifie la valeur de a
-- on get la valeur
+
+int	main(){
+	Fixed a;
+	Fixed b( a );
+	Fixed c;
+	
+	c = b;
+
+	std::cout << a.getRawBits() << std::endl;
+	std::cout << b.getRawBits() << std::endl;
+	std::cout << c.getRawBits() << std::endl;
+
+	a.setRawBits(42);
+	std::cout << a.getRawBits() << std::endl;
+	
+	return 0;
+}
+
+Fixed a		->	Appel du constructeur par défaut avec value a 0
+Fixed b(a)	->	crée b à partir de a, donc c’est Fixed::Fixed(Fixed const& src) qui est appelé
+Fixed c		->	Encore un constructeur par défaut pour initialiser c a 0
+
+c = b		->	Opérateur d’affectation par copie
+				Ici tu n’es pas en train de créer un nouvel objet, tu réaffectes simplement l’état de b à c. C’est donc Fixed::operator=(Fixed const& rhs) qui est invoqué.
+
 
 --------------------------------------------------------------------------------------------------------------------------------------
+
+EXO FIXED EN PLUS :
+
+static const int	bits = 8; = si bits vaut 8 c'est comme faire x256
+
+l expression : 1 << bits -> décale le bit 1 de 8 positions vers la gauche.
+0000 0001  (1 décimal)
+1 0000 0000  (256 décimal)
+
+
+Fixed::Fixed(const int n){
+	std::cout << "Int constructor called" << std::endl;
+	this->_value = n << Fixed::bits;
+}
+- But : représenter l’entier n dans ton format fixed-point, où _value stocke en fait la valeur multipliée par 2bits
+- << pour convertir entier → fixe
+- donc n * 256
+
+
+Fixed::Fixed(const float f){
+	std::cout << "Float constructor called" << std::endl;
+	this->_value = roundf(f * (1 << bits));
+}
+- But : convertir la valeur flottante f en fixed-point, en conservant bits bits pour la partie fractionnelle.
+- Multiplication par 2bits
+- f * (1 << bits) déplace la virgule de bits positions vers la droite. 
+- Ex. si f = 3.75 et bits = 8,
+- 3.75 × 256 = 960.0
+- si par exemple f * 256 vaut 959.6 roundf renvoie 960
+
+
+- En soit premiere chose c est de convertir les chiffres en faisant *256
+
+--------------
+
+int	Fixed::toInt(void)const{
+	return this->_value >> Fixed::bits;
+}
+- toInt() te donne juste la partie entière de ton fixed-point
+- >> opération inverse de tes constructeurs : elles convertissent la valeur interne _value (fixed-point) en un entier ou en un flottant “lisible”.
+- Exemple : si bits == 8 et _value == 960
+- 960 / 256 = 3.75 donc = 3
+- Comme c’est un décalage binaire, la partie fractionnelle est simplement “jetée” (pas d’arrondi)
+
+
+float	Fixed::toFloat(void)const{
+	return (float)(this->_value) / (1 << bits);
+}
+- / (1 << bits) permet de diviser par 256
+- Exemple : si bits == 8 et _value == 960
+- 960 / 256 = 3.75
+- toFloat() te rend la valeur réelle (entier + fraction) en décimal.
+
+- en soit deuxieme chose a faire est de diviser par 256 pour avoir le chiffre exact
+
+
+std::ostream&	operator<<(std::ostream& os, Fixed const& other){
+	os << other.toFloat();
+	return os;
+}
+- permet d afficher comme ceci : std::cout << "a is " << a << std::endl;
+- evite d utiliser get a chaque appel
+
+
