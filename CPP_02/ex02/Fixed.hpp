@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 09:31:31 by david             #+#    #+#             */
-/*   Updated: 2025/07/05 16:44:52 by david            ###   ########.fr       */
+/*   Updated: 2025/07/05 21:52:18 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 #include <iostream>
 #include <cmath>
+#include <string>
+#include <cstdlib>
 
 class	Fixed
 {

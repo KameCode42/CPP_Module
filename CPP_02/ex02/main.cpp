@@ -6,142 +6,103 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 09:31:24 by david             #+#    #+#             */
-/*   Updated: 2025/07/05 17:10:34 by david            ###   ########.fr       */
+/*   Updated: 2025/07/05 21:58:31 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
 
-void	testArithmetic(){
-	Fixed const	a(Fixed(3.8f) * Fixed(4));
-	Fixed const	b(Fixed(20.3f) + Fixed(200));
-	Fixed const	c(Fixed(100) - Fixed(50));
-	Fixed const	d(Fixed(55.78f) / Fixed(23));
+void	programFixed(){
+	std::cout << "------MY_PROGRAM" << std::endl;
+	float	n1;
+	float	n2;
+	int		choice;
+	char	run;
 
-	std::cout << "result operator (*) : " << a << std::endl;
-	std::cout << "result operator (*) : " << a.toInt() << std::endl;
-	std::cout << "result operator (+) : " << b << std::endl;
-	std::cout << "result operator (+) : " << b.toInt() << std::endl;
-	std::cout << "result operator (-) : " << c << std::endl;
-	std::cout << "result operator (-) : " << c.toInt() << std::endl;
-	std::cout << "result operator (/) : " << d << std::endl;
-	std::cout << "result operator (/) : " << d.toInt() << std::endl;
+	do{
+		std::cout << "between a first number : " << std::endl;
+		std::cin >> n1;
+		std::cout << "between a second number : " << std::endl;
+		std::cin >> n2;
+
+		Fixed const	a(n1);
+		Fixed const	b(n2);
+		Fixed	result;
+
+		std::cout << "choose a parameter : " << std::endl;
+		std::cout << "1. addition" << std::endl;
+		std::cout << "2. subtraction" << std::endl;
+		std::cout << "3. division" << std::endl;
+		std::cout << "4. multiplication" << std::endl;
+		std::cout << "5. comparison {>, <, >=, <=, == && !=}" << std::endl;
+		std::cout << "6. min && max" << std::endl;
+		std::cout << std::endl;
+		std::cout << "-> ";
+		std::cin >> choice;
+		switch(choice){
+			case 1:
+				result = a + b;
+				std::cout << a << " + " << b << " = " << result << std::endl;
+			break;
+			case 2:
+				result = a - b;
+				std::cout << a << " - " << b << " = " << result << std::endl;
+			break;
+			case 3:
+				result = a / b;
+				std::cout << a << " / " << b << " = " << result << std::endl;
+			break;
+			case 4:
+				result = a * b;
+				std::cout << a << " * " << b << " = " << result << std::endl;
+			break;
+			case 5:
+				result = a > b;
+				std::cout << a << " bigger than " << b << " = " << result << std::endl;
+				result = a < b;
+				std::cout << a << " smaller than " << b << " = " << result << std::endl;
+				result = a >= b;
+				std::cout << a << " greater than or equal to " << b << " = " << result << std::endl;
+				result = a <= b;
+				std::cout << a << " smaller or equal " << b << " = " << result << std::endl;
+				result = a == b;
+				std::cout << a << " are equal " << b << " = " << result << std::endl;
+				result = a != b;
+				std::cout << a << " are different " << b << " = " << result << std::endl;
+			break;
+			case 6:
+				std::cout << "minimum between " << a << " and " << b << " = " << Fixed::min(a, b) << std::endl;
+				std::cout << "maximum between " << a << " and " << b << " = " << Fixed::max(a, b) << std::endl;
+			break;
+			default:
+				std::cout << "invalid entry" << std::endl;
+			break;
+		}
+		std::cout << std::endl;
+		std::cout << "continue : o/n" << std::endl;
+		std::cin >> run;
+		system("clear");
+	}while(run == 'o');
+	std::cout << "GoodBye!" << std::endl;
 }
 
-void	testIncrementAndDecrement(){
-	Fixed	a(1);
-	Fixed	b(2);
+int	main(void){
+	system("clear");
+	std::cout << "------TEST_PDF" << std::endl;
 
-	std::cout << a << std::endl;//1 (1 * 256) = 256
-	std::cout << ++a << std::endl;//257 / 256 = 1.00391
-	std::cout << a << std::endl;//1.00391
-	std::cout << a++ << std::endl;//1.00391
-	std::cout << a << std::endl;//258 / 256 = 1.00781
-	std::cout << std::endl;
-	std::cout << b << std::endl;// 2 (2 * 256) = 512
-	std::cout << --b << std::endl;//511 / 256 = 1.99609375
-	std::cout << b << std::endl;//1.99609375
-	std::cout << b-- << std::endl;//1.99609375 (devient 510)
-	std::cout << b << std::endl;//510 / 256 = 1.9921875
-}
+	Fixed	a;
+	Fixed const	b(Fixed(5.05f) * Fixed(2));
 
-void	testComparison(){
-	Fixed const	a(Fixed(10) > Fixed(5));
-	Fixed const	b(Fixed(5) > Fixed(10));
+	std::cout << a << std::endl;
+	std::cout << ++a << std::endl;
+	std::cout << a << std::endl;
+	std::cout << a++ << std::endl;
 	std::cout << a << std::endl;
 	std::cout << b << std::endl;
+	std::cout << Fixed::max(a, b) << std::endl;
 	std::cout << std::endl;
-	Fixed const	c(Fixed(10) <= Fixed(10));
-	Fixed const	d(Fixed(20) <= Fixed(5));
-	std::cout << c << std::endl;
-	std::cout << d << std::endl;
-	std::cout << std::endl;
-	Fixed const	e(Fixed(10) == Fixed(10));
-	Fixed const	f(Fixed(20) == Fixed(5));
-	std::cout << e << std::endl;
-	std::cout << f << std::endl;
-	std::cout << std::endl;
-	Fixed const	g(Fixed(10) != Fixed(10));
-	Fixed const	h(Fixed(20) != Fixed(5));
-	std::cout << g << std::endl;
-	std::cout << h << std::endl;
-}
 
-void	testMin(){
-	Fixed	a(20);
-	Fixed	b(10);
-	Fixed	result;
-	Fixed const	c(300);
-	Fixed const	d(200);
-	Fixed result2;
+	programFixed();
 
-	result = Fixed::min(a, b);
-	std::cout << "a = " << a << ", b = " << b << ", le min = " << result << std::endl;
-	std::cout << std::endl;
-	result2 = Fixed::min(c, d);
-	std::cout << "c = " << c << ", d = " << d << ", le min = " << result2 << std::endl;
-	std::cout << std::endl;
-}
-
-void	testMax(){
-	Fixed	a(20);
-	Fixed	b(10);
-	Fixed	result;
-	Fixed const	c(300);
-	Fixed const	d(200);
-	Fixed result2;
-
-	result = Fixed::max(a, b);
-	std::cout << "a = " << a << ", b = " << b << ", le max = " << result << std::endl;
-	std::cout << std::endl;
-	result2 = Fixed::max(c, d);
-	std::cout << "c = " << c << ", d = " << d << ", le max = " << result2 << std::endl;
-	std::cout << std::endl;
-}
-
-//5.05 = virgule flottante *256 puis roundf
-//2 direct 2 * 256
-int	main(void){
-	std::cout << "------TEST_PDF" << std::endl;
-	Fixed	a;// a._raw = 0 → a = 0/256 = 0.0
-	Fixed const	b(Fixed(5.05f) * Fixed(2));//5.05 * 256 = 1293 | 2 * 256 = 512 |
-
-	std::cout << a << std::endl;
-	std::cout << ++a << std::endl;//Pré-incrément a._raw passe de 0 à 1. Valeur = 1 / 256 = 0.00390625
-	std::cout << a << std::endl;//a._raw est toujours 1 → 0.00390625
-	std::cout << a++ << std::endl;//Post-incrément a++ :Renvoie d’abord l’ancienne valeur (0.00390625)Puis fait a._raw++ → a._raw passe de 1 à 2
-	std::cout << a << std::endl;//Après a++, a._raw == 2 → 2 / 256 = 0.0078125
-	std::cout << b << std::endl;//On retrouve b = 10.1015625 → 10.1016
-	std::cout << Fixed::max( a, b ) << std::endl;//Fixed::max compare a._raw (2) et b._raw (2586), renvoie b.
-	std::cout << std::endl;
-	std::cout << "------TEST_ARITHMETIC" << std::endl;
-	testArithmetic();
-	std::cout << std::endl;
-	std::cout << "------TEST_INCREMENT" << std::endl;
-	testIncrementAndDecrement();
-	std::cout << std::endl;
-	std::cout << "------TEST_COMPARISON" << std::endl;
-	testComparison();
-	std::cout << std::endl;
-	std::cout << "------TEST_MIN" << std::endl;
-	testMin();
-	std::cout << std::endl;
-	std::cout << "------TEST_MAX" << std::endl;
-	testMax();
 	return 0;
 }
-
-/*
-Multiplication (operator*) fait :
-
-    produit 64 bits : 1293 × 512 = 662016
-
-    décale à droite de 8 bits : 662016 >> 8 = 662016 / 256 = 2586
-
-    construit Fixed(2586)
-
-Valeur de b = 2586 / 256 = 10.1015625 → affiché 10.1016
-
-
-result de la variable qui est incrementer ou vice versa
-*/

@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 09:31:36 by david             #+#    #+#             */
-/*   Updated: 2025/07/05 16:45:17 by david            ###   ########.fr       */
+/*   Updated: 2025/07/05 21:41:17 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,10 @@ Fixed	Fixed::operator*(Fixed const& src)const{
 
 Fixed	Fixed::operator/(Fixed const& src)const{
 	float	result;
+	if (this->toFloat() == 0 || src.toFloat() == 0){
+		std::cout << "error: division by 0 impossible" << std::endl;
+		exit(EXIT_FAILURE);
+	}
 	result = this->toFloat() / src.toFloat();
 	return result;
 }

@@ -1061,3 +1061,17 @@ post-incrémentation, pré-décrémentation et post-décrémentation)
 - bool operator<=(const X& lhs, const X& rhs)
 - bool operator==(const X& lhs, const X& rhs)
 - bool operator!=(const X& lhs, const X& rhs)
+
+
+Multiplication (operator*) fait :
+
+    produit 64 bits : 1293 × 512 = 662016
+
+    décale à droite de 8 bits : 662016 >> 8 = 662016 / 256 = 2586
+
+    construit Fixed(2586)
+
+Valeur de b = 2586 / 256 = 10.1015625 → affiché 10.1016
+
+
+result de la variable qui est incrementer ou vice versa
