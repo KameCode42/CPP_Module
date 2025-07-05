@@ -944,6 +944,7 @@ Fixed&	Fixed::operator=(Fixed const& rhs){
 - Permet de copier l’état (_value) d’un objet existant dans un autre déjà construit.
 - retourne *this pour pouvoir chaîner les affectations (a = b = c;).
 - a = Fixed(1234.4321f)	->	aussi un assignement par copie
+- ou  si pas de fonction get = this->_value = rhs._value;
 
 
 
@@ -1038,4 +1039,25 @@ std::ostream&	operator<<(std::ostream& os, Fixed const& other){
 - permet d afficher comme ceci : std::cout << "a is " << a << std::endl;
 - evite d utiliser get a chaque appel
 
+--------------------------------------------------------------------------------------------------------------------------------------
 
+4 opérateurs de arithmétiques : +, -, *, et /
+- Fixed	operator+(Fixed const& src);
+- Fixed	operator-(Fixed const& src);
+- Fixed	operator*(Fixed const& src);
+- Fixed	operator/(Fixed const& src);
+
+4 opérateurs d’incrémentation et de décrémentation (pré-incrémentation et
+post-incrémentation, pré-décrémentation et post-décrémentation)
+- Fixed& operator++();
+- Fixed operator++(int);
+- Fixed& operator--();
+- Fixed operator--(int);
+
+6 opérateur de comparaison : >, <, >=, <=, == et !=
+- bool operator>(const X& lhs, const X& rhs)	->	lhs = this
+- bool operator<(const X& lhs, const X& rhs)
+- bool operator>=(const X& lhs, const X& rhs)
+- bool operator<=(const X& lhs, const X& rhs)
+- bool operator==(const X& lhs, const X& rhs)
+- bool operator!=(const X& lhs, const X& rhs)
