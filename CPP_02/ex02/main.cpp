@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 09:31:24 by david             #+#    #+#             */
-/*   Updated: 2025/07/05 21:58:31 by david            ###   ########.fr       */
+/*   Updated: 2025/07/06 09:31:21 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,25 +20,26 @@ void	programFixed(){
 	char	run;
 
 	do{
-		std::cout << "between a first number : " << std::endl;
+		std::cout << "choisi un parametre : " << std::endl;
+		std::cout << "1. addition" << std::endl;
+		std::cout << "2. soustraction" << std::endl;
+		std::cout << "3. division" << std::endl;
+		std::cout << "4. multiplication" << std::endl;
+		std::cout << "5. comparaison {>, <, >=, <=, == && !=}" << std::endl;
+		std::cout << "6. min && max" << std::endl;
+		std::cout << std::endl;
+		std::cout << "-> ";
+		std::cin >> choice;
+		std::cout << "entre un premier nombre : " << std::endl;
 		std::cin >> n1;
-		std::cout << "between a second number : " << std::endl;
+		std::cout << "entre un deuxieme nombre : " << std::endl;
 		std::cin >> n2;
+		std::cout << std::endl;
 
 		Fixed const	a(n1);
 		Fixed const	b(n2);
 		Fixed	result;
 
-		std::cout << "choose a parameter : " << std::endl;
-		std::cout << "1. addition" << std::endl;
-		std::cout << "2. subtraction" << std::endl;
-		std::cout << "3. division" << std::endl;
-		std::cout << "4. multiplication" << std::endl;
-		std::cout << "5. comparison {>, <, >=, <=, == && !=}" << std::endl;
-		std::cout << "6. min && max" << std::endl;
-		std::cout << std::endl;
-		std::cout << "-> ";
-		std::cin >> choice;
 		switch(choice){
 			case 1:
 				result = a + b;
@@ -58,24 +59,24 @@ void	programFixed(){
 			break;
 			case 5:
 				result = a > b;
-				std::cout << a << " bigger than " << b << " = " << result << std::endl;
+				std::cout << a << " plus grand que " << b << " = " << result << std::endl;
 				result = a < b;
-				std::cout << a << " smaller than " << b << " = " << result << std::endl;
+				std::cout << a << " plus petit que " << b << " = " << result << std::endl;
 				result = a >= b;
-				std::cout << a << " greater than or equal to " << b << " = " << result << std::endl;
+				std::cout << a << " plus grand ou egal " << b << " = " << result << std::endl;
 				result = a <= b;
-				std::cout << a << " smaller or equal " << b << " = " << result << std::endl;
+				std::cout << a << " plus petit ou egal " << b << " = " << result << std::endl;
 				result = a == b;
-				std::cout << a << " are equal " << b << " = " << result << std::endl;
+				std::cout << a << " sont egaux " << b << " = " << result << std::endl;
 				result = a != b;
-				std::cout << a << " are different " << b << " = " << result << std::endl;
+				std::cout << a << " sont differents " << b << " = " << result << std::endl;
 			break;
 			case 6:
-				std::cout << "minimum between " << a << " and " << b << " = " << Fixed::min(a, b) << std::endl;
-				std::cout << "maximum between " << a << " and " << b << " = " << Fixed::max(a, b) << std::endl;
+				std::cout << "min entre " << a << " et " << b << " = " << Fixed::min(a, b) << std::endl;
+				std::cout << "max entre " << a << " et " << b << " = " << Fixed::max(a, b) << std::endl;
 			break;
 			default:
-				std::cout << "invalid entry" << std::endl;
+				std::cout << "entree invalide" << std::endl;
 			break;
 		}
 		std::cout << std::endl;
