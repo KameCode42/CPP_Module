@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 09:31:24 by david             #+#    #+#             */
-/*   Updated: 2025/07/06 09:52:48 by david            ###   ########.fr       */
+/*   Updated: 2025/07/06 11:15:48 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,10 @@ void	programFixed(){
 				std::cout << a << " - " << b << " = " << result << std::endl;
 			break;
 			case 3:
+				if (b == Fixed(0)){
+					std::cout << "erreur: division par 0 impossible" << std::endl;
+					break;
+				}
 				result = a / b;
 				std::cout << a << " / " << b << " = " << result << std::endl;
 			break;
