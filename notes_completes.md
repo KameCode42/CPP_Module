@@ -1075,3 +1075,7 @@ Valeur de b = 2586 / 256 = 10.1015625 → affiché 10.1016
 
 
 result de la variable qui est incrementer ou vice versa
+
+//pre incremente, +1 a la valeur, return l adress avce *this
+
+//post incremente, return ancienne valeur et ensuite la valeur modifier

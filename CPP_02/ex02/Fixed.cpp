@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 09:31:36 by david             #+#    #+#             */
-/*   Updated: 2025/07/06 09:31:52 by david            ###   ########.fr       */
+/*   Updated: 2025/07/06 10:30:31 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,31 +83,29 @@ const Fixed&	Fixed::max(const Fixed& a, const Fixed& b)
 /*--------------------opérateurs arithmétiques--------------------*/
 
 Fixed	Fixed::operator+(Fixed const& src)const{
-	float	result;
-	result = this->toFloat() + src.toFloat();
+	Fixed	result;
+	result._value = this->_value + src._value;
 	return result;
 }
 
 Fixed	Fixed::operator-(Fixed const& src)const{
-	float	result;
-	result = this->toFloat() - src.toFloat();
+	Fixed	result;
+	result._value = this->_value - src._value;
 	return result;
 }
 
 Fixed	Fixed::operator*(Fixed const& src)const{
-	float	result;
-	result = this->toFloat() * src.toFloat();
-	return result;
+	float result = this->toFloat() * src.toFloat();
+	return Fixed(result);
 }
 
 Fixed	Fixed::operator/(Fixed const& src)const{
-	float	result;
-	if (this->toFloat() == 0 || src.toFloat() == 0){
+	if (src.toFloat() == 0){
 		std::cout << "erreur: division par 0 impossible" << std::endl;
 		exit(EXIT_FAILURE);
 	}
-	result = this->toFloat() / src.toFloat();
-	return result;
+	float result = this->toFloat() / src.toFloat();
+	return Fixed(result);
 }
 
 /*--------------------opérateurs d’incrémentation et de décrémentation--------------------*/
@@ -175,7 +173,7 @@ bool	Fixed::operator!=(Fixed const& src)const{
 /*--------------------opérateur d’affectation--------------------*/
 
 Fixed&	Fixed::operator=(Fixed const& src){
-	this->_value = src.getRawBits();
+	this->_value = src._value;
 	return *this;
 }
 

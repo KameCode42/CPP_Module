@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 09:31:31 by david             #+#    #+#             */
-/*   Updated: 2025/07/05 21:52:18 by david            ###   ########.fr       */
+/*   Updated: 2025/07/06 11:02:31 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,7 @@ class	Fixed
 		Fixed	operator*(Fixed const& src)const;
 		Fixed	operator/(Fixed const& src)const;
 
-		//pre incremente, +1 a la valeur, return l adress avce *this
 		Fixed&	operator++();
-		//post incremente, return ancienne valeur et ensuite la valeur modifier
 		Fixed	operator++(int);
 		Fixed&	operator--();
 		Fixed	operator--(int);
