@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dle-fur <dle-fur@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dle-fur <dle-fur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 16:26:47 by david             #+#    #+#             */
-/*   Updated: 2025/07/04 09:43:07 by dle-fur          ###   ########.fr       */
+/*   Updated: 2025/07/09 17:46:29 by dle-fur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,13 +59,14 @@ float	Fixed::toFloat(void)const{
 
 /*--------------------Operator--------------------*/
 
-Fixed&	Fixed::operator=(Fixed const& src){
+Fixed&	Fixed::operator=(Fixed const& other){
 	std::cout << "Copy assignment operator called" << std::endl;
-	this->_value = src.getRawBits();
+	if (this != &other)
+		this->_value = other.getRawBits();
 	return *this;
 }
 
-std::ostream&	operator<<(std::ostream& os, Fixed const& other){
-	os << other.toFloat();
+std::ostream&	operator<<(std::ostream& os, Fixed const& fixed){
+	os << fixed.toFloat();
 	return os;
 }

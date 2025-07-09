@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
+/*   By: dle-fur <dle-fur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 09:31:36 by david             #+#    #+#             */
-/*   Updated: 2025/07/06 11:16:56 by david            ###   ########.fr       */
+/*   Updated: 2025/07/09 17:53:21 by dle-fur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,29 +82,29 @@ const Fixed&	Fixed::max(const Fixed& a, const Fixed& b)
 
 /*--------------------opérateurs arithmétiques--------------------*/
 
-Fixed	Fixed::operator+(Fixed const& src)const{
+Fixed	Fixed::operator+(Fixed const& other)const{
 	Fixed	result;
-	result._value = this->_value + src._value;
+	result._value = this->_value + other._value;
 	return result;
 }
 
-Fixed	Fixed::operator-(Fixed const& src)const{
+Fixed	Fixed::operator-(Fixed const& other)const{
 	Fixed	result;
-	result._value = this->_value - src._value;
+	result._value = this->_value - other._value;
 	return result;
 }
 
-Fixed	Fixed::operator*(Fixed const& src)const{
-	float result = this->toFloat() * src.toFloat();
+Fixed	Fixed::operator*(Fixed const& other)const{
+	float result = this->toFloat() * other.toFloat();
 	return Fixed(result);
 }
 
-Fixed	Fixed::operator/(Fixed const& src)const{
-	if (src.toFloat() == 0){
+Fixed	Fixed::operator/(Fixed const& other)const{
+	if (other.toFloat() == 0){
 		std::cout << "erreur: division par 0 impossible" << std::endl;
 		return Fixed(0);
 	}
-	float result = this->toFloat() / src.toFloat();
+	float result = this->toFloat() / other.toFloat();
 	return Fixed(result);
 }
 
@@ -134,52 +134,53 @@ Fixed	Fixed::operator--(int){
 
 /*--------------------opérateur de comparaison--------------------*/
 
-bool	Fixed::operator>(Fixed const& src)const{
-	if (this->_value > src._value)
+bool	Fixed::operator>(Fixed const& other)const{
+	if (this->_value > other._value)
 		return true;
 	return false;
 }
 
-bool	Fixed::operator<(Fixed const& src)const{
-	if (this->_value < src._value)
+bool	Fixed::operator<(Fixed const& other)const{
+	if (this->_value < other._value)
 		return true;
 	return false;
 }
 
-bool	Fixed::operator>=(Fixed const& src)const{
-	if (this->_value >= src._value)
+bool	Fixed::operator>=(Fixed const& other)const{
+	if (this->_value >= other._value)
 		return true;
 	return false;
 }
 
-bool	Fixed::operator<=(Fixed const& src)const{
-	if (this->_value <= src._value)
+bool	Fixed::operator<=(Fixed const& other)const{
+	if (this->_value <= other._value)
 		return true;
 	return false;
 }
 
-bool	Fixed::operator==(Fixed const& src)const{
-	if (this->_value == src._value)
+bool	Fixed::operator==(Fixed const& other)const{
+	if (this->_value == other._value)
 		return true;
 	return false;
 }
 
-bool	Fixed::operator!=(Fixed const& src)const{
-	if (this->_value != src._value)
+bool	Fixed::operator!=(Fixed const& other)const{
+	if (this->_value != other._value)
 		return true;
 	return false;
 }
 
 /*--------------------opérateur d’affectation--------------------*/
 
-Fixed&	Fixed::operator=(Fixed const& src){
-	this->_value = src._value;
+Fixed&	Fixed::operator=(Fixed const& other){
+	if (this != &other)
+		this->_value = other._value;
 	return *this;
 }
 
 /*--------------------opérateur d'insertion--------------------*/
 
-std::ostream&	operator<<(std::ostream& os, Fixed const& other){
-	os << other.toFloat();
+std::ostream&	operator<<(std::ostream& os, Fixed const& fixed){
+	os << fixed.toFloat();
 	return os;
 }

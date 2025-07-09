@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
+/*   By: dle-fur <dle-fur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 09:31:24 by david             #+#    #+#             */
-/*   Updated: 2025/07/06 11:15:48 by david            ###   ########.fr       */
+/*   Updated: 2025/07/09 18:15:36 by dle-fur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,11 @@ void	programFixed(){
 		std::cout << std::endl;
 		std::cout << "-> ";
 		std::cin >> choice;
+		if (choice <= 0 || choice > 6)
+		{
+			std::cout << "entre invalide" << std::endl;
+			return;
+		}
 		std::cout << "entre un premier nombre : " << std::endl;
 		std::cin >> n1;
 		std::cout << "entre un deuxieme nombre : " << std::endl;
@@ -71,22 +76,25 @@ void	programFixed(){
 				result = a <= b;
 				std::cout << a << " plus petit ou egal " << b << " = " << result << std::endl;
 				result = a == b;
-				std::cout << a << " sont egaux " << b << " = " << result << std::endl;
+				std::cout << a << " et " << b << " sont egaux " << " = " << result << std::endl;
 				result = a != b;
-				std::cout << a << " sont differents " << b << " = " << result << std::endl;
+				std::cout << a << " et " << b << " sont differents " << " = " << result << std::endl;
 			break;
 			case 6:
 				std::cout << "min entre " << a << " et " << b << " = " << Fixed::min(a, b) << std::endl;
 				std::cout << "max entre " << a << " et " << b << " = " << Fixed::max(a, b) << std::endl;
 			break;
 			default:
-				std::cout << "entree invalide" << std::endl;
 			break;
 		}
 		std::cout << std::endl;
 		std::cout << "continue : o/n" << std::endl;
 		std::cin >> run;
 		system("clear");
+		if (std::cin.eof()){
+			std::cout << "Error: program closing" << std::endl;
+			exit(EXIT_FAILURE);
+		}
 	}while(run == 'o');
 	std::cout << "GoodBye!" << std::endl;
 }
@@ -108,6 +116,5 @@ int	main(void){
 	std::cout << std::endl;
 
 	programFixed();
-
 	return 0;
 }
