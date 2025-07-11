@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Point.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dle-fur <dle-fur@student.42.fr>            +#+  +:+       +#+        */
+/*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 09:22:05 by dle-fur           #+#    #+#             */
-/*   Updated: 2025/07/11 10:16:55 by dle-fur          ###   ########.fr       */
+/*   Updated: 2025/07/11 15:09:05 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,15 @@ Point::Point(const float x, const float y) : _x(x), _y(y){
 Point::Point(Point const& src) : _x(src._x), _y(src._y){
 }
 
+/*
+	const ne peut pas etre reassignes
+	pour copier une const, detruire les instances avec le destructeur
+	recreer les instances a partir de other sur emplacement memoire de this
+*/
 Point&	Point::operator=(Point const& other){
 	if (this != &other){
-		this->~Point();//detruit
-		new(this)Point(other);//on reconsruit, car des const ne peuvent pas etre copier
+		this->~Point();
+		new(this)Point(other);
 	}
 	return *this;
 }

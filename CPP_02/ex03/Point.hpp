@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Point.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dle-fur <dle-fur@student.42.fr>            +#+  +:+       +#+        */
+/*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 09:18:40 by dle-fur           #+#    #+#             */
-/*   Updated: 2025/07/11 09:52:28 by dle-fur          ###   ########.fr       */
+/*   Updated: 2025/07/11 14:41:10 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ class	Point
 		Fixed const	_y;
 };
 
+bool	bsp(Point const a, Point const b, Point const c, Point const point);
 std::ostream&	operator<<(std::ostream& os, Point const& point);
 
 #endif
