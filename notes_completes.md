@@ -424,7 +424,8 @@ Allouer des tableaux zombie
 
 - recuperation et affichage :
 for (int i = 0; i < N; i++){
-		horde[i].setName(name);	->	permet de set les informations (stocker la saisie)
+		horde[i].setN
+		->	permet de set les informations (stocker la saisie)
 		horde[i].announce();	->	utilise la fonction membre
 	}
 
@@ -1079,3 +1080,20 @@ result de la variable qui est incrementer ou vice versa
 //pre incremente, +1 a la valeur, return l adress avce *this
 
 //post incremente, return ancienne valeur et ensuite la valeur modifier
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+## 12. Heritage c++ :
+
+class	<ta_classe> : public <class_principale>
+exemple :
+- class	<ta_classe> = chat
+- public <class_principale> = animal
+- le chat aura le comportement animal + son propre comportement
+- un animal a des pattes et cour, le chat est aigris
+- la class chat aura acces aux fonctions membre de la class animal
+
+encapsulation :
+- private : uniquement une instance de la class
+- protected : accessible uniquement par une instance de la class ou d une instance de la class deriver
+- public : accessible n importe ou
