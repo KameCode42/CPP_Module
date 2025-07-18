@@ -1093,7 +1093,55 @@ exemple :
 - un animal a des pattes et cour, le chat est aigris
 - la class chat aura acces aux fonctions membre de la class animal
 
-encapsulation :
-- private : uniquement une instance de la class
-- protected : accessible uniquement par une instance de la class ou d une instance de la class deriver
-- public : accessible n importe ou
+Types d’héritage (en C++98) :
+Il y a trois types d’héritage, selon les mots-clés utilisés :
+
+Héritage public (le plus courant)
+- Les membres publics et protégés de la classe de base restent accessibles dans la classe dérivée.
+
+Héritage protégé
+- Les membres publics de la base deviennent protégés dans la classe dérivée.
+- autorise les classes dérivées à travailler avec ces données
+- accessible par toutes les classes qui héritent de cette classe
+- protected pour les membres que les classes dérivées doivent personnaliser ou réutiliser
+
+Héritage privé
+- Les membres publics et protégés de la base deviennent privés dans la classe dérivée.
+
+
+construction/destruction :
+Quand on crée un objet d’une classe dérivée :
+- D’abord, le constructeur de la classe de base est appelé.
+- Ensuite, le constructeur de la classe dérivée est exécuté.
+
+À la destruction, c’est l’inverse :
+- D’abord, le destructeur de la classe dérivée est exécuté.
+- Ensuite, le destructeur de la classe de base.
+
+Exemple exo ClapTrap :
+dans class ClapTrap :
+- au lieu de private mettre protected pour avoir acces a tous
+
+class	ScavTrap : public ClapTrap
+- ScavTrap herite de ClapTrap
+
+ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
+- Appelle le constructeur ClapTrap(name)
+
+ScavTrap::ScavTrap(ScavTrap const& src) : ClapTrap(src)
+- appelle le constructeur de copie de la classe de base (ClapTrap), pour copier la partie ClapTrap de l’objet ScavTrap
+- C’est l’appel au constructeur de copie de la classe de base, dans le cadre de l’héritage.
+- obligatoire si tu veux que la base soit copiée correctement
+
+ScavTrap&	ScavTrap::operator=(ScavTrap const& other)
+- permet de copier correctement tous les attributs hérités.
+
+- construit d’abord avec les valeurs par défaut dans ClapTrap, puis ScavTrap écrase et affiche ses vraies valeurs
+
+ScavTrap hérite de ClapTrap
+
+Donc ton objet scav contient tout ce qu’un ClapTrap possède :
+
+    Les attributs _name, _hitPoints, _energyPoints, _attackDamage
+
+    Les fonctions comme attack() (sauf si redéfinie dans ScavTrap)
