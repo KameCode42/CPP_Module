@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 11:24:32 by david             #+#    #+#             */
-/*   Updated: 2025/07/18 14:12:06 by david            ###   ########.fr       */
+/*   Updated: 2025/07/19 10:58:39 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,12 @@ ScavTrap::ScavTrap(std::string name) : ClapTrap(name){
 	this->_hitPoints = 100;
 	this->_energyPoints = 50;
 	this->_attackDamage = 20;
+	std::cout << "-------OBJET SCAVTRAP-------" << std::endl;
 	std::cout << "ScavTrap : " << name << " est cree" << std::endl;
 	std::cout << "points de vie = " << this->_hitPoints << std::endl;
 	std::cout << "points d'energie = " << this->_energyPoints << std::endl;
 	std::cout << "degats d'attaque = " << this->_attackDamage << std::endl;
+	std::cout << "competence speciale = Gate keeper" << std::endl;
 	std::cout << std::endl;
 }
 

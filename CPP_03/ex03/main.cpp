@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 13:34:32 by david             #+#    #+#             */
-/*   Updated: 2025/07/18 18:24:44 by david            ###   ########.fr       */
+/*   Updated: 2025/07/19 10:59:50 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ int	main(){
 	system("clear");
 	std::cout << "-----OBJET CLAPTRAP-----" << std::endl;
 	ClapTrap	ClapTrap("Robot 2B");
-	std::cout << "-----OBJET HERITE SCAV--" << std::endl;
+	std::cout << "-----OBJET CLAPTRAP-----" << std::endl;
 	ScavTrap	ScavTrap("Robot 9S");
 	std::cout << std::endl;
-	std::cout << "-----OBJET HERITE FRAG--" << std::endl;
+	std::cout << "-----OBJET CLAPTRAP-----" << std::endl;
 	FragTrap	FragTrap("Robot A2");
 	std::cout << std::endl;
-	std::cout << "-----OBJET HERITE DIAM--" << std::endl;
+	std::cout << "-----OBJET CLAPTRAP-----" << std::endl;
 	DiamondTrap("Robot Vecna");
 	std::cout << std::endl;
 

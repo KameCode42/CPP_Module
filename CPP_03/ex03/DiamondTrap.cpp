@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 17:21:19 by david             #+#    #+#             */
-/*   Updated: 2025/07/18 19:02:11 by david            ###   ########.fr       */
+/*   Updated: 2025/07/19 11:00:09 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,12 @@ DiamondTrap::DiamondTrap(std::string name) : ClapTrap(name + "_clap_name"), Scav
 	FragTrap::_hitPoints = 100;
 	ScavTrap::_energyPoints = 50;
 	FragTrap::_attackDamage = 30;
+	std::cout << "-------OBJET DIAMONTRAP-------" << std::endl;
 	std::cout << "DiamondTrap : " << this->_name << " est cree" << std::endl;
 	std::cout << "points de vie = " << this->_hitPoints << std::endl;
 	std::cout << "points d'energie = " << this->_energyPoints << std::endl;
 	std::cout << "degats d'attaque = " << this->_attackDamage << std::endl;
+	std::cout << "competence speciale = who am i" << std::endl;
 	std::cout << std::endl;
 }
 

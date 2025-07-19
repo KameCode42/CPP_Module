@@ -421,6 +421,7 @@ ScavTrap& ScavTrap::operator=(const ScavTrap& other)
 }
 - Copie les attributs de ClapTrap
 - Copier les attributs spécifiques à ScavTrap s’il y en a
+- si une variable est en plus il faut la copier, si une class a un nom on rajoute la copie du nom
 
 la class derive possède tout ce que la class de base possède :
 - Attributs : variable etc.

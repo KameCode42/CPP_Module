@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 13:34:32 by david             #+#    #+#             */
-/*   Updated: 2025/07/18 14:11:14 by david            ###   ########.fr       */
+/*   Updated: 2025/07/19 10:44:34 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 
 int	main(){
 	system("clear");
-	std::cout << "-----OBJET CLAPTRAP-----" << std::endl;
+	std::cout << "------OBJET CLAPTRAP-------" << std::endl;
 	ClapTrap	ClapTrap("Robot 2B");
-	std::cout << "-----OBJET HERITE-------" << std::endl;
+	std::cout << "------COPY CLAPTRAP--------" << std::endl;
 	ScavTrap	ScavTrap("Robot 9S");
 	std::cout << std::endl;
-	std::cout << "-----TEST---------------" << std::endl;
+	std::cout << "-----------TEST------------" << std::endl;
 	ClapTrap.setAttackDamage(5);
 	ClapTrap.attack("Robot 9S");
 	std::cout << std::endl;
