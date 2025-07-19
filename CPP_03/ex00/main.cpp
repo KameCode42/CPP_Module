@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 13:34:32 by david             #+#    #+#             */
-/*   Updated: 2025/07/19 14:14:14 by david            ###   ########.fr       */
+/*   Updated: 2025/07/19 14:19:59 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 int	main(){
 	system("clear");
+	std::cout << "------OBJET CLAPTRAP-------" << std::endl;
 	ClapTrap	ClapTrap("Robot 2B");
-	std::cout << "---------------------" << std::endl;
+	std::cout << "---------------------------" << std::endl;
 	std::cout << std::endl;
 	ClapTrap.attack("Robot 9S");
 	std::cout << std::endl;
@@ -45,4 +46,5 @@ int	main(){
 	std::cout << std::endl;
 	ClapTrap.attack("Robot 9S");
 	std::cout << std::endl;
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 14:12:31 by david             #+#    #+#             */
-/*   Updated: 2025/07/19 09:49:10 by david            ###   ########.fr       */
+/*   Updated: 2025/07/19 14:32:21 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,4 @@ void	ClapTrap::beRepaired(unsigned int amount){
 	std::cout << "points de vie actuel = " << this->_hitPoints << std::endl;
 	this->_energyPoints -= 1;
 	std::cout << "points d'energie actuel = " << this->_energyPoints << std::endl;
-}
-
-void	ClapTrap::setAttackDamage(int attackDamage){
-	this->_attackDamage = attackDamage;
 }
