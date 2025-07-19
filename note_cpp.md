@@ -435,3 +435,72 @@ protected :
 - accessible uniquement par les classes qui héritent, mais pas à l’extérieur.
 
 --------------------------------------------------------------------------------------------------------------------------------------
+
+## 16. Heritage en diamant c++ :
+
+Avoir une seul copie de la class de base
+
+problème du diamant :
+
+exemple :
+class ClapTrap
+{
+	public:
+		std::string name;
+};
+
+class ScavTrap : public ClapTrap
+{
+    // ...
+};
+
+class FragTrap : public ClapTrap
+{
+    // ...
+};
+
+class DiamondTrap : public ScavTrap, public FragTrap {
+    // ...
+};
+
+Problème :
+DiamondTrap hérite deux fois de ClapTrap :
+- une fois via ScavTrap
+- une autre via FragTrap
+
+- Donc il y a deux copies de ClapTrap dans DiamondTrap.
+- Si on écrit DiamondTrap::name, le compilateur ne sait pas laquelle utiliser : ScavTrap::ClapTrap::name ou FragTrap::ClapTrap::name.
+- Solution : l’héritage virtuel
+
+Pour dire au compilateur :
+- je veux qu’il n’y ait qu’une seule instance de ClapTrap dans tous les cas
+
+On écrit :
+class ScavTrap : virtual public ClapTrap
+{
+    // ...
+};
+
+class FragTrap : virtual public ClapTrap
+{
+    // ...
+};
+
+Et ensuite :
+class DiamondTrap : public ScavTrap, public FragTrap
+{
+    // Maintenant il n'y a qu'une seule instance de ClapTrap
+};
+
+En résumé :
+Sans héritage virtuel
+- Deux copies de ClapTrap
+- Ambiguïtés
+- Problèmes de compilation
+
+Avec héritage virtuel
+- Une seule copie de ClapTrap
+- Plus clair et propre
+- Résolu grâce au virtual
+
+--------------------------------------------------------------------------------------------------------------------------------------
