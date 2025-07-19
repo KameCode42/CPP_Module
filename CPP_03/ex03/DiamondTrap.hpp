@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 17:15:17 by david             #+#    #+#             */
-/*   Updated: 2025/07/18 18:16:59 by david            ###   ########.fr       */
+/*   Updated: 2025/07/19 11:40:34 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ class	DiamondTrap : public ScavTrap, public FragTrap
 		~DiamondTrap();
 
 		void	whoAmI();
+		void	attack(const std::string& target);
 
 	private:
 		std::string	_name;

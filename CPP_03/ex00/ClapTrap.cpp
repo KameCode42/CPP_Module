@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 14:12:31 by david             #+#    #+#             */
-/*   Updated: 2025/07/17 19:26:16 by david            ###   ########.fr       */
+/*   Updated: 2025/07/19 14:10:19 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ ClapTrap::ClapTrap(std::string name) : _name(name), _hitPoints(10), _energyPoint
 	std::cout << this->_name << " est cree" << std::endl;
 	std::cout << "points de vie = " << this->_hitPoints << std::endl;
 	std::cout << "points d'energie = " << this->_energyPoints << std::endl;
-	std::cout << std::endl;
+	std::cout << "points d'attaque = " << this->_attackDamage << std::endl;
 }
 
 ClapTrap::ClapTrap(ClapTrap const& src) : _name(src._name), _hitPoints(src._hitPoints), _energyPoints(src._energyPoints), _attackDamage(src._attackDamage){
@@ -33,6 +33,7 @@ ClapTrap&	ClapTrap::operator=(ClapTrap const& other){
 }
 
 ClapTrap::~ClapTrap(){
+	std::cout << std::endl;
 	std::cout << this->_name << " est detruit" << std::endl;
 }
 
@@ -63,12 +64,4 @@ void	ClapTrap::beRepaired(unsigned int amount){
 	std::cout << "points de vie actuel = " << this->_hitPoints << std::endl;
 	this->_energyPoints -= 1;
 	std::cout << "points d'energie actuel = " << this->_energyPoints << std::endl;
-}
-
-void	ClapTrap::setAttackDamage(int attackDamage){
-	this->_attackDamage = attackDamage;
-}
-
-void	ClapTrap::setEnergyPoints(int energyPoints){
-	this->_energyPoints = energyPoints;
 }

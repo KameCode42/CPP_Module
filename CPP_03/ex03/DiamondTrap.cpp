@@ -6,16 +6,16 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 17:21:19 by david             #+#    #+#             */
-/*   Updated: 2025/07/19 11:00:09 by david            ###   ########.fr       */
+/*   Updated: 2025/07/19 13:40:54 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "DiamondTrap.hpp"
 
 DiamondTrap::DiamondTrap(std::string name) : ClapTrap(name + "_clap_name"), ScavTrap(name), FragTrap(name), _name(name){
-	FragTrap::_hitPoints = 100;
-	ScavTrap::_energyPoints = 50;
-	FragTrap::_attackDamage = 30;
+	this->_hitPoints = FragTrap::_hitPoints;
+	this->_energyPoints = 50;
+	this->_attackDamage = FragTrap::_attackDamage;
 	std::cout << "-------OBJET DIAMONTRAP-------" << std::endl;
 	std::cout << "DiamondTrap : " << this->_name << " est cree" << std::endl;
 	std::cout << "points de vie = " << this->_hitPoints << std::endl;
@@ -43,4 +43,8 @@ DiamondTrap::~DiamondTrap(){
 void	DiamondTrap::whoAmI(){
 	std::cout << "nom du DiamondTrap : " << this->_name << std::endl;
 	std::cout << "nom du ClapTrap : " << ClapTrap::_name << std::endl;
+}
+
+void	DiamondTrap::attack(const std::string& target){
+	ScavTrap::attack(target);
 }
