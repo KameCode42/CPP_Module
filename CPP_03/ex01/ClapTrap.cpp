@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ClapTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
+/*   By: dle-fur <dle-fur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 14:12:31 by david             #+#    #+#             */
-/*   Updated: 2025/07/19 14:32:21 by david            ###   ########.fr       */
+/*   Updated: 2025/07/20 17:45:42 by dle-fur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ ClapTrap&	ClapTrap::operator=(ClapTrap const& other){
 }
 
 ClapTrap::~ClapTrap(){
-	std::cout << this->_name << " est detruit" << std::endl;
+	std::cout << this->_name << " Clap est detruit" << std::endl;
 }
 
 void	ClapTrap::attack(const std::string& target)

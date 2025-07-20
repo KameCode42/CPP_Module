@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
+/*   By: dle-fur <dle-fur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 13:34:32 by david             #+#    #+#             */
-/*   Updated: 2025/07/20 11:31:56 by david            ###   ########.fr       */
+/*   Updated: 2025/07/20 17:52:30 by dle-fur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	main(){
 	std::cout << "-------OBJET CLAPTRAP-------------" << std::endl;
 	ClapTrap	ClapTrap("Robot 2B");
 	std::cout << std::endl;
-	std::cout << "-------COPY & INIT SCAVTRAP-------" << std::endl;
+	std::cout << "-------HERITAGE SCAVTRAP----------" << std::endl;
 	ScavTrap	ScavTrap("Robot 9S");
 	std::cout << "----------------------------------" << std::endl;
 	std::cout << std::endl;

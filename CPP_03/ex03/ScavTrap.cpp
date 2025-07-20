@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScavTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
+/*   By: dle-fur <dle-fur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 11:24:32 by david             #+#    #+#             */
-/*   Updated: 2025/07/20 10:35:09 by david            ###   ########.fr       */
+/*   Updated: 2025/07/20 18:04:49 by dle-fur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,11 @@ ScavTrap::ScavTrap(std::string name) : ClapTrap(name){
 	this->_hitPoints = 100;
 	this->_energyPoints = 50;
 	this->_attackDamage = 20;
-	std::cout << "Scavtrap constructor called" << std::endl;
+	std::cout << "ScavTrap : " << name << " est cree" << std::endl;
+	std::cout << "points de vie = " << this->_hitPoints << std::endl;
+	std::cout << "points d'energie = " << this->_energyPoints << std::endl;
+	std::cout << "degats d'attaque = " << this->_attackDamage << std::endl;
+	std::cout << "competence speciale = Gate keeper" << std::endl;
 	std::cout << std::endl;
 }
 
@@ -31,10 +35,11 @@ ScavTrap&	ScavTrap::operator=(ScavTrap const& other){
 }
 
 ScavTrap::~ScavTrap(){
-	std::cout << this->_name << " est detruit" << std::endl;
+	std::cout << this->_name << " Scav est detruit" << std::endl;
 }
 
 void	ScavTrap::guardGate(){
+	std::cout << "competence speciale lancee" << std::endl;
 	std::cout << this->_name << " est en mode : Gate keeper" << std::endl;
 }
 

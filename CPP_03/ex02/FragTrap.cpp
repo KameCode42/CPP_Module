@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   FragTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
+/*   By: dle-fur <dle-fur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 15:57:05 by david             #+#    #+#             */
-/*   Updated: 2025/07/19 15:02:52 by david            ###   ########.fr       */
+/*   Updated: 2025/07/20 18:05:32 by dle-fur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,10 @@ FragTrap&	FragTrap::operator=(FragTrap const& other){
 }
 
 FragTrap::~FragTrap(){
-	std::cout << this->_name << " est detruit" << std::endl;
+	std::cout << this->_name << " Frag est detruit" << std::endl;
 }
 
 void	FragTrap::highFivesGuys(void){
+	std::cout << "competence speciale lancee" << std::endl;
 	std::cout << "FragTrap demande un high five ! Qui est partant ?" << std::endl;
 }

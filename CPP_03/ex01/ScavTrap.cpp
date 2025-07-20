@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScavTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
+/*   By: dle-fur <dle-fur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 11:24:32 by david             #+#    #+#             */
-/*   Updated: 2025/07/19 14:27:56 by david            ###   ########.fr       */
+/*   Updated: 2025/07/20 18:05:41 by dle-fur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,11 @@ ScavTrap&	ScavTrap::operator=(ScavTrap const& other){
 }
 
 ScavTrap::~ScavTrap(){
-	std::cout << this->_name << " est detruit" << std::endl;
+	std::cout << this->_name << " Scav est detruit" << std::endl;
 }
 
 void	ScavTrap::guardGate(){
+	std::cout << "competence speciale lancee" << std::endl;
 	std::cout << this->_name << " est en mode : Gate keeper" << std::endl;
 }
 

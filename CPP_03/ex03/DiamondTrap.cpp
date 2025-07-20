@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   DiamondTrap.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
+/*   By: dle-fur <dle-fur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/19 15:22:50 by david             #+#    #+#             */
-/*   Updated: 2025/07/20 11:06:44 by david            ###   ########.fr       */
+/*   Updated: 2025/07/20 18:04:10 by dle-fur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,11 @@ DiamondTrap&	DiamondTrap::operator=(DiamondTrap const& other){
 }
 
 DiamondTrap::~DiamondTrap(){
-	std::cout << this->_name << " est detruit" << std::endl;
+	std::cout << this->_name << " Diam est detruit" << std::endl;
 }
 
 void	DiamondTrap::whoAmI(){
+	std::cout << "competence speciale lancee" << std::endl;
 	std::cout << "je m'appelle " << this->_name << " et j'ai detruit " << ClapTrap::_name << std::endl;
 }
 
