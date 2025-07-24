@@ -439,32 +439,14 @@ protected :
 
 ## 16. Heritage en diamant c++ :
 
-Avoir une seul copie de la class de base
+        ClapTrap
+        /     \
+  ScavTrap   FragTrap
+        \     /
+     DiamondTrap
 
 problème du diamant :
 
-exemple :
-class ClapTrap
-{
-	public:
-		std::string name;
-};
-
-class ScavTrap : public ClapTrap
-{
-    // ...
-};
-
-class FragTrap : public ClapTrap
-{
-    // ...
-};
-
-class DiamondTrap : public ScavTrap, public FragTrap {
-    // ...
-};
-
-Problème :
 DiamondTrap hérite deux fois de ClapTrap :
 - une fois via ScavTrap
 - une autre via FragTrap
@@ -473,31 +455,13 @@ DiamondTrap hérite deux fois de ClapTrap :
 - Si on écrit DiamondTrap::name, le compilateur ne sait pas laquelle utiliser : ScavTrap::ClapTrap::name ou FragTrap::ClapTrap::name.
 - Solution : l’héritage virtuel
 
-Pour dire au compilateur :
-- je veux qu’il n’y ait qu’une seule instance de ClapTrap dans tous les cas
-
-On écrit :
-class ScavTrap : virtual public ClapTrap
-{
-    // ...
-};
-
-class FragTrap : virtual public ClapTrap
-{
-    // ...
-};
-
-Et ensuite :
-class DiamondTrap : public ScavTrap, public FragTrap
-{
-    // Maintenant il n'y a qu'une seule instance de ClapTrap
-};
+- L’héritage virtuel garantit qu’il n’existe qu’une unique instance de la classe de base, même si plusieurs chemins d’héritage y mènent
 
 En résumé :
-Sans héritage virtuel
-- Deux copies de ClapTrap
-- Ambiguïtés
-- Problèmes de compilation
+Sans virtual
+- Deux copies de la classe de base
+- Accès ambigu aux membres hérités
+- Erreurs à la compilation
 
 Avec héritage virtuel
 - Une seule copie de ClapTrap
@@ -505,3 +469,69 @@ Avec héritage virtuel
 - Résolu grâce au virtual
 
 --------------------------------------------------------------------------------------------------------------------------------------
+
+## 17. Sub-typing polymorphism :
+
+- Le polymorphisme de sous-typage en C++ permet de traiter des objets de classes dérivées via des pointeurs (ou références) vers leur classe de base
+- et d’appeler la bonne version d’une méthode à l’exécution grâce aux fonctions virtuelles
+
+Principe
+- Sans virtual : l’appel d’une méthode via un pointeur vers la classe de base utilise toujours l’implémentation de la base (liaison statique à la compilation)
+- Avec virtual : l’appel est résolu selon le type réel de l’objet pointé (liaison dynamique à l’exécution)
+
+class Character {
+public:
+    virtual void sayHello(const std::string& msg) {
+        std::cout << "Character says: " << msg << std::endl;
+    }
+    virtual ~Character() = default;  // Toujours avoir un destructeur virtuel
+};
+
+class Warrior : public Character {
+public:
+    void sayHello(const std::string& msg) override {
+        std::cout << "Warrior shouts: " << msg << std::endl;
+    }
+};
+
+1. Objet Warrior pur
+Warrior* a = new Warrior();
+a->sayHello("Hello!");
+- Affiche : "Warrior shouts: Hello!"
+
+
+
+2. Polymorphisme via pointeur de base
+Character* b = new Warrior();
+b->sayHello("Oi!");
+
+Sans virtual :
+- Afficherait "Character says: Oi!" (message de base de la class)
+
+Avec virtual   :
+- Affiche "Warrior shouts: Oi!" (message du type reel de la class)
+
+- Sans virtual, on invoque Character::sayHello.
+- Avec virtual, on invoque Warrior::sayHello (résolution dynamique)
+
+
+- Avec virtual, cela execute la fonction cibler de la class
+- Sans virtual, cela execute la fonction de la class de base
+
+par exemple si une class animal contient une class chat 
+un animal emet un son
+un chat fais miaou
+
+avec virtual sur la fonction membre on va dire que le chat miaou
+sans virtual cela fera le chat emet un son
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+## 18. Abstract classes and interfaces :
+
+- Utiliser des methodes pure
+- exemple : virtual void attack(string) = 0;
+
+class ACharacter{
+	//A pour abstrait
+}
