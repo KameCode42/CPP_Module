@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   WrongCat.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
+/*   By: dle-fur <dle-fur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/24 16:33:48 by david             #+#    #+#             */
-/*   Updated: 2025/07/24 17:16:30 by david            ###   ########.fr       */
+/*   Updated: 2025/07/25 09:10:27 by dle-fur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 WrongCat::WrongCat() : WrongAnimal(){
 	this->_type = "Wrong Cat";
-	std::cout << this->_type << " est cree" << std::endl;
+	std::cout << "Un animal de type " << this->_type << " est cree" << std::endl;
 }
 
 WrongCat::WrongCat(WrongCat const& src) : WrongAnimal(src){

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
+/*   By: dle-fur <dle-fur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/24 14:16:08 by david             #+#    #+#             */
-/*   Updated: 2025/07/24 16:55:50 by david            ###   ########.fr       */
+/*   Updated: 2025/07/25 09:12:11 by dle-fur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,11 +67,5 @@ int	main(){
 	std::cout << "-----DESTRUCTEUR-----" << std::endl;
 	delete wrongAnimal;
 	delete wrongCat;
-
-
-
-
-
-	
 	return 0;
 }

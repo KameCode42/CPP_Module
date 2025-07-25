@@ -475,55 +475,21 @@ Avec héritage virtuel
 - Le polymorphisme de sous-typage en C++ permet de traiter des objets de classes dérivées via des pointeurs (ou références) vers leur classe de base
 - et d’appeler la bonne version d’une méthode à l’exécution grâce aux fonctions virtuelles
 
-Principe
+Principe :
 - Sans virtual : l’appel d’une méthode via un pointeur vers la classe de base utilise toujours l’implémentation de la base (liaison statique à la compilation)
 - Avec virtual : l’appel est résolu selon le type réel de l’objet pointé (liaison dynamique à l’exécution)
 
-class Character {
-public:
-    virtual void sayHello(const std::string& msg) {
-        std::cout << "Character says: " << msg << std::endl;
-    }
-    virtual ~Character() = default;  // Toujours avoir un destructeur virtuel
-};
+Exemple concret :
+- class principal Animal -> un animal peut emettre un son
+- class derive Cat -> le chat emet un son (par exemple il miaule)
+- avec virtual sur la fonction membre on va dire que le chat miaule
+- sans virtual le chat executera le print qui est dans la class principale (le chat emet un son)
 
-class Warrior : public Character {
-public:
-    void sayHello(const std::string& msg) override {
-        std::cout << "Warrior shouts: " << msg << std::endl;
-    }
-};
+exemple fonction membre avec virtual :
+- virtual void	makeSound()const;
 
-1. Objet Warrior pur
-Warrior* a = new Warrior();
-a->sayHello("Hello!");
-- Affiche : "Warrior shouts: Hello!"
-
-
-
-2. Polymorphisme via pointeur de base
-Character* b = new Warrior();
-b->sayHello("Oi!");
-
-Sans virtual :
-- Afficherait "Character says: Oi!" (message de base de la class)
-
-Avec virtual   :
-- Affiche "Warrior shouts: Oi!" (message du type reel de la class)
-
-- Sans virtual, on invoque Character::sayHello.
-- Avec virtual, on invoque Warrior::sayHello (résolution dynamique)
-
-
-- Avec virtual, cela execute la fonction cibler de la class
-- Sans virtual, cela execute la fonction de la class de base
-
-par exemple si une class animal contient une class chat 
-un animal emet un son
-un chat fais miaou
-
-avec virtual sur la fonction membre on va dire que le chat miaou
-sans virtual cela fera le chat emet un son
+Ne pas oublier de mettre virtual au destructeur
+- virtual ~Animal();
 
 --------------------------------------------------------------------------------------------------------------------------------------
 
