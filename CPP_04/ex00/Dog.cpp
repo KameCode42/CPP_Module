@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/24 14:37:50 by david             #+#    #+#             */
-/*   Updated: 2025/07/24 15:54:57 by david            ###   ########.fr       */
+/*   Updated: 2025/07/25 14:35:28 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ Dog&	Dog::operator=(Dog const& other){
 }
 
 Dog::~Dog(){
-	std::cout << this->_type << " est detruit" << std::endl;
+	std::cout << "Dog est detruit" << std::endl;
 }
 
 void	Dog::makeSound()const{

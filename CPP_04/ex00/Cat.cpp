@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cat.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dle-fur <dle-fur@student.42.fr>            +#+  +:+       +#+        */
+/*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/24 16:03:10 by david             #+#    #+#             */
-/*   Updated: 2025/07/25 09:18:07 by dle-fur          ###   ########.fr       */
+/*   Updated: 2025/07/25 14:34:52 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ Cat&	Cat::operator=(Cat const& other){
 }
 
 Cat::~Cat(){
-	std::cout << this->_type << " est detruit" << std::endl;
+	std::cout << "Cat est detruit" << std::endl;
 }
 
 void	Cat::makeSound()const{

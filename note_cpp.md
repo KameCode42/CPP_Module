@@ -196,6 +196,13 @@ dans fichier cpp :
 Sample& operator=(Sample const& other);
 - mise a jour de l instance courante
 - assigner une autre instance a partir de cette class
+- But : copier l’état (les données internes) d’un objet other dans un autre objet déjà existant (*this)
+Exemple concret :
+- Fixed a		->	Appel du constructeur par défaut avec value a 0
+- Fixed b(a)	->	crée b à partir de a, donc c’est Fixed::Fixed(Fixed const& src) qui est appelé
+- Fixed c		->	Encore un constructeur par défaut pour initialiser c a 0
+- c = b			->	Opérateur d’affectation par copie
+- Ici tu n’es pas en train de créer un nouvel objet, tu réaffectes simplement l’état de b à c. C’est donc Fixed::operator=(Fixed const& other) qui est invoqué
 
 ~Sample(void);
 - destructeur
@@ -479,7 +486,7 @@ Principe :
 - Sans virtual : l’appel d’une méthode via un pointeur vers la classe de base utilise toujours l’implémentation de la base (liaison statique à la compilation)
 - Avec virtual : l’appel est résolu selon le type réel de l’objet pointé (liaison dynamique à l’exécution)
 
-Exemple concret :
+Exemple :
 - class principal Animal -> un animal peut emettre un son
 - class derive Cat -> le chat emet un son (par exemple il miaule)
 - avec virtual sur la fonction membre on va dire que le chat miaule
@@ -490,6 +497,17 @@ exemple fonction membre avec virtual :
 
 Ne pas oublier de mettre virtual au destructeur
 - virtual ~Animal();
+- on met virtual dans le destructeur de la classe de base pour assurer que la destruction des objets dérivés via un pointeur de base se fasse entièrement et en toute sécurité
+- En marquant virtual ~Base(), tu dis au compilateur : « Pour ce destructeur, choisis la version à l’exécution en fonction du vrai type de l’objet (Derived ou autre) »
+
+Exemple concret :
+- Base* p = new Derived;
+- p = class de base
+- Derived = class derive
+- p->f();  // appelle Derived::f() si f() est virtuelle
+- sinon appelle Base::f() si f() est pas virtuelle
+
+
 
 --------------------------------------------------------------------------------------------------------------------------------------
 
@@ -501,3 +519,70 @@ Ne pas oublier de mettre virtual au destructeur
 class ACharacter{
 	//A pour abstrait
 }
+
+
+
+
+======================================================================================================================================
+
+## SOUS CHAPITRE :
+
+## 1.1 représentation des nombres en virgule fixe :
+
+static const int	bits = 8
+- division entière par 256
+
+exemple concret : représenter la valeur 5,75 en fixed-point
+- _value = 5.75 × 256 = 1472	-> premiere chose multiplier sa value par 256
+
+toInt : récupère uniquement la partie entière (tronquée)
+Calcul pour _value = 1472 :
+int Fixed::toInt(void) const {
+    return this->_value >> Fixed::bits;
+}
+- Opération : décalage à droite de 8 bits équivaut à une division entière par 256
+- 1472 >> 8  ≡ 1472 / 256 = 5.75 (division entière)
+- resultat = 5 (la partie fractionnaire 0.75 est tronquée)
+
+toFloat : restitue la valeur décimale exacte stockée
+Calcul pour _value = 1472 :
+float Fixed::toFloat(void) const {
+    return (float)(this->_value) / (1 << bits);
+}
+- (float)1472 / 256.0f  = 5.75
+
+- _value ne contient jamais le « vrai » nombre à la sortie, il ne contient que la valeur entière échellée
+- si toInt -> value = 5
+- si toFloat -> value = 5.75
+
+exemple concret :
+/*
+	a = 0
+	print 1 : 0
+	pre-incremente : 0 devient 1 -> 1/256
+	print 2 : 0.00390625
+	print 3 : 0.00390625
+	post-incremente : 1 devient 2, affiche ancienne valeur
+	print 4 : 0.00390625
+	print 5 : 0.0078125 nouvelle valeur, 2/256
+	
+	b : 5.05 * 2
+	5.05 * 256 = 1292.8 roundf 1293
+	2 * 256 = 512
+	1293 * 512 = 662016
+	662016 / 256 = 2586
+	2586 / 256 = 10.10
+	print 6 : valeur de b = 10.1016
+	print 7 : valeur max entre a et b
+*/
+- 2 divison car 2 multiplication
+- autre cas, une seul division
+
+Multiplication (operator*) fait :
+	produit 64 bits : 1293 × 512 = 662016
+	décale à droite de 8 bits : 662016 >> 8 = 662016 / 256 = 2586
+	construit Fixed(2586)
+	Valeur de b = 2586 / 256 = 10.1015625 → affiché 10.1016
+
+
+--------------------------------------------------------------------------------------------------------------------------------------

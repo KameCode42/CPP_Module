@@ -3,14 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dle-fur <dle-fur@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 09:31:24 by david             #+#    #+#             */
-/*   Updated: 2025/07/09 18:15:36 by dle-fur          ###   ########.fr       */
+/*   Updated: 2025/07/25 16:39:34 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
+
+/*
+	a = 0
+	print 1 : 0
+	pre-incremente : 0 devient 1 -> 1/256
+	print 2 : 0.00390625
+	print 3 : 0.00390625
+	post-incremente : 1 devient 2, affiche ancienne valeur
+	print 4 : 0.00390625
+	print 5 : 0.0078125 nouvelle valeur, 2/256
+	
+	b : 5.05 * 2
+	5.05 * 256 = 1292.8 roundf 1293
+	2 * 256 = 512
+	1293 * 512 = 662016
+	662016 / 256 = 2586
+	2586 / 256 = 10.10
+	print 6 : valeur de b = 10.1016
+	print 7 : valeur max entre a et b
+*/
 
 void	programFixed(){
 	std::cout << "------MY_PROGRAM" << std::endl;
