@@ -6,7 +6,7 @@
 /*   By: dle-fur <dle-fur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/24 14:16:08 by david             #+#    #+#             */
-/*   Updated: 2025/07/25 09:12:11 by dle-fur          ###   ########.fr       */
+/*   Updated: 2025/08/09 13:59:39 by dle-fur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@
 
 int	main(){
 	system("clear");
-	std::cout << "-----AVEC POLYMORPHISM-----" << std::endl;
-	std::cout << std::endl;
+	std::cout << "-----AVEC POLYMORPHISM-----\n" << std::endl;
 	std::cout << "-----CONSTRUCTEUR-----" << std::endl;
 	const Animal	*meta = new Animal();
 	std::cout << std::endl;
@@ -45,11 +44,9 @@ int	main(){
 	delete	i;
 
 	std::cout << std::endl;
-	std::cout << "=================================" << std::endl;
-	std::cout << std::endl;
+	std::cout << "=================================\n" << std::endl;
 
-	std::cout << "-----SANS POLYMORPHISM-----" << std::endl;
-	std::cout << std::endl;
+	std::cout << "-----SANS POLYMORPHISM-----\n" << std::endl;
 	std::cout << "-----CONSTRUCTEUR-----" << std::endl;
 	const WrongAnimal	*wrongAnimal = new WrongAnimal();
 	std::cout << std::endl;
