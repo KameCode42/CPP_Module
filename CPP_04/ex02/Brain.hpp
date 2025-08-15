@@ -1,34 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   WrongAnimal.hpp                                    :+:      :+:    :+:   */
+/*   Brain.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/24 16:11:45 by david             #+#    #+#             */
-/*   Updated: 2025/08/15 10:15:12 by david            ###   ########.fr       */
+/*   Created: 2025/08/08 10:24:33 by david             #+#    #+#             */
+/*   Updated: 2025/08/08 13:57:44 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WRONGANIMAL_H
-# define WRONGANIMAL_H
+#ifndef BRAIN_H
+# define BRAIN_H
 
 #include <iostream>
 #include <string>
 
-class	WrongAnimal
+class	Brain
 {
 	public:
-		WrongAnimal();
-		WrongAnimal(WrongAnimal const& src);
-		WrongAnimal&	operator=(WrongAnimal const& other);
-		~WrongAnimal();
+		Brain();
+		Brain(Brain const& src);
+		Brain&	operator=(Brain const& other);
+		~Brain();
 
-		void			makeSound()const;
-		std::string		getType()const;
+		void			setIdea(int index, std::string idea);
+		std::string		getIdea(int index);
 
-	protected:
-		std::string	_type;
+	private:
+		std::string	_ideas[100];
 };
 
 #endif

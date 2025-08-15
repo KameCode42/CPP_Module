@@ -3,7 +3,7 @@ NAME		= animal
 CXX			= c++
 RM			= rm -f
 
-FLAGS		= -std=c++98 -Wall -Wextra -Werror
+CXXFLAGS		= -std=c++98 -Wall -Wextra -Werror
 
 SRCS 		=	main.cpp \
 				Animal.cpp \

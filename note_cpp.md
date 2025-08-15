@@ -520,6 +520,51 @@ class ACharacter{
 	//A pour abstrait
 }
 
+Consequence :
+- on ne peut l'implementer car definit a 0
+- on ne va pas pouvoir instancier la class (elle sera donc abstraite)
+
+A quoi ca sert :
+- certain comportement sont defini tandis que d'autre non
+
+exemple concret :
+on a une class Character avec une methode pure (class mere)
+virtual void attack(string) = 0;
+
+on a une class warrior qui va heriter de character avec la fonction membre attack
+virtual void attack(string);
+
+en soit la class warrior devra heriter de la fonction attack de la class mere (meme si la class n'en a pas)
+car un character ne peut pas attaquer
+un character n'existe pas en soit, c'est un warrior, un mage etc
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
