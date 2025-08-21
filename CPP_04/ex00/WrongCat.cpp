@@ -6,14 +6,14 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/24 16:33:48 by david             #+#    #+#             */
-/*   Updated: 2025/07/25 14:36:50 by david            ###   ########.fr       */
+/*   Updated: 2025/08/21 14:09:17 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "WrongCat.hpp"
 
 WrongCat::WrongCat() : WrongAnimal(){
-	this->_type = "Wrong Cat";
+	this->_type = "WrongCat";
 	std::cout << "Un animal de type " << this->_type << " est cree" << std::endl;
 }
 
@@ -28,7 +28,7 @@ WrongCat&	WrongCat::operator=(WrongCat const& other){
 }
 
 WrongCat::~WrongCat(){
-	std::cout << this->_type << " est detruit" << std::endl;
+	std::cout << "WrongCat est detruit" << std::endl;
 }
 
 void	WrongCat::makeSound()const{

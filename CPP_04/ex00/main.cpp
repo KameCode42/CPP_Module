@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/24 14:16:08 by david             #+#    #+#             */
-/*   Updated: 2025/08/15 10:15:58 by david            ###   ########.fr       */
+/*   Updated: 2025/08/21 14:35:25 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,51 +18,31 @@
 
 int	main(){
 	system("clear");
-	std::cout << "-----AVEC POLYMORPHISM-----\n" << std::endl;
-	std::cout << "-----CONSTRUCTEUR-----" << std::endl;
-	const Animal	*meta = new Animal();
+	std::cout << "Construction : " << std::endl;
+	const Animal*		meta = new Animal();
+	const Animal*		j = new Dog();
+	const Animal*		i = new Cat();
+	const WrongAnimal*	l = new WrongAnimal();
+	const WrongAnimal*	k = new WrongCat();
 	std::cout << std::endl;
-	std::cout << "-----HERITAGE DOG-----" << std::endl;
-	const Animal	*j = new Dog();
+	std::cout << "Type d'animaux : " << std::endl;
+	std::cout << "Type Dog : " << j->getType() << std::endl;
+	std::cout << "Type Cat : " << i->getType() << std::endl;
+	std::cout << "Type WrongCat : " << k->getType() << std::endl;
 	std::cout << std::endl;
-	std::cout << "-----HERITAGE CAT-----" << std::endl;
-	const Animal	*i = new Cat();
-
-	std::cout << std::endl;
-	std::cout << "-----TYPE D'ANIMAUX-----" << std::endl;
-	std::cout << "Type Dog : " <<j->getType() << std::endl;
-	std::cout << "Type Cat : " <<i->getType() << std::endl;
-	std::cout << std::endl;
-	std::cout << "-----SON DES ANIMAUX-----" << std::endl;
-	meta->makeSound();
-	j->makeSound();
+	std::cout << "Son des animaux (avec polymorphism) : " << std::endl;
 	i->makeSound();
+	j->makeSound();
+	meta->makeSound();
 	std::cout << std::endl;
-	std::cout << "-----DESTRUCTEUR-----" << std::endl;
-	delete	meta;
-	delete	j;
-	delete	i;
-
+	std::cout << "Son des animaux (sans polymorphism) : " << std::endl;
+	l->makeSound();
+	k->makeSound();
 	std::cout << std::endl;
-	std::cout << "=================================\n" << std::endl;
-
-	std::cout << "-----SANS POLYMORPHISM-----\n" << std::endl;
-	std::cout << "-----CONSTRUCTEUR-----" << std::endl;
-	const WrongAnimal	*wrongAnimal = new WrongAnimal();
-	std::cout << std::endl;
-	std::cout << "-----HERITAGE WRONG CAT-----" << std::endl;
-	const WrongAnimal	*wrongCat = new WrongCat();
-
-	std::cout << std::endl;
-	std::cout << "-----TYPE D'ANIMAUX-----" << std::endl;
-	std::cout << "Type Wrong Cat : " << wrongCat->getType() << std::endl;
-	std::cout << std::endl;
-	std::cout << "-----SON DES ANIMAUX-----" << std::endl;
-	wrongAnimal->makeSound();
-	wrongCat->makeSound();
-	std::cout << std::endl;
-	std::cout << "-----DESTRUCTEUR-----" << std::endl;
-	delete wrongAnimal;
-	delete wrongCat;
+	std::cout << "Destruction : " << std::endl;
+	delete meta;
+	delete j;
+	delete i;
+	delete k;
 	return 0;
 }

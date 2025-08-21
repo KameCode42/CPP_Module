@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/24 16:15:07 by david             #+#    #+#             */
-/*   Updated: 2025/07/25 14:37:09 by david            ###   ########.fr       */
+/*   Updated: 2025/08/21 13:46:03 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ WrongAnimal&	WrongAnimal::operator=(WrongAnimal const& other){
 }
 
 WrongAnimal::~WrongAnimal(){
-	std::cout << this->_type << " est detruit" << std::endl;
+	std::cout << "WrongAnimal est detruit" << std::endl;
 }
 
 void	WrongAnimal::makeSound()const{
