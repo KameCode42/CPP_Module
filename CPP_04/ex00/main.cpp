@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
+/*   By: dle-fur <dle-fur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/24 14:16:08 by david             #+#    #+#             */
-/*   Updated: 2025/08/21 14:35:25 by david            ###   ########.fr       */
+/*   Updated: 2025/08/22 09:07:30 by dle-fur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ int	main(){
 	delete meta;
 	delete j;
 	delete i;
+	delete l;
 	delete k;
 	return 0;
 }
