@@ -538,15 +538,79 @@ en soit la class warrior devra heriter de la fonction attack de la class mere (m
 car un character ne peut pas attaquer
 un character n'existe pas en soit, c'est un warrior, un mage etc
 
+--------------------------------------------------------------------------------------------------------------------------------------
 
+## 19. class imbriquees :
 
+class	Cat
+{
+	public:
+	class	Leg
+	{
 
+	};
+};
 
+class	Dog
+{
+	public:
+	class	Leg
+	{
 
+	};
+};
 
+on a une class leg qui appartient au cat et une class leg qui appartient au dog
 
+int	main()
+{
+	Cat			oneCat;
+	Cat::Leg	oneCatLeg
+}
 
+--------------------------------------------------------------------------------------------------------------------------------------
 
+## 20. Exceptions :
+
+Une exception est un maniere de remonter un message a travers la pile d'appel lorsque l'on trouve une erreur
+cela evite de faire des return -1, -2 etc comme en C
+
+include <stdexcept>
+include <exception>
+
+void test1()
+{
+	try //bloc try, on va essayer de faire quelque chose
+	{
+		if (il y a une erreur)
+		{
+			throw std::exception(); //lance une exception
+			//throw permet de remonter pour trouver un bloc catch
+		}
+		else
+		{
+			on fait encore des choses
+		}
+	}
+	catch(std::exception e)
+	{
+		gerer l'erreur ici
+		(e.what) -> renvoie un message erreur sur ce qui s'est passer
+		std::cout << "Erreur : " << e.what << std::endl;
+	}
+}
+
+void test4()
+{
+	class PEBexception : public std::exception
+	{
+		public :
+			virtual const char* what() const throw() //peut throw quelque chose ou pas
+			{
+				return ("Problem");
+			}
+	};
+}
 
 
 
