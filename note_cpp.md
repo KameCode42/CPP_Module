@@ -211,6 +211,11 @@ std::ostream& operator<<(std::ostream& other, Sample const& Sample)
 - But : définir comment un objet Sample est affiché dans un flux de sortie (std::cout, fichier, etc.).
 - permet d afficher comme ceci : std::cout << "a is " << a << std::endl;
 - evite d utiliser get a chaque appel
+exemple :
+std::ostream&	operator<<(std::ostream& os, Bureaucrat const& Bureaucrat){
+	std::cout << Bureaucrat.getName() << ", bureaucrat grade " << Bureaucrat.getGrade() << std::endl;
+	return os;
+}
 
 --------------------------------------------------------------------------------------------------------------------------------------
 
@@ -540,37 +545,7 @@ un character n'existe pas en soit, c'est un warrior, un mage etc
 
 --------------------------------------------------------------------------------------------------------------------------------------
 
-## 19. class imbriquees :
-
-class	Cat
-{
-	public:
-	class	Leg
-	{
-
-	};
-};
-
-class	Dog
-{
-	public:
-	class	Leg
-	{
-
-	};
-};
-
-on a une class leg qui appartient au cat et une class leg qui appartient au dog
-
-int	main()
-{
-	Cat			oneCat;
-	Cat::Leg	oneCatLeg
-}
-
---------------------------------------------------------------------------------------------------------------------------------------
-
-## 20. Exceptions :
+## 19. class imbriquees et Exceptions :
 
 Une exception est un maniere de remonter un message a travers la pile d'appel lorsque l'on trouve une erreur
 cela evite de faire des return -1, -2 etc comme en C
@@ -578,6 +553,52 @@ cela evite de faire des return -1, -2 etc comme en C
 include <stdexcept>
 include <exception>
 
+throw : 
+- sert à lancer une exception (c’est-à-dire signaler une erreur).
+- Quand tu fais throw, tu arrêtes le cours normal du programme et tu envoies une "erreur attrapable" par un try/catch.
+
+void division(int a, int b) {
+    if (b == 0) {
+        throw std::runtime_error("Division par zéro !"); // on "lance" une exception
+    }
+    std::cout << a / b << std::endl;
+}
+
+what : 
+- est une fonction fournie par la classe de base std::exception.
+- Elle renvoie un message d’erreur en texte (de type const char*) qui décrit ce qui s’est passé.
+
+int main() {
+    try {
+        division(10, 0);  // va lancer une exception
+    }
+    catch (std::exception &e) {  
+        std::cout << "Erreur attrapée : " << e.what() << std::endl;
+    }
+}
+
+throw = "Je balance une erreur"
+
+catch = "J’attrape l’erreur"
+
+what() = "Le message de l’erreur"
+
+class	DeBase
+{
+	public:
+	class	AutreClass : public std::exception
+	{
+		public:
+			virtual const char* what() const throw() //peut throw quelque chose ou pas
+			{
+				return ("Problem");
+			}
+	};
+	//constructeur etc
+	private:
+};
+
+//dans main
 void test1()
 {
 	try //bloc try, on va essayer de faire quelque chose
@@ -592,28 +613,15 @@ void test1()
 			on fait encore des choses
 		}
 	}
-	catch(std::exception e)
+	catch(std::exception& e)
 	{
 		gerer l'erreur ici
 		(e.what) -> renvoie un message erreur sur ce qui s'est passer
-		std::cout << "Erreur : " << e.what << std::endl;
+		std::cerr << "Erreur : " << e.what << std::endl;
 	}
 }
 
-void test4()
-{
-	class PEBexception : public std::exception
-	{
-		public :
-			virtual const char* what() const throw() //peut throw quelque chose ou pas
-			{
-				return ("Problem");
-			}
-	};
-}
-
-
-
+--------------------------------------------------------------------------------------------------------------------------------------
 
 
 
