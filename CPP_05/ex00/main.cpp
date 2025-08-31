@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 09:53:45 by david             #+#    #+#             */
-/*   Updated: 2025/08/29 13:27:32 by david            ###   ########.fr       */
+/*   Updated: 2025/08/31 09:58:56 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	testErrorHigh(){
 		Bureaucrat	d("akira", 0);
 		std::cout << a << b << c << d << std::endl;
 	}
-	catch(std::exception& e)
+	catch(Bureaucrat::GradeTooHighException& e)
 	{
 		std::cerr << "Erreur : " << e.what() << std::endl;
 	}
@@ -53,7 +53,7 @@ void	testErrorLow(){
 		Bureaucrat	d("akira", 155);
 		std::cout << a << b << c << d << std::endl;
 	}
-	catch(std::exception& e)
+	catch(Bureaucrat::GradeTooLowException& e)
 	{
 		std::cerr << "Erreur : " << e.what() << std::endl;
 	}
@@ -70,7 +70,7 @@ void	testDecrement(){
 			a.decrement();
 		}
 	}
-	catch(std::exception& e)
+	catch(Bureaucrat::GradeTooLowException& e)
 	{
 		std::cerr << "Erreur : " << e.what() << std::endl;
 	}
@@ -87,7 +87,7 @@ void	testIncrement(){
 			a.increment();
 		}
 	}
-	catch(std::exception& e)
+	catch(Bureaucrat::GradeTooHighException& e)
 	{
 		std::cerr << "Erreur : " << e.what() << std::endl;
 	}

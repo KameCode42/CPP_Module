@@ -553,73 +553,126 @@ cela evite de faire des return -1, -2 etc comme en C
 include <stdexcept>
 include <exception>
 
-throw : 
+virtual const char* what() const throw():
+1.virtual
+- Cela veut dire que cette fonction peut être redéfinie (surchargée) dans une classe dérivée.
+- Exemple : si vous créez une exception personnalisée, vous pouvez donner votre propre version de what().
+
+2.const char*
+- Le type de retour est un pointeur vers une chaîne de caractères en style C (terminée par '\0').
+- Cette chaîne décrit généralement le message d’erreur.
+
+3.what()
+- Le nom de la fonction. Pas de paramètres.
+- Sert à retourner une description lisible de l’exception.
+- const (après la parenthèse) Indique que cette méthode ne modifie pas l’objet courant.
+- Donc vous pouvez appeler what() sur un objet constant.
+
+4.throw()
+- on peut balancer une exception depuis ce throw
+
+throw :
+- Je balance une erreur
 - sert à lancer une exception (c’est-à-dire signaler une erreur).
 - Quand tu fais throw, tu arrêtes le cours normal du programme et tu envoies une "erreur attrapable" par un try/catch.
 
-void division(int a, int b) {
-    if (b == 0) {
-        throw std::runtime_error("Division par zéro !"); // on "lance" une exception
-    }
-    std::cout << a / b << std::endl;
-}
+catch :
+- J’attrape l’erreur
 
-what : 
-- est une fonction fournie par la classe de base std::exception.
+what() :
 - Elle renvoie un message d’erreur en texte (de type const char*) qui décrit ce qui s’est passé.
+- est une fonction fournie par la classe de base std::exception.
 
-int main() {
-    try {
-        division(10, 0);  // va lancer une exception
-    }
-    catch (std::exception &e) {  
-        std::cout << "Erreur attrapée : " << e.what() << std::endl;
-    }
-}
-
-throw = "Je balance une erreur"
-
-catch = "J’attrape l’erreur"
-
-what() = "Le message de l’erreur"
-
-class	DeBase
+Exemple de class imbriquee avec exception :
+class	Bureaucrat
 {
 	public:
-	class	AutreClass : public std::exception
-	{
-		public:
-			virtual const char* what() const throw() //peut throw quelque chose ou pas
+		Bureaucrat(const std::string name, int grade);
+		Bureaucrat(Bureaucrat const& src);
+		Bureaucrat&	operator=(Bureaucrat const& other);
+		~Bureaucrat();
+
+		const std::string	getName(void)const;
+		int					getGrade(void)const;
+		void				increment();
+		void				decrement();
+
+		class	GradeTooHighException : public std::exception
+		{
+			public:
+				GradeTooHighException(const std::string& name) : _msg(name + " : Le grade est trop haut"){
+				}
+			private:
+				std::string	_msg;
+			public:
+			virtual const char* what() const throw()
 			{
-				return ("Problem");
+				return _msg.c_str();
 			}
-	};
-	//constructeur etc
-	private:
+		};
+		class	GradeTooLowException : public std::exception
+		{
+			public:
+				GradeTooLowException(const std::string& name) : _msg(name + " : Le grade est trop bas"){
+				}
+			private:
+				std::string	_msg;
+			public:
+			virtual const char* what() const throw()
+			{
+				return _msg.c_str();
+			}
+		};
+
+	protected:
+		const std::string	_name;
+		int					_grade;
 };
 
-//dans main
-void test1()
+std::ostream&	operator<<(std::ostream& os, Bureaucrat const& Bureaucrat);
+
+#endif
+
+1. class de base
+2. forme canonique (constructeur, copie etc)
+3. fonction membre et getter
+4. class imbriquee pour gerer l'exception 1
+5. en public, un constructeur pour genere un message
+6. en public, une méthode membre virtuelle d’une classe (virtual const char* what() const throw()),
+permet de geerer le return du message (c_str cast en const char)
+7. class imbriquee pour gerer l'exception 2
+8. pareil que pour la premiere class imbriquee
+9. operateur d'insertion afin d'afficher une instance comme souhaite
+
+
+Exemple throw :
+Bureaucrat::Bureaucrat(const std::string name, int grade) : _name(name), _grade(grade)
 {
-	try //bloc try, on va essayer de faire quelque chose
-	{
-		if (il y a une erreur)
-		{
-			throw std::exception(); //lance une exception
-			//throw permet de remonter pour trouver un bloc catch
-		}
-		else
-		{
-			on fait encore des choses
-		}
+	if (this->_grade < 1)
+		throw Bureaucrat::GradeTooHighException(_name);
+	else if (this->_grade > 150)
+		throw Bureaucrat::GradeTooLowException(_name);
+}
+
+Exemple try & catch + what :
+void	testBasic(){
+	std::cout << "Test Basic :" << std::endl; 
+	try{
+		Bureaucrat	a("david", 10);
+		Bureaucrat	b("mike", 56);
+		Bureaucrat	c("john", 122);
+		Bureaucrat	d("akira", 90);
+		std::cout << a << b << c << d << std::endl;
 	}
 	catch(std::exception& e)
 	{
-		gerer l'erreur ici
-		(e.what) -> renvoie un message erreur sur ce qui s'est passer
-		std::cerr << "Erreur : " << e.what << std::endl;
+		std::cerr << "Erreur : " << e.what() << std::endl;
 	}
+	std::cout << std::endl;
 }
+
+1. j "essaie" de creer les instances avec try
+2. si une erreur est trouvee rentre dans le catch, remontre l'erreur et affiche avec what
 
 --------------------------------------------------------------------------------------------------------------------------------------
 

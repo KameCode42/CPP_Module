@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 09:54:12 by david             #+#    #+#             */
-/*   Updated: 2025/08/29 14:03:30 by david            ###   ########.fr       */
+/*   Updated: 2025/08/31 09:56:37 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ class	Bureaucrat
 				}
 			private:
 				std::string	_msg;
+			public:
 			virtual const char* what() const throw()
 			{
 				return _msg.c_str();
@@ -50,6 +51,7 @@ class	Bureaucrat
 				}
 			private:
 				std::string	_msg;
+			public:
 			virtual const char* what() const throw()
 			{
 				return _msg.c_str();
