@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 09:53:45 by david             #+#    #+#             */
-/*   Updated: 2025/08/31 14:49:12 by david            ###   ########.fr       */
+/*   Updated: 2025/08/31 15:13:41 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,23 @@ int main()
 	testSigned();
 	testNoSigned();
 	testErrorForm();
+
+	std::cout << "Test incrementation :" << std::endl;
+	try
+	{
+		Bureaucrat	bureaucrat("david", 121);
+		Form	a("controle", 120, 10);
+		std::cout << bureaucrat << a << std::endl;
+		a.beSigned(bureaucrat);
+		bureaucrat.increment();
+		std::cout << bureaucrat << std::endl;
+		a.beSigned(bureaucrat);
+	}
+	catch(std::exception& e)
+	{
+		std::cerr << "Erreur " << e.what() << std::endl;
+	}
+	std::cout << std::endl;
 
 	return 0;
 }
