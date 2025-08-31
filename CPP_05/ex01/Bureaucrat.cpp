@@ -6,11 +6,12 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 09:54:36 by david             #+#    #+#             */
-/*   Updated: 2025/08/31 15:07:14 by david            ###   ########.fr       */
+/*   Updated: 2025/08/31 15:07:32 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 /*-------------------------------constructeur--------------------------------*/
 
@@ -54,7 +55,7 @@ int	Bureaucrat::getGrade(void)const{
 	return this->_grade;
 }
 
-/*-------------------------------ft membre-------------------------------------*/
+/*-------------------------------ft_membre-------------------------------------*/
 
 void	Bureaucrat::increment()
 {
@@ -70,4 +71,8 @@ void	Bureaucrat::decrement()
 	this->_grade ++;
 	if (this->_grade > 150)
 		throw Bureaucrat::GradeTooLowException(_name);
+}
+
+void	Bureaucrat::signForm(Form& form){
+	form.beSigned(*this);
 }
