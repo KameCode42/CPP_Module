@@ -6,92 +6,36 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 09:53:45 by david             #+#    #+#             */
-/*   Updated: 2025/09/11 11:04:47 by david            ###   ########.fr       */
+/*   Updated: 2025/09/17 15:53:58 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "ShrubberyCreationForm.hpp"
 #include "AForm.hpp"
 #include "cstdlib"
 
-/*
-void	testSigned()
+void	testShrubbery()
 {
-	std::cout << "Test signature OK :" << std::endl;
 	try
 	{
-		Bureaucrat	bureaucrat("david", 50);
-		Form	a("controle", 120, 10);
-		std::cout << bureaucrat << a << std::endl;
-		a.beSigned(bureaucrat);
+		Bureaucrat	bureaucrat("david", 130);
+		AForm	*sch = new ShrubberyCreationForm("Garden");
+		std::cout << *sch << std::endl;
+		sch->beSigned(bureaucrat);
+		bureaucrat.executeForm(*sch);
+
+		delete sch;
 	}
 	catch(std::exception& e)
 	{
-		std::cerr << "Erreur " << e.what() << std::endl;
+		std::cerr << "Erreur : " << e.what() << std::endl;
 	}
-	std::cout << std::endl;
 }
 
-void	testNoSigned()
-{
-	std::cout << "Test signature NON OK :" << std::endl;
-	try
-	{
-		Bureaucrat	bureaucrat("david", 121);
-		Form	a("controle", 120, 10);
-		std::cout << bureaucrat << a << std::endl;
-		a.beSigned(bureaucrat);
-	}
-	catch(std::exception& e)
-	{
-		std::cerr << "Erreur " << e.what() << std::endl;
-	}
-	std::cout << std::endl;
-}
-
-void	testErrorForm()
-{
-	std::cout << "Test erreur formulaire :" << std::endl;
-	try
-	{
-		Bureaucrat	bureaucrat("david", 121);
-		Form	a("controle", 151, 10);
-		std::cout << bureaucrat << a << std::endl;
-		a.beSigned(bureaucrat);
-	}
-	catch(std::exception& e)
-	{
-		std::cerr << "Erreur " << e.what() << std::endl;
-	}
-	std::cout << std::endl;
-}
-*/
 int main()
 {
-	/*
-	system("clear");
-
-	testSigned();
-	testNoSigned();
-	testErrorForm();
-
-	std::cout << "Test incrementation :" << std::endl;
-	try
-	{
-		Bureaucrat	bureaucrat("david", 121);
-		Form	a("controle", 120, 10);
-		std::cout << bureaucrat << a << std::endl;
-		a.beSigned(bureaucrat);
-		bureaucrat.increment();
-		std::cout << bureaucrat << std::endl;
-		a.beSigned(bureaucrat);
-	}
-	catch(std::exception& e)
-	{
-		std::cerr << "Erreur " << e.what() << std::endl;
-	}
-	std::cout << std::endl;
-	*/
+	testShrubbery();
 
 	return 0;
 }

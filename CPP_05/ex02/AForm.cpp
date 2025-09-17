@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 10:32:30 by david             #+#    #+#             */
-/*   Updated: 2025/09/11 11:09:03 by david            ###   ########.fr       */
+/*   Updated: 2025/09/17 14:55:42 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,11 @@ AForm&	AForm::operator=(AForm const& other){
 	return *this;
 }
 
-std::ostream&	operator<<(std::ostream& os, AForm const& AForm){
-	std::cout << "Nom formulaire : " << AForm.getName() << std::endl;
-	std::cout << "Grade requis pour signer : " << AForm.getGradeToSigned() << std::endl;
-	std::cout << "Grade requis pour executer : " << AForm.getGradeToExecute() << std::endl;
-	std::cout  << "Est-il signe (0 = non signe, 1 = signe) ? " << AForm.getIsSigned() << std::endl;
+std::ostream&	operator<<(std::ostream& os, AForm const& Aform){
+	std::cout << "Nom formulaire : " << Aform.getName() << std::endl;
+	std::cout << "Grade requis pour signer : " << Aform.getGradeToSigned() << std::endl;
+	std::cout << "Grade requis pour executer : " << Aform.getGradeToExecute() << std::endl;
+	std::cout  << "Est-il signe (0 = non signe, 1 = signe) ? " << Aform.getIsSigned() << std::endl;
 	return os;
 }
 
@@ -77,11 +77,11 @@ void	AForm::beSigned(Bureaucrat& bureaucrat){
 	if (bureaucrat.getGrade() <= this->_gradeToSigned){
 		this->_isSigned = true;
 		std::cout << bureaucrat.getName() << " a pu signer " << this->getName() << std::endl;
-		std::cout << "Etat du formulaire : " << this->_isSigned << std::endl;
+		std::cout << "Signature du formulaire : " << this->_isSigned << std::endl;
 	}
 	else if (bureaucrat.getGrade() > this->_gradeToSigned){
 		std::cout << bureaucrat.getName() << " n'a pas pu signer " << this->getName() << " a cause de son grade" << std::endl;
-		std::cout << "Etat du formulaire : " << this->_isSigned << std::endl;
+		std::cout << "Signature du formulaire : " << this->_isSigned << std::endl;
 	}
 	else
 		throw AForm::GradeTooLowException(_name);
