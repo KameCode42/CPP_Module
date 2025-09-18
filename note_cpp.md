@@ -382,6 +382,26 @@ for (int i = 0; i < N; i++) {
 Libération :
 delete[] horde;
 
+Exemple pour eviter les leak :
+void	testShrubbery()
+{
+	std::cout << "TEST 1" << std::endl;
+	AForm	*sch = NULL; -> declare instance en dehors du try, si erreur delete de suite
+	try{
+		Bureaucrat	bureaucrat("david", 130);
+		sch = new ShrubberyCreationForm("Garden");
+		std::cout << *sch << std::endl;
+		bureaucrat.signForm(*sch);
+		bureaucrat.executeForm(*sch);
+	}
+	catch(std::exception& e)
+	{
+		std::cerr << "Erreur : " << e.what() << std::endl;
+	}
+	delete sch; -> permet de placer le delete en dehors
+	std::cout << std::endl;
+}
+
 --------------------------------------------------------------------------------------------------------------------------------------
 
 ## 15. Heritage c++ :
