@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 09:54:36 by david             #+#    #+#             */
-/*   Updated: 2025/09/17 16:01:46 by david            ###   ########.fr       */
+/*   Updated: 2025/09/18 11:00:46 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,8 @@ void	Bureaucrat::signForm(AForm& form){
 void	Bureaucrat::executeForm(AForm const & form) const{
 	if (form.getIsSigned() == true && this->getGrade() <= form.getGradeToExecute())
 	{
-		form.execute(*this);
 		std::cout << this->getName() << " a pu executer " << form.getName() << std::endl;
+		form.execute(*this);
 	}
 	else
 	{

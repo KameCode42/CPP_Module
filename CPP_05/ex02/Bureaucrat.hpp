@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 09:54:12 by david             #+#    #+#             */
-/*   Updated: 2025/09/17 15:28:47 by david            ###   ########.fr       */
+/*   Updated: 2025/09/18 10:38:01 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include <string>
 #include <stdexcept>
 #include <cstdlib>
+#include <ctime>
 #include "AForm.hpp"
 
 class	AForm;
