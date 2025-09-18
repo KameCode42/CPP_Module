@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 09:53:45 by david             #+#    #+#             */
-/*   Updated: 2025/08/31 15:13:41 by david            ###   ########.fr       */
+/*   Updated: 2025/09/18 09:37:28 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	testSigned()
 		Bureaucrat	bureaucrat("david", 50);
 		Form	a("controle", 120, 10);
 		std::cout << bureaucrat << a << std::endl;
-		a.beSigned(bureaucrat);
+		bureaucrat.signForm(a);
 	}
 	catch(std::exception& e)
 	{
@@ -39,7 +39,7 @@ void	testNoSigned()
 		Bureaucrat	bureaucrat("david", 121);
 		Form	a("controle", 120, 10);
 		std::cout << bureaucrat << a << std::endl;
-		a.beSigned(bureaucrat);
+		bureaucrat.signForm(a);
 	}
 	catch(std::exception& e)
 	{
@@ -56,7 +56,7 @@ void	testErrorForm()
 		Bureaucrat	bureaucrat("david", 121);
 		Form	a("controle", 151, 10);
 		std::cout << bureaucrat << a << std::endl;
-		a.beSigned(bureaucrat);
+		bureaucrat.signForm(a);
 	}
 	catch(std::exception& e)
 	{
@@ -79,10 +79,10 @@ int main()
 		Bureaucrat	bureaucrat("david", 121);
 		Form	a("controle", 120, 10);
 		std::cout << bureaucrat << a << std::endl;
-		a.beSigned(bureaucrat);
+		bureaucrat.signForm(a);
 		bureaucrat.increment();
 		std::cout << bureaucrat << std::endl;
-		a.beSigned(bureaucrat);
+		bureaucrat.signForm(a);
 	}
 	catch(std::exception& e)
 	{
