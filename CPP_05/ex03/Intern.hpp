@@ -1,15 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Intern.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/29 09:53:45 by david             #+#    #+#             */
-/*   Updated: 2025/09/19 11:43:01 by david            ###   ########.fr       */
+/*   Created: 2025/09/19 09:40:35 by david             #+#    #+#             */
+/*   Updated: 2025/09/19 11:02:28 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef INTERN_HPP
+# define INTERN_HPP
+
+#include <iostream>
+#include <string>
 #include "Bureaucrat.hpp"
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
@@ -17,35 +22,23 @@
 #include "Intern.hpp"
 #include "AForm.hpp"
 
-void	testSchrubbery()
+class	Intern
 {
-	AForm	*sch = NULL;
-
-	try
-	{
-		Intern		someRandomIntern;
-		Bureaucrat	boss("david", 1);
-
-		sch = someRandomIntern.makeForm("shrubbery creation", "Garden");
-		if (sch)
+	public:
+		Intern();
+		Intern(Intern const& src);
+		Intern&	operator=(Intern const& other);
+		~Intern();
+		
+		AForm*	makeForm(std::string form, std::string target);
+		
+		class	FormNoExist : public std::exception
 		{
-			boss.signForm(*sch);
-			boss.executeForm(*sch);
-		}
-	}
-	catch(std::exception& e)
-	{
-		std::cout << "Erreur : " << e.what() << std::endl;
-	}
-	delete sch;
-}
-//void	testRobotomy();
-//void	testPresidential();
+			virtual const char* what() const throw()
+			{
+				return("Le formulaire n'existe pas");
+			}
+		};
+};
 
-
-int main()
-{
-	testSchrubbery();
-	
-	return 0;
-}
+#endif
