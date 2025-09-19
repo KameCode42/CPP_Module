@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 10:32:30 by david             #+#    #+#             */
-/*   Updated: 2025/09/18 10:01:04 by david            ###   ########.fr       */
+/*   Updated: 2025/09/19 12:03:15 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,11 +76,11 @@ const int	AForm::getGradeToExecute()const{
 void	AForm::beSigned(Bureaucrat& bureaucrat){
 	if (bureaucrat.getGrade() <= this->_gradeToSigned){
 		this->_isSigned = true;
-		std::cout << bureaucrat.getName() << " a pu signer " << this->getName() << std::endl;
+		std::cout << bureaucrat.getName() << " a pu signer le formulaire " << this->getName() << std::endl;
 		std::cout << "Signature du formulaire : " << this->_isSigned << std::endl;
 	}
 	else if (bureaucrat.getGrade() > this->_gradeToSigned){
-		std::cout << bureaucrat.getName() << " n'a pas pu signer " << this->getName() << " a cause de son grade" << std::endl;
+		std::cout << bureaucrat.getName() << " n'a pas pu signer le formulaire " << this->getName() << " a cause de son grade" << std::endl;
 		std::cout << "Signature du formulaire : " << this->_isSigned << std::endl;
 	}
 	else

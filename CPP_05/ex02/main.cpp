@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 09:53:45 by david             #+#    #+#             */
-/*   Updated: 2025/09/18 13:46:41 by david            ###   ########.fr       */
+/*   Updated: 2025/09/19 11:51:21 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,76 +19,76 @@
 void	testShrubbery()
 {
 	std::cout << "TEST 1" << std::endl;
-	AForm	*sch = NULL;
+	AForm	*scf = NULL;
 	try{
 		Bureaucrat	bureaucrat("david", 130);
-		sch = new ShrubberyCreationForm("Garden");
-		std::cout << *sch << std::endl;
-		bureaucrat.signForm(*sch);
-		bureaucrat.executeForm(*sch);
+		scf = new ShrubberyCreationForm("Garden");
+		std::cout << *scf << std::endl;
+		bureaucrat.signForm(*scf);
+		bureaucrat.executeForm(*scf);
 	}
 	catch(std::exception& e)
 	{
 		std::cerr << "Erreur : " << e.what() << std::endl;
 	}
-	delete sch;
+	delete scf;
 	std::cout << std::endl;
 }
 
 void	testRoboto()
 {
 	std::cout << "TEST 2" << std::endl;
-	AForm	*rob = NULL;
+	AForm	*rrf = NULL;
 	try{
 		Bureaucrat	bureaucrat("david", 40);
-		rob = new RobotomyRequestForm("Robot");
-		std::cout << *rob << std::endl;
-		bureaucrat.signForm(*rob);
-		bureaucrat.executeForm(*rob);
+		rrf = new RobotomyRequestForm("Robot");
+		std::cout << *rrf << std::endl;
+		bureaucrat.signForm(*rrf);
+		bureaucrat.executeForm(*rrf);
 	}
 	catch(std::exception& e)
 	{
 		std::cerr << "Erreur : " << e.what() << std::endl;
 	}
-	delete rob;
+	delete rrf;
 	std::cout << std::endl;
 }
 
 void	testPresidential()
 {
 	std::cout << "TEST 3" << std::endl;
-	AForm	*pres = NULL;
+	AForm	*ppf = NULL;
 	try{
 		Bureaucrat	bureaucrat("david", 4);
-		pres = new PresidentialPardonForm("Sauron");
-		std::cout << *pres << std::endl;
-		bureaucrat.signForm(*pres);
-		bureaucrat.executeForm(*pres);
+		ppf = new PresidentialPardonForm("Sauron");
+		std::cout << *ppf << std::endl;
+		bureaucrat.signForm(*ppf);
+		bureaucrat.executeForm(*ppf);
 	}
 	catch(std::exception& e)
 	{
 		std::cerr << "Erreur : " << e.what() << std::endl;
 	}
-	delete pres;
+	delete ppf;
 	std::cout << std::endl;
 }
 
 void	testError()
 {
 	std::cout << "TEST ERROR EXECUTION" << std::endl;
-	AForm	*rob = NULL;
+	AForm	*rrf = NULL;
 	try{
 		Bureaucrat	bureaucrat("david", 50);
-		rob = new RobotomyRequestForm("Robot");
-		std::cout << *rob << std::endl;
-		bureaucrat.signForm(*rob);
-		bureaucrat.executeForm(*rob);
+		rrf = new RobotomyRequestForm("Robot");
+		std::cout << *rrf << std::endl;
+		bureaucrat.signForm(*rrf);
+		bureaucrat.executeForm(*rrf);
 	}
 	catch(std::exception& e)
 	{
 		std::cerr << "Erreur : " << e.what() << std::endl;
 	}
-	delete rob;
+	delete rrf;
 	std::cout << std::endl;
 }
 
