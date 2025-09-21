@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 09:53:45 by david             #+#    #+#             */
-/*   Updated: 2025/09/19 11:51:21 by david            ###   ########.fr       */
+/*   Updated: 2025/09/21 10:37:05 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@
 #include "PresidentialPardonForm.hpp"
 #include "AForm.hpp"
 
-void	testShrubbery()
-{
+void	testShrubbery(){
 	std::cout << "TEST 1" << std::endl;
 	AForm	*scf = NULL;
 	try{
@@ -35,8 +34,7 @@ void	testShrubbery()
 	std::cout << std::endl;
 }
 
-void	testRoboto()
-{
+void	testRoboto(){
 	std::cout << "TEST 2" << std::endl;
 	AForm	*rrf = NULL;
 	try{
@@ -54,8 +52,7 @@ void	testRoboto()
 	std::cout << std::endl;
 }
 
-void	testPresidential()
-{
+void	testPresidential(){
 	std::cout << "TEST 3" << std::endl;
 	AForm	*ppf = NULL;
 	try{
@@ -73,8 +70,7 @@ void	testPresidential()
 	std::cout << std::endl;
 }
 
-void	testError()
-{
+void	testError(){
 	std::cout << "TEST ERROR EXECUTION" << std::endl;
 	AForm	*rrf = NULL;
 	try{
