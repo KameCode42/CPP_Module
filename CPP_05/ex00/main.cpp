@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 09:53:45 by david             #+#    #+#             */
-/*   Updated: 2025/08/31 09:58:56 by david            ###   ########.fr       */
+/*   Updated: 2025/09/21 10:15:20 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,8 +94,7 @@ void	testIncrement(){
 	std::cout << std::endl;
 }
 
-int	main()
-{
+int	main(){
 	system("clear");
 
 	testBasic();
