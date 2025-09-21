@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 09:53:45 by david             #+#    #+#             */
-/*   Updated: 2025/09/18 09:37:28 by david            ###   ########.fr       */
+/*   Updated: 2025/09/21 10:22:30 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 #include "Form.hpp"
 #include "cstdlib"
 
-void	testSigned()
-{
+void	testSigned(){
 	std::cout << "Test signature OK :" << std::endl;
 	try
 	{
@@ -31,8 +30,7 @@ void	testSigned()
 	std::cout << std::endl;
 }
 
-void	testNoSigned()
-{
+void	testNoSigned(){
 	std::cout << "Test signature NON OK :" << std::endl;
 	try
 	{
@@ -48,8 +46,7 @@ void	testNoSigned()
 	std::cout << std::endl;
 }
 
-void	testErrorForm()
-{
+void	testErrorForm(){
 	std::cout << "Test erreur formulaire :" << std::endl;
 	try
 	{
@@ -65,8 +62,7 @@ void	testErrorForm()
 	std::cout << std::endl;
 }
 
-int main()
-{
+int main(){
 	system("clear");
 
 	testSigned();

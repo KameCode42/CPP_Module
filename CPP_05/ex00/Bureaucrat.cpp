@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 09:54:36 by david             #+#    #+#             */
-/*   Updated: 2025/09/21 10:11:36 by david            ###   ########.fr       */
+/*   Updated: 2025/09/21 10:20:30 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,16 +56,14 @@ int	Bureaucrat::getGrade(void)const{
 
 /*-------------------------------ft membre-------------------------------------*/
 
-void	Bureaucrat::increment()
-{
+void	Bureaucrat::increment(){
 	std::cout << "incrementation :" << std::endl;
 	this->_grade--;
 	if (this->_grade < 1)
 		throw Bureaucrat::GradeTooHighException(_name);
 }
 
-void	Bureaucrat::decrement()
-{
+void	Bureaucrat::decrement(){
 	std::cout << "decrementation :" << std::endl;
 	this->_grade++;
 	if (this->_grade > 150)

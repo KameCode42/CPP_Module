@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 10:32:20 by david             #+#    #+#             */
-/*   Updated: 2025/08/31 15:08:43 by david            ###   ########.fr       */
+/*   Updated: 2025/09/21 10:19:12 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ class	Form
 		class	GradeTooHighException : public std::exception
 		{
 			public:
-				GradeTooHighException(std::string name) : _msg(name + " Le grade est trop haute"){
+				GradeTooHighException(std::string name) : _msg(name + " Le grade est trop haut"){
 				}
 			private:
 				const std::string	_msg;
