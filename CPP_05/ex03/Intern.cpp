@@ -6,11 +6,13 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 09:58:19 by david             #+#    #+#             */
-/*   Updated: 2025/09/19 12:02:20 by david            ###   ########.fr       */
+/*   Updated: 2025/09/21 11:31:39 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Intern.hpp"
+
+/*-------------------------------constructeur--------------------------------*/
 
 Intern::Intern(){
 }
@@ -19,6 +21,8 @@ Intern::Intern(Intern const& src){
 	*this = src;
 }
 
+/*-------------------------------operateur-------------------------------------*/
+
 Intern&	Intern::operator=(Intern const& other){
 	if (this != &other){
 		*this = other;
@@ -26,9 +30,13 @@ Intern&	Intern::operator=(Intern const& other){
 	return *this;
 }
 
+/*-------------------------------destructeur-----------------------------------*/
+
 Intern::~Intern(){
 	std::cout << "L'intern est detruit" << std::endl;
 }
+
+/*-------------------------------ft_membre-------------------------------------*/
 
 AForm*	Intern::makeForm(std::string form, std::string target){
 	std::string	array[3] = {"shrubbery creation", "robotomy request", "presidential pardon"};

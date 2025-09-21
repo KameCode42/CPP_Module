@@ -6,18 +6,23 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 11:00:15 by david             #+#    #+#             */
-/*   Updated: 2025/09/17 16:01:33 by david            ###   ########.fr       */
+/*   Updated: 2025/09/21 11:30:04 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ShrubberyCreationForm.hpp"
 #include <fstream>
 
-ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : AForm(target, 145, 137), _target(target){
+/*-------------------------------constructeur--------------------------------*/
+
+ShrubberyCreationForm::ShrubberyCreationForm(std::string target) :
+AForm(target, 145, 137), _target(target){
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(ShrubberyCreationForm const& src) : AForm(src){
 }
+
+/*-------------------------------operateur-------------------------------------*/
 
 ShrubberyCreationForm&	ShrubberyCreationForm::operator=(ShrubberyCreationForm const& other){
 	if (this != &other)
@@ -28,10 +33,6 @@ ShrubberyCreationForm&	ShrubberyCreationForm::operator=(ShrubberyCreationForm co
 	return *this;
 }
 
-ShrubberyCreationForm::~ShrubberyCreationForm(){
-	std::cout << "Le formulaire " << this->_target << " est detruit" << std::endl;
-}
-
 std::ostream&	operator<<(std::ostream& os, ShrubberyCreationForm const& schrubbery){
 	std::cout << "Nom formulaire : " << schrubbery.getName() << std::endl;
 	std::cout << "Grade requis pour signer : " << schrubbery.getGradeToSigned() << std::endl;
@@ -39,6 +40,14 @@ std::ostream&	operator<<(std::ostream& os, ShrubberyCreationForm const& schrubbe
 	std::cout  << "Est-il signe (0 = non signe, 1 = signe) ? " << schrubbery.getIsSigned() << std::endl;
 	return os;
 }
+
+/*-------------------------------destructeur-----------------------------------*/
+
+ShrubberyCreationForm::~ShrubberyCreationForm(){
+	std::cout << "Le formulaire " << this->_target << " est detruit" << std::endl;
+}
+
+/*-------------------------------ft_membre-------------------------------------*/
 
 void	ShrubberyCreationForm::execute(Bureaucrat const & executor) const{
 	std::ofstream	ofs(_target + "_shrubbery");
