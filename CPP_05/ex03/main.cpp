@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 09:53:45 by david             #+#    #+#             */
-/*   Updated: 2025/09/19 11:57:51 by david            ###   ########.fr       */
+/*   Updated: 2025/09/26 16:32:19 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	testSchrubbery()
 	}
 	catch(std::exception& e)
 	{
-		std::cout << "Erreur : " << e.what() << std::endl;
+		std::cerr << "Erreur : " << e.what() << std::endl;
 	}
 	delete scf;
 	std::cout << std::endl;
@@ -58,7 +58,7 @@ void	testRobotomy()
 	}
 	catch(std::exception& e)
 	{
-		std::cout << "Erreur : " << e.what() << std::endl;
+		std::cerr << "Erreur : " << e.what() << std::endl;
 	}
 	delete rrf;
 	std::cout << std::endl;
@@ -82,7 +82,7 @@ void	testPresidential()
 	}
 	catch(std::exception& e)
 	{
-		std::cout << "Erreur : " << e.what() << std::endl;
+		std::cerr << "Erreur : " << e.what() << std::endl;
 	}
 	delete ppf;
 	std::cout << std::endl;
@@ -106,7 +106,7 @@ void	testError()
 	}
 	catch(std::exception& e)
 	{
-		std::cout << "Erreur : " << e.what() << std::endl;
+		std::cerr << "Erreur : " << e.what() << std::endl;
 	}
 	delete ppf;
 	std::cout << std::endl;

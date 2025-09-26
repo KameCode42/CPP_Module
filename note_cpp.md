@@ -696,10 +696,18 @@ void	testBasic(){
 
 --------------------------------------------------------------------------------------------------------------------------------------
 
+## 20. cast c++ :
 
+static_cast :
 
+int main()
+{
+	double b = 42.0;
+	int d = static_cast<int>(b)
+}
 
-
+- on vient cast b en int
+- permet de faire des convertion simple
 
 
 

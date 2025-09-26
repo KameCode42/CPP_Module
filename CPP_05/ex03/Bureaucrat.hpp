@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 09:54:12 by david             #+#    #+#             */
-/*   Updated: 2025/09/18 10:38:01 by david            ###   ########.fr       */
+/*   Updated: 2025/09/26 16:31:54 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ class	Bureaucrat
 			}
 		};
 
-	protected:
+	private:
 		const std::string	_name;
 		int					_grade;
 };
