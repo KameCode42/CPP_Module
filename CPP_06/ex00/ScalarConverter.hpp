@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/27 13:21:07 by david             #+#    #+#             */
-/*   Updated: 2025/09/27 14:56:29 by david            ###   ########.fr       */
+/*   Updated: 2025/10/02 14:50:56 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 
 #include <iostream>
 #include <string>
-#include <limits>
+#include <climits>
+#include <cstdlib>
 
 class	ScalarConverter
 {
