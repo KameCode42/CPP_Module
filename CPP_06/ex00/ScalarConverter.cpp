@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScalarConverter.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
+/*   By: dle-fur <dle-fur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/27 13:26:13 by david             #+#    #+#             */
-/*   Updated: 2025/10/02 20:17:20 by david            ###   ########.fr       */
+/*   Updated: 2025/10/03 11:41:25 by dle-fur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,6 +146,10 @@ static void	convertToInt(double value)
 		std::cout << "int : " << static_cast<int>(value) << std::endl;
 }
 
+static void	convertToFloat(double value)
+{
+	
+}
 
 void	ScalarConverter::convert(const std::string& literal)
 {
@@ -168,10 +172,18 @@ void	ScalarConverter::convert(const std::string& literal)
 		convertToInt(value);
 		return;
 	}
-	
-	convertToChar(value);
-	convertToInt(value);
+
+	/*
+	if (end == literal.c_str())
+	{
+		std::cout << "char : impossible" << std::endl;
+		std::cout << "int : impossible" << std::endl;
+		std::cout << "float : impossible" << std::endl;
+		std::cout << "double : impossible" << std::endl;
+		return;
+	}
+	*/
+	//convertToChar(value);
+	//convertToInt(value);
 	return;
 }
-
-//if (end == literal.c_str())
