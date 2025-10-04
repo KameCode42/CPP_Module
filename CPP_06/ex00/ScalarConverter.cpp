@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/27 13:26:13 by david             #+#    #+#             */
-/*   Updated: 2025/10/03 16:12:15 by david            ###   ########.fr       */
+/*   Updated: 2025/10/04 11:13:31 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,22 +99,38 @@ static bool	isFloat(const std::string& literal)
 		if (i == literal.length())
 			return false;
 	}
-	if (!std::isdigit(literal[i]))
-			return false;
-	while (i < literal.length() && literal[i] != '.'){
-		if (!std::isdigit(literal[i]))
-			return false;
-		i++;
-	}
-	if (literal[i] == '.')
-		i++;
-	while (i < literal.length() && literal[i] != 'f'){
-		if (!std::isdigit(literal[i]))
-			return false;
-		i++;
-	}
-	if (literal[literal.length() - 1] != 'f')
+
+	size_t	point = literal.find('.');//tenter de trouver le point
+	std::string	beforePoint = literal.substr(i, point - i);//extrait avant point
+	std::string	afterPoint;//extrait apres point
+
+	if (point != std::string::npos)//si le point est trouver
+		afterPoint = literal.substr(point + 1);
+	else
+		afterPoint = "";
+
+	if (beforePoint.empty() && afterPoint.length() <= 1) // <=1 car il peut y avoir juste "f"
 		return false;
+	
+	for (size_t j = 0; j < beforePoint.length(); j++){
+		if (!std::isdigit(beforePoint[j]))
+			return false;
+	}
+
+	if (afterPoint.empty() || afterPoint.back() != 'f')
+		return false;
+
+	if (afterPoint.length() == 1) // juste "f"
+		return true;
+
+	
+	for (size_t j = 0; j < afterPoint.length() - 1; j++){
+		if (!std::isdigit(afterPoint[j]))
+			return false;
+	}
+	
+	//après le . : peut être vide si f est présent directement (cas "4.f"), sinon doit contenir des chiffres
+
 	return true;
 }
 
