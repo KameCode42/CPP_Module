@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/27 11:39:51 by david             #+#    #+#             */
-/*   Updated: 2025/09/27 14:56:33 by david            ###   ########.fr       */
+/*   Updated: 2025/10/04 12:45:28 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ int	main(int argc, char **argv)
 		std::cout << "Utilise ./convert <nbr>" << std::endl;
 		return 1;
 	}
-
 	ScalarConverter::convert(argv[1]);
-
 	return 0;
 }

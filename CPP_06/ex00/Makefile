@@ -3,7 +3,7 @@ NAME		= convert
 CXX			= c++
 RM			= rm -f
 
-CXXFLAGS		= -std=c++98 -Wall -Wextra -Werror
+CXXFLAGS	= -std=c++98 -Wall -Wextra -Werror
 
 SRCS 		=	main.cpp \
 				ScalarConverter.cpp

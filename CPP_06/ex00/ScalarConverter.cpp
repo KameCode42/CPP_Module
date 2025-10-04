@@ -6,23 +6,66 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/27 13:26:13 by david             #+#    #+#             */
-/*   Updated: 2025/10/04 11:13:31 by david            ###   ########.fr       */
+/*   Updated: 2025/10/04 13:27:14 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
 
-/*-----------------PSEUDO-----------------------*/
+/*
+PSEUDO:
+- nan et nanf = resultat indefini -> 0.0/0.0
+- inf et inff = valeur flottante infini
+- inf pour double, inff pour float
 
-static bool isPseudoLiterals(const std::string& literal)
-{
+CHAR:
+- la chaine doit etre de longueur 3 et fermer de '' -> "'a'"
+
+INT:
+- la chaine ne doit pas etre "+ ou -" sinon passer le signe
+- la chaine ne doit contenir que des digits
+
+FLOAT:
+- la chaine ne doit pas etre que "+ ou -" sinon passer le signe
+- rechercher le point dans la chaine
+- variable qui contient avant le point
+- variable qui contient apres le point
+- si le point est trouver, extraire apres le point
+- si la chaine avant le point est vide et que la longueur <= 1, false (.f)
+- parcours before, controle si que des digits
+- si apres le point = vide ou que != 'f', ce n est pas un float
+- si after = 4.f = true =  un float
+- parcours after, controle si que des digits
+
+DOUBLE:
+- la chaine ne doit pas etre que "+ ou -" sinon passer le signe
+- rechercher le point dans la chaine
+- variable qui contient avant le point
+- variable qui contient apres le point
+- si before et after sont vide = false ("+.")
+- parcours before, controle si que des digits
+- parcours after, controle si que des digits
+
+CONVERT:
+- si la chaine est vide = conversion impossible
+- si la chaine est un pseudo literal = print pseudo
+- utilisation de strtod, convertit la chaine en double, et
+lit autant de caracteres numeriques qu'il peut,et
+met end sur le premier caractere non reconnu
+- condition pour les 4 conversion possible
+- si end == un caractere non conforme ou
+si la chaine en contient = conversion impossible
+*/
+
+/*---------------------------PSEUDO------------------------------*/
+
+static bool isPseudoLiterals(const std::string& literal){
 	return (literal == "nanf" || literal == "nan"
 	|| literal == "-inff" || literal == "-inf"
 	|| literal == "+inff" || literal == "+inf");
 }
 
-static void	printPseudoLiterals(const std::string& literal)
-{
+static void	printPseudoLiterals(const std::string& literal){
 	std::cout << "char : impossible" << std::endl;
 	std::cout << "int : impossible" << std::endl;
 
@@ -40,10 +83,9 @@ static void	printPseudoLiterals(const std::string& literal)
 	}
 }
 
-/*-----------------CHAR-----------------------*/
+/*---------------------------CHAR--------------------------------*/
 
-static bool	isChar(const std::string& literal)
-{
+static bool	isChar(const std::string& literal){
 	if (literal.empty() || literal.length() != 3)
 		return false;
 	if (literal[0] != '\'' || literal[2] != '\'')
@@ -51,8 +93,7 @@ static bool	isChar(const std::string& literal)
 	return true;
 }
 
-static void	convertToChar(double value)
-{
+static void	convertToChar(double value){
 	if (value < 0 || value > 127)
 		std::cout << "char : impossible" << std::endl;
 	else if (value < 32 || value == 127)
@@ -61,10 +102,9 @@ static void	convertToChar(double value)
 		std::cout << "char : '" << static_cast<char>(value) << "'" << std::endl;
 }
 
-/*-----------------INT-----------------------*/
+/*---------------------------INT---------------------------------*/
 
-static bool	isInt(const std::string& literal)
-{
+static bool	isInt(const std::string& literal){
 	size_t	i = 0;
 
 	if (literal[i] == '+' || literal[i] == '-'){
@@ -80,18 +120,16 @@ static bool	isInt(const std::string& literal)
 	return true;
 }
 
-static void	convertToInt(double value)
-{
+static void	convertToInt(double value){
 	if (value < INT_MIN || value > INT_MAX)
 		std::cout << "int : impossible" << std::endl;
 	else
 		std::cout << "int : " << static_cast<int>(value) << std::endl;
 }
 
-/*-----------------FLOAT-----------------------*/
+/*---------------------------FLOAT-------------------------------*/
 
-static bool	isFloat(const std::string& literal)
-{
+static bool	isFloat(const std::string& literal){
 	size_t	i = 0;
 
 	if (literal[i] == '+' || literal[i] == '-'){
@@ -100,16 +138,16 @@ static bool	isFloat(const std::string& literal)
 			return false;
 	}
 
-	size_t	point = literal.find('.');//tenter de trouver le point
-	std::string	beforePoint = literal.substr(i, point - i);//extrait avant point
-	std::string	afterPoint;//extrait apres point
+	size_t	point = literal.find('.');
+	std::string	beforePoint = literal.substr(i, point - i);
+	std::string	afterPoint;
 
-	if (point != std::string::npos)//si le point est trouver
+	if (point != std::string::npos)
 		afterPoint = literal.substr(point + 1);
 	else
 		afterPoint = "";
 
-	if (beforePoint.empty() && afterPoint.length() <= 1) // <=1 car il peut y avoir juste "f"
+	if (beforePoint.empty() && afterPoint.length() <= 1)
 		return false;
 	
 	for (size_t j = 0; j < beforePoint.length(); j++){
@@ -120,7 +158,7 @@ static bool	isFloat(const std::string& literal)
 	if (afterPoint.empty() || afterPoint.back() != 'f')
 		return false;
 
-	if (afterPoint.length() == 1) // juste "f"
+	if (afterPoint.length() == 1)
 		return true;
 
 	
@@ -128,22 +166,17 @@ static bool	isFloat(const std::string& literal)
 		if (!std::isdigit(afterPoint[j]))
 			return false;
 	}
-	
-	//après le . : peut être vide si f est présent directement (cas "4.f"), sinon doit contenir des chiffres
-
 	return true;
 }
 
-static void	convertToFloat(double value)
-{
+static void	convertToFloat(double value){
 	std::cout << "float : " << std::fixed << std::setprecision(2)
 	<< static_cast<float>(value) << "f" << std::endl;
 }
 
-/*-----------------DOUBLE-----------------------*/
+/*---------------------------DOUBLE------------------------------*/
 
-static bool	isDouble(const std::string& literal)
-{
+static bool	isDouble(const std::string& literal){
 	size_t	i = 0;
 
 	if (literal[i] == '+' || literal[i] == '-'){
@@ -152,16 +185,16 @@ static bool	isDouble(const std::string& literal)
 			return false;
 	}
 
-	size_t	point = literal.find('.');//tenter de trouver le point
-	std::string	beforePoint = literal.substr(i, point - i);//extrait avant point
-	std::string	afterPoint;//extrait apres point
+	size_t	point = literal.find('.');
+	std::string	beforePoint = literal.substr(i, point - i);
+	std::string	afterPoint;
 
-	if (point != std::string::npos)//si le point est trouver
+	if (point != std::string::npos)
 		afterPoint = literal.substr(point + 1);
 	else
 		afterPoint = "";
 
-	if (beforePoint.empty() && afterPoint.empty())//vu que le + ou - ignorer si c est vide des coter = false
+	if (beforePoint.empty() && afterPoint.empty())
 		return false;
 
 	for (size_t j = 0; j < beforePoint.length(); j++){
@@ -175,13 +208,12 @@ static bool	isDouble(const std::string& literal)
 	return true;
 }
 
-static void	convertToDouble(double value)
-{
+static void	convertToDouble(double value){
 	std::cout << "double : " << std::fixed << std::setprecision(2)
 	<< static_cast<double>(value) << std::endl;
 }
 
-/*-----------------PRINT-----------------------*/
+/*---------------------------PRINT-------------------------------*/
 
 static void	printAll(double value){
 	convertToChar(value);
@@ -199,10 +231,9 @@ static void	printImpossibleAll(){
 	return;
 }
 
-/*-----------------STATIC METHOD-----------------------*/
+/*---------------------------STATIC METHOD-----------------------*/
 
-void	ScalarConverter::convert(const std::string& literal)
-{
+void	ScalarConverter::convert(const std::string& literal){
 	if (literal.empty()){
 		printImpossibleAll();
 		return;
@@ -211,8 +242,7 @@ void	ScalarConverter::convert(const std::string& literal)
 		printPseudoLiterals(literal);
 		return;
 	}
-	//strtod convertit la chaine en double
-	//strtod lit autant de caractères numériques qu’il peut et met end sur le premier caractère non reconnu.
+
 	char	*end;
 	double	value = strtod(literal.c_str(), &end);
 
@@ -233,7 +263,6 @@ void	ScalarConverter::convert(const std::string& literal)
 		printAll(value);
 		return;
 	}
-	//si end trouve directement un caractere non conforme ou si dans la chaine aussi
 	if (end == literal.c_str() || *end != '\0'){
 		printImpossibleAll();
 		return;
