@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 11:33:00 by david             #+#    #+#             */
-/*   Updated: 2025/10/05 11:50:13 by david            ###   ########.fr       */
+/*   Updated: 2025/10/09 14:36:56 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 
 #include <iostream>
 
-struct	Data
-{
+struct	Data{
 	int	nbr;
+	std::string	str;
 };
 
 #endif
