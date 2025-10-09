@@ -6,9 +6,14 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/04 13:32:54 by david             #+#    #+#             */
-/*   Updated: 2025/10/09 14:37:00 by david            ###   ########.fr       */
+/*   Updated: 2025/10/09 17:09:52 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+/*
+Utilisation de reinterpret_cast :
+- permet le retypage de ptr ou ref sans perdre de donnees
+*/
 
 #include "Serialize.hpp"
 

@@ -6,11 +6,9 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/27 13:26:13 by david             #+#    #+#             */
-/*   Updated: 2025/10/04 13:27:14 by david            ###   ########.fr       */
+/*   Updated: 2025/10/09 17:09:33 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "ScalarConverter.hpp"
 
 /*
 PSEUDO:
@@ -56,6 +54,8 @@ met end sur le premier caractere non reconnu
 - si end == un caractere non conforme ou
 si la chaine en contient = conversion impossible
 */
+
+#include "ScalarConverter.hpp"
 
 /*---------------------------PSEUDO------------------------------*/
 
