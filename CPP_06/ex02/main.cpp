@@ -6,7 +6,7 @@
 /*   By: dle-fur <dle-fur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 14:50:50 by david             #+#    #+#             */
-/*   Updated: 2025/10/10 09:34:09 by dle-fur          ###   ########.fr       */
+/*   Updated: 2025/10/10 09:51:03 by dle-fur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void	identify(Base* p)
 		std::cout << "C" << std::endl;
 		return;
 	}
+	std::cout << "Inconnu" << std::endl;
 }
 
 void	identify(Base& p)
@@ -87,8 +88,11 @@ void	identify(Base& p)
 		}
 		catch(std::exception&){}
 	}
-	catch(std::exception&){}
+	catch(std::exception&){
+		std::cout << "Inconnu" << std::endl;
+	}
 }
+
 
 int	main()
 {
