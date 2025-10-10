@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
+/*   By: dle-fur <dle-fur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 14:50:50 by david             #+#    #+#             */
-/*   Updated: 2025/10/09 17:19:21 by david            ###   ########.fr       */
+/*   Updated: 2025/10/10 09:34:09 by dle-fur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,26 +72,22 @@ void	identify(Base& p)
 {
 	try{
 		try{
-			dynamic_cast<A&>(p);
+			(void)dynamic_cast<A&>(p);
 			std::cout << "A" << std::endl;
 		}
-		catch(...){
-		}
+		catch(std::exception&){}
 		try{
-			dynamic_cast<B&>(p);
+			(void)dynamic_cast<B&>(p);
 			std::cout << "B" << std::endl;
 		}
-		catch(...){
-		}
+		catch(std::exception&){}
 		try{
-			dynamic_cast<C&>(p);
+			(void)dynamic_cast<C&>(p);
 			std::cout << "C" << std::endl;
 		}
-		catch(...){
-		}
+		catch(std::exception&){}
 	}
-	catch(...){
-	}
+	catch(std::exception&){}
 }
 
 int	main()
