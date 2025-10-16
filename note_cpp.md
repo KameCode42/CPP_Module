@@ -372,7 +372,7 @@ delete z; // Libération manuelle
 Allocation tableaux de zombies :
 
 Zombie* horde = new Zombie[N]; // Crée un tableau de N zombies
-
+42a
 Utilisation :
 for (int i = 0; i < N; i++) {
 	horde[i].setName("Zombie" + std::to_string(i)); // Initialisation
