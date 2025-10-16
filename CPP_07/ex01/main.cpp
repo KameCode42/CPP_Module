@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/11 14:11:55 by david             #+#    #+#             */
-/*   Updated: 2025/10/12 10:25:04 by david            ###   ########.fr       */
+/*   Updated: 2025/10/16 13:09:16 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	main()
 	int	lengthDouble = 4;
 	int	lengthString = 2;
 
-	/*Int*/
+	//Int
 	std::cout << "Original int : ";
 	iter(arrayInt, lengthInt, printTab<int>);
 	std::cout << std::endl;
@@ -65,7 +65,7 @@ int	main()
 
 	std::cout << std::endl;
 
-	/*Double*/
+	//Double
 	std::cout << "Original double : ";
 	iter(arrayDouble, lengthDouble, printTab<double>);
 	std::cout << std::endl;
@@ -75,7 +75,7 @@ int	main()
 
 	std::cout << std::endl;
 
-	/*Char*/
+	//Char
 	std::cout << "Original char : ";
 	iter(arrayChar, lengthChar, printTab<char>);
 	std::cout << std::endl;
@@ -85,7 +85,7 @@ int	main()
 
 	std::cout << std::endl;
 
-	/*String*/
+	//String
 	std::cout << "Original string : ";
 	iter(arrayString, lengthString, printTab<std::string>);
 	std::cout << std::endl;
@@ -108,22 +108,22 @@ int	main()
 	int	lengthConstDouble = 4;
 	int	lengthConstString = 2;
 
-	/*Int*/
+	//Int
 	std::cout << "Original int : ";
 	iter(arrayConstInt, lengthConstInt, printTab<int>);
 	std::cout << std::endl;
 
-	/*Double*/
+	//Double
 	std::cout << "Original double : ";
 	iter(arrayConstDouble, lengthConstDouble, printTab<double>);
 	std::cout << std::endl;
 
-	/*Char*/
+	//Char
 	std::cout << "Original char : ";
 	iter(arrayConstChar, lengthConstChar, printTab<char>);
 	std::cout << std::endl;
 
-	/*String*/
+	//String
 	std::cout << "Original string : ";
 	iter(arrayConstString, lengthConstString, printTab<std::string>);
 	std::cout << std::endl;
