@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 10:16:41 by david             #+#    #+#             */
-/*   Updated: 2025/10/17 14:36:53 by david            ###   ########.fr       */
+/*   Updated: 2025/10/17 15:37:04 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,9 @@ void	print(int i){
 void	testList(){
 	std::cout << "Test List : " << std::endl;
 	try{
-		std::list<int>	list;
+		int	array[] = {1, 2, 3};
+		std::list<int>	list(array, array + 3);
 
-		list.push_back(1);
-		list.push_back(2);
-		list.push_back(3);
-		
 		std::cout << "Contenu de la list : ";
 		for_each(list.cbegin(), list.cend(), print);
 		std::cout << std::endl;
@@ -41,12 +38,9 @@ void	testList(){
 void	testVector(){
 	std::cout << "Test Vector : " << std::endl;
 	try{
-		std::vector<int>	vect;
+		int	array[] = {10, 20, 30};
+		std::vector<int>	vect(array, array + 3);
 
-		vect.push_back(10);
-		vect.push_back(20);
-		vect.push_back(30);
-		
 		std::cout << "Contenu du tableau : ";
 		for_each(vect.cbegin(), vect.cend(), print);
 		std::cout << std::endl;
@@ -63,12 +57,9 @@ void	testVector(){
 void	testError(){
 	std::cout << "Test Erreur : " << std::endl;
 	try{
-		std::list<int>	list;
+		int	array[] = {1, 2, 3};
+		std::list<int>	list(array, array + 3);
 
-		list.push_back(1);
-		list.push_back(2);
-		list.push_back(3);
-		
 		std::cout << "Contenu de la list : ";
 		for_each(list.cbegin(), list.cend(), print);
 		std::cout << std::endl;
