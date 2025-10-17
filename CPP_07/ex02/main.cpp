@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 13:16:04 by david             #+#    #+#             */
-/*   Updated: 2025/10/16 17:27:43 by david            ###   ########.fr       */
+/*   Updated: 2025/10/17 09:45:33 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	main()
 		std::cout << array_a[10] << std::endl;
 	}
 	catch(std::exception& e){
-		std::cout << "Erreur : " << e.what() << std::endl;
+		std::cerr << "Erreur : " << e.what() << std::endl;
 	}
 	return 0;
 }
