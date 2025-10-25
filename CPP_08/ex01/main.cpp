@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 13:45:12 by david             #+#    #+#             */
-/*   Updated: 2025/10/25 19:21:52 by david            ###   ########.fr       */
+/*   Updated: 2025/10/25 19:32:35 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	testBig(){
 		std::vector<int> array;
 
 		for (size_t i = 0; i < 10000; i++){
-			array.push_back(i);
+			array.push_back(std::rand() % 10000);
 		}
 		sp.addNumber(array.begin(), array.end());
 
