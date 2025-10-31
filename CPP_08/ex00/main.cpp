@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 10:16:41 by david             #+#    #+#             */
-/*   Updated: 2025/10/17 15:37:04 by david            ###   ########.fr       */
+/*   Updated: 2025/10/31 09:59:33 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	print(int i){
 }
 
 void	testList(){
-	std::cout << "Test List : " << std::endl;
 	try{
 		int	array[] = {1, 2, 3};
 		std::list<int>	list(array, array + 3);
@@ -36,7 +35,6 @@ void	testList(){
 }
 
 void	testVector(){
-	std::cout << "Test Vector : " << std::endl;
 	try{
 		int	array[] = {10, 20, 30};
 		std::vector<int>	vect(array, array + 3);
@@ -55,7 +53,6 @@ void	testVector(){
 }
 
 void	testError(){
-	std::cout << "Test Erreur : " << std::endl;
 	try{
 		int	array[] = {1, 2, 3};
 		std::list<int>	list(array, array + 3);
@@ -76,8 +73,13 @@ void	testError(){
 int	main(){
 	system("clear");
 
+	std::cout << "Test List : " << std::endl;
 	testList();
+
+	std::cout << "Test Vector : " << std::endl;
 	testVector();
+
+	std::cout << "Test Erreur : " << std::endl;
 	testError();
 
 	return 0;

@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 13:45:12 by david             #+#    #+#             */
-/*   Updated: 2025/10/25 19:32:35 by david            ###   ########.fr       */
+/*   Updated: 2025/10/31 10:07:13 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	testBig(){
 	return;
 }
 
-void	testErrorFull(){
+void	testFull(){
 	try{
 		Span sp = Span(3);
 
@@ -110,19 +110,19 @@ void	testErrorStorage(){
 int	main(){
 	system("clear");
 
-	std::cout << "TEST SUJET : " << std::endl;
+	std::cout << "Test Sujet : " << std::endl;
 	testSubject();
 
-	std::cout << "TEST COMPLET : " << std::endl;
+	std::cout << "Test complet : " << std::endl;
 	testComplete();
 
-	std::cout << "TEST 10000 : " << std::endl;
+	std::cout << "Test 10000 : " << std::endl;
 	testBig();
 
-	std::cout << "TEST ERROR FULL : " << std::endl;
-	testErrorFull();
+	std::cout << "Test Span plein : " << std::endl;
+	testFull();
 
-	std::cout << "TEST ERROR STORAGE : " << std::endl;
+	std::cout << "Test Erreur Stockage : " << std::endl;
 	testErrorStorage();
 
 	return 0;
