@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 15:05:51 by david             #+#    #+#             */
-/*   Updated: 2025/11/06 17:24:13 by david            ###   ########.fr       */
+/*   Updated: 2025/11/07 10:06:53 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 #include <iostream>
 #include <stack>
 #include <deque>//utiliser car iterable, acces par index
+#include <list>
+#include <cstdlib>
 
 template<typename T>
 class	MutantStack : public std::stack<T>
