@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
+/*   By: dle-fur <dle-fur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 13:16:04 by david             #+#    #+#             */
-/*   Updated: 2025/10/18 15:55:48 by david            ###   ########.fr       */
+/*   Updated: 2025/11/13 15:10:44 by dle-fur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,12 @@ void	testInt(){
 	for (unsigned int i = 0; i < array_c.size(); i++)
 	{
 		std::cout << array_c[i] << " ";
+	}
+	std::cout << std::endl;
+	std::cout << "Contenu du tableau original a : ";
+	for (unsigned int i = 0; i < array_a.size(); i++)
+	{
+		std::cout << array_a[i] << " ";
 	}
 	std::cout << std::endl;
 	std::cout << std::endl;
@@ -114,6 +120,12 @@ void	testString(){
 	for (unsigned int i = 0; i < array_c.size(); i++)
 	{
 		std::cout << array_c[i] << " ";
+	}
+	std::cout << std::endl;
+	std::cout << "Contenu du tableau original a : ";
+	for (unsigned int i = 0; i < array_a.size(); i++)
+	{
+		std::cout << array_a[i] << " ";
 	}
 	std::cout << std::endl;
 	std::cout << std::endl;
