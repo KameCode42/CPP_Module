@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Span.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
+/*   By: dle-fur <dle-fur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 13:45:30 by david             #+#    #+#             */
-/*   Updated: 2025/10/25 15:26:49 by david            ###   ########.fr       */
+/*   Updated: 2025/11/14 11:20:00 by dle-fur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,11 @@ class	Span
 		void	addNumber(T begin, T end);
 
 		class	ErrorFull : public std::exception{
-			virtual const char* what() const throw(){
-				return ("Le Span est plein");
-			}
+			virtual const char* what() const throw();
 		};
 
-		class	ErrorStorage : public std::exception
-		{
-			virtual const char* what() const throw(){
-				return ("Pas de calcul possible");
-			}
+		class	ErrorStorage : public std::exception{
+			virtual const char* what() const throw();
 		};
 
 	private:

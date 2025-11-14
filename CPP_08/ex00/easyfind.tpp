@@ -6,7 +6,7 @@
 /*   By: dle-fur <dle-fur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 10:22:00 by david             #+#    #+#             */
-/*   Updated: 2025/10/18 10:38:27 by dle-fur          ###   ########.fr       */
+/*   Updated: 2025/11/14 11:17:58 by dle-fur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,10 @@ int	easyfind(const T& array, int value)
 		return *it;
 	}
 	throw ErrorFind();
+}
+
+const char* ErrorFind::what() const throw(){
+	return ("aucune occurrence");
 }
 
 #endif

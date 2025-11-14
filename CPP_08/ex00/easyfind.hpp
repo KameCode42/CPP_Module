@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   easyfind.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
+/*   By: dle-fur <dle-fur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 10:21:51 by david             #+#    #+#             */
-/*   Updated: 2025/10/17 14:34:05 by david            ###   ########.fr       */
+/*   Updated: 2025/11/14 11:09:57 by dle-fur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,7 @@
 class	ErrorFind : public std::exception
 {
 	public:
-		virtual const char* what() const throw(){
-			return ("aucune occurrence");
-		}
+		virtual const char* what() const throw();
 };
 
 template<typename T>

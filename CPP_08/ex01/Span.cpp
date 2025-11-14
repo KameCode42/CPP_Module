@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Span.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
+/*   By: dle-fur <dle-fur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 13:52:02 by david             #+#    #+#             */
-/*   Updated: 2025/10/25 15:00:16 by david            ###   ########.fr       */
+/*   Updated: 2025/11/14 11:20:05 by dle-fur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,12 @@ int	Span::longestSpan(){
 	int longSpan = *itMax - *itMin;
 
 	return longSpan;
+}
+
+const char* Span::ErrorFull::what() const throw(){
+	return ("Le Span est plein");
+}
+
+const char* Span::ErrorStorage::what() const throw(){
+	return ("Pas de calcul possible");
 }

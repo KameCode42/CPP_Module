@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Array.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
+/*   By: dle-fur <dle-fur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 13:16:42 by david             #+#    #+#             */
-/*   Updated: 2025/10/17 09:50:57 by david            ###   ########.fr       */
+/*   Updated: 2025/11/14 11:08:26 by dle-fur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ class	Array
 
 		T&				operator[](unsigned int index);
 		const T&		operator[](unsigned int index) const;
-		unsigned int	size()const;\
+		unsigned int	size()const;
 
 		class	OutOfRange : public std::exception{
 			public:
