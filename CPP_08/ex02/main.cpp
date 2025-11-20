@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 15:04:57 by david             #+#    #+#             */
-/*   Updated: 2025/11/07 10:34:07 by david            ###   ########.fr       */
+/*   Updated: 2025/11/20 14:27:01 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,9 @@ int	main()
 	MutantStack<int>::iterator it = mstack.begin();
 	MutantStack<int>::iterator ite = mstack.end();
 	++it;
+	std::cout << "it apres ++it : " << *it << std::endl;
 	--it;
+	std::cout << "it apres --it : " << *it << std::endl;
 	std::cout << "Contenu de la pile : " << std::endl;
 	while (it != ite)
 	{
@@ -64,7 +66,9 @@ int	main()
 	std::list<int>::iterator lit = lst.begin();
 	std::list<int>::iterator lite = lst.end();
 	++lit;
+	std::cout << "lit apres ++lit : " << *lit << std::endl;
 	--lit;
+	std::cout << "lit apres --lit : " << *lit << std::endl;
 	std::cout << "Contenu de la list : " << std::endl;
 	while (lit != lite)
 	{
