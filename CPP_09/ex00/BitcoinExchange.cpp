@@ -6,9 +6,14 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 10:25:56 by david             #+#    #+#             */
-/*   Updated: 2025/11/16 16:15:55 by david            ###   ########.fr       */
+/*   Updated: 2025/11/20 16:21:37 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+/*
+date | value       (input.txt)
+date,price         (data.csv)
+*/
 
 /*
 //bisextil = 29 jours = tous les 4 ans
@@ -89,23 +94,78 @@ static bool	validDate(std::string const& date)
 	return true;
 }
 
-static bool	validPrice(std::string const& value)
+static bool	validPrice(std::string const& value, bool input)
 {
-	if (value.empty())
-		return fasle;
+	size_t	i = 0;
 
-	size_t	point = value.find('.');
+	if (value.empty())
+		return false;
+
+	if (value[0] == '.')
+		return false;
+
+	if (std::count(value.begin(), value.end(), '.') > 1)//algo pour trouver le nombre de .
+		return false;
+
+	size_t		point = value.find('.');
+
+
+	std::string	beforePoint;
+	std::string	afterPoint;
+
 	
+	if (point != std::string::npos)//si une sous chaine est trouver
+	{
+		beforePoint = value.substr(i, point - i);
+		afterPoint = value.substr(point + 1);
+	}
+	else
+	{
+		beforePoint = value;
+		afterPoint = "";
+	}
+
+
+	for (size_t j = 0; j < beforePoint.size(); j++)
+	{
+		if (!std::isdigit(beforePoint[j]))
+		{
+			return false;
+		}
+	}
+
+	for (size_t j = 0; j < afterPoint.size(); j++)
+	{
+		if (!std::isdigit(afterPoint[j]))
+		{
+			return false;
+		}
+	}
+
+	char	*end;
+	double	price = strtod(value.c_str(), &end);
+
 	
+	if (*end != '\0')//reste des caractere invalide
+		return false;
 	
+	if (price < 0)
+		return false;
+
+	if (input == true)
+	{
+		if (price > 1000)
+			return false;
+	}
+	
+	return true;
 }
 
 
-//static bool	validData(std::string const& date, std::string const& value)
-
-
-
-
+static bool	validData(std::string const& date, std::string const& value, bool input)
+{
+	return (validDate(date) && validPrice(value, input));
+}
 
 
 

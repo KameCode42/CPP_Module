@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 10:18:11 by david             #+#    #+#             */
-/*   Updated: 2025/11/16 15:41:37 by david            ###   ########.fr       */
+/*   Updated: 2025/11/20 16:07:08 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ class	BitcoinExchange
 
 
 	private:
-		std::map<std::string, float>	_price;
+		std::map<std::string, double>	_price;
 };
 
 #endif
