@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   BitcoinExchange.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
+/*   By: dle-fur <dle-fur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 10:18:11 by david             #+#    #+#             */
-/*   Updated: 2025/11/20 16:07:08 by david            ###   ########.fr       */
+/*   Updated: 2025/11/21 11:24:57 by dle-fur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,8 @@ class	BitcoinExchange
 		BitcoinExchange&	operator=(BitcoinExchange const& other);
 		~BitcoinExchange();
 		
-		void	parseData();
-
-
+		void	BitcoinExchange::parseData(std::string const& filename);
+		//void	BitcoinExchange::parseInput(std::string const& filename);
 
 	private:
 		std::map<std::string, double>	_price;

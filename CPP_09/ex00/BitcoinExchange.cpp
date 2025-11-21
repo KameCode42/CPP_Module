@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   BitcoinExchange.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
+/*   By: dle-fur <dle-fur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 10:25:56 by david             #+#    #+#             */
-/*   Updated: 2025/11/20 16:21:37 by david            ###   ########.fr       */
+/*   Updated: 2025/11/21 11:43:39 by dle-fur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,81 +98,60 @@ static bool	validPrice(std::string const& value, bool input)
 {
 	size_t	i = 0;
 
-	if (value.empty())
-		return false;
-
-	if (value[0] == '.')
+	if (value.empty() || value[0] == '.')
 		return false;
 
 	if (std::count(value.begin(), value.end(), '.') > 1)//algo pour trouver le nombre de .
 		return false;
 
-	size_t		point = value.find('.');
-
-
+	size_t	point = value.find('.');
 	std::string	beforePoint;
 	std::string	afterPoint;
 
-	
-	if (point != std::string::npos)//si une sous chaine est trouver
-	{
+	//si une sous chaine est trouver
+	if (point != std::string::npos){
 		beforePoint = value.substr(i, point - i);
 		afterPoint = value.substr(point + 1);
 	}
-	else
-	{
+	else{
 		beforePoint = value;
 		afterPoint = "";
 	}
 
-
-	for (size_t j = 0; j < beforePoint.size(); j++)
-	{
+	for (size_t j = 0; j < beforePoint.size(); j++){
 		if (!std::isdigit(beforePoint[j]))
-		{
 			return false;
-		}
 	}
 
-	for (size_t j = 0; j < afterPoint.size(); j++)
-	{
+	for (size_t j = 0; j < afterPoint.size(); j++){
 		if (!std::isdigit(afterPoint[j]))
-		{
 			return false;
-		}
 	}
 
 	char	*end;
 	double	price = strtod(value.c_str(), &end);
 
-	
 	if (*end != '\0')//reste des caractere invalide
 		return false;
 	
 	if (price < 0)
 		return false;
 
-	if (input == true)
-	{
+	if (input == true){
 		if (price > 1000)
 			return false;
 	}
-	
 	return true;
 }
-
 
 static bool	validData(std::string const& date, std::string const& value, bool input)
 {
 	return (validDate(date) && validPrice(value, input));
 }
 
-
-
-
-void	BitcoinExchange::parseData()
+void	BitcoinExchange::parseData(std::string const& filename)
 {
-	std::ifstream	ifs("data.csv");
+	std::ifstream	ifs(filename);
 	if (!ifs)
 	{
 		std::cout << "Erreur : Le fichier ne peut pas etre ouvert" << std::endl;
@@ -182,21 +161,14 @@ void	BitcoinExchange::parseData()
 	std::getline(ifs, line);
 	while (getline(ifs, line))
 	{
-		
+		size_t	pos = line.find(',');
+		std::string	date = line.substr(0, pos);
+		double		value = line.substr(pos + 1);
 
-
-
-
+		if (validData(date, value, false) == true)
+		{
+			_price[date] = value;
+		}
 	}
 	ifs.close();
 }
-
-
-
-
-
-
-
-
-
-
