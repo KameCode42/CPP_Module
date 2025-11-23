@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 10:26:10 by david             #+#    #+#             */
-/*   Updated: 2025/11/22 16:21:18 by david            ###   ########.fr       */
+/*   Updated: 2025/11/23 16:16:39 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,8 @@
 
 int	main(int argc, char **argv)
 {
-	(void)argv;
-	if (argc != 2)
-	{
-		std::cout << "Erreur -> use  ./btc <input>" << std::endl;
+	if (argc != 2) {
+		std::cout << "Erreur -> use ./btc <input>" << std::endl;
 		return 1;
 	}
 
@@ -25,10 +23,6 @@ int	main(int argc, char **argv)
 
 	btc.parseData("data.csv");
 	btc.parseInput(argv[1]);
-
-
-
-
 
 	return 0;
 }

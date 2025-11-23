@@ -6,41 +6,9 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 10:25:56 by david             #+#    #+#             */
-/*   Updated: 2025/11/22 17:42:57 by david            ###   ########.fr       */
+/*   Updated: 2025/11/23 16:14:39 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-/*
-Etape validDate:
-- check l annee
-- check le mois
-- check le jour
-- check si bisextil
-
-Etape validPrice:
-- check si vide ou commence par .
-- trouve le nombre de . (min 1)
-- trouve le point
-- check si une sous chaine existe (10.22 ou 10)
-- check si digit before et after
-- cast la value en double
-- check de verification
-
-Etape parseData:
-- check ouverture fichier
-- passe la premiere ligne
-- pour chaque ligne :
-- trouve la virgule et extrait chaine
-- si une sous chaine est trouver -> prend la valeur
-- si valide data est ok -> cast en double price
-- et ajoute dans std::map
-*/
-
-/*
-//bisextil = 29 jours = tous les 4 ans
-// regle : (annee % 4 == 0 && annee % 100 != 0) || (annee % 400 == 0)
-//exemple : 2024 % 4 = 0 ok, 2024 % 100 = 20,24 reste 24 donc != 0 donc bisextil
-*/
 
 #include "BitcoinExchange.hpp"
 
@@ -63,6 +31,33 @@ BitcoinExchange::~BitcoinExchange() {};
 
 /*=== Fonction fichier data.csv ===*/
 
+/*
+Etape validDate:
+- check l annee + mois + jour
+- check si bisextil
+bisextil = 29 jours = tous les 4 ans
+regle : (annee % 4 == 0 && annee % 100 != 0) || (annee % 400 == 0)
+exemple : 2024 % 4 = 0 ok, 2024 % 100 = 20,24 reste 24 donc != 0 donc bisextil
+
+Etape validPrice:
+- check si vide ou commence par .
+- trouve le nombre de . (min 1)
+- trouve le point
+- check si une sous chaine existe (10.22 ou 10)
+- check si digit before et after
+- cast la value en double
+- check de verification
+
+Etape parseData:
+- check ouverture fichier
+- passe la premiere ligne
+- pour chaque ligne :
+- trouve la virgule et extrait chaine
+- si une sous chaine est trouver -> prend la valeur
+- si valide data est ok -> cast en double price
+- et ajoute dans std::map
+*/
+
 static int	checkDate(std::string const& first)
 {
 	for (int i = 0; i < first.size(); i++) {
@@ -83,8 +78,6 @@ static bool	validDate(std::string const& date)
 	std::string d = date.substr(8, 2);
 
 	int year = checkDate(y);
-	if (year < 2009)
-		return false;
 	if (year == -1)
 		return false;
 
@@ -139,6 +132,8 @@ static bool	validPrice(std::string const& value)
 	}
 
 	for (size_t j = 0; j < beforePoint.size(); j++) {
+		if (j == 0 && beforePoint[j] == '-')
+			continue;
 		if (!std::isdigit(beforePoint[j]))
 			return false;
 	}
@@ -161,7 +156,7 @@ void	BitcoinExchange::parseData(std::string const& filename)
 	std::ifstream ifs(filename);
 
 	if (!ifs) {
-		std::cout << "Erreur : Le fichier ne peut pas etre ouvert" << std::endl;
+		std::cout << "Error: The file cannot be opened" << std::endl;
 		return;
 	}
 
@@ -188,12 +183,91 @@ void	BitcoinExchange::parseData(std::string const& filename)
 
 /*=== Fonction fichier input ===*/
 
+/*
+Etape processLine:
+- trouver '|' si aucun -> erreur
+- extraire date et valeur
+- effacer les espace (final -> 2022-03-01|3)
+
+Etape calculAndPrint:
+- si prix negatif ou > 1000 -> erreur
+- it pointe sur une date >=
+- si date input < date csv -> erreur
+- si une date est trouver et correspond -> calcule
+- sinon --it pour prendre la date inferieur -> calcule
+
+Etape parseInput:
+- check ouverture fichier
+- passe la premiere ligne
+- si validDate est ok -> convertit le prix -> calcule
+- si erreur -> affiche
+*/
+
+static void	trimSpaces(std::string& line)
+{
+	line.erase(0, line.find_first_not_of(" \t"));
+	if (line.find_last_not_of(" \t") == std::string::npos)
+		return;
+	line.erase(line.find_last_not_of(" \t") + 1);
+}
+
+static bool	processLine(std::string& line, std::string& date, std::string& value)
+{
+	if (line.empty())
+		return false;
+
+	size_t pos = line.find('|');
+	if (pos == std::string::npos) {
+		std::cout << "Error: bad input => " << line << std::endl;
+		return false;
+	}
+
+	date = line.substr(0, pos);
+
+	if (pos != std::string::npos)
+		value = line.substr(pos + 1);
+	else
+		return false;
+	
+	trimSpaces(date);
+	trimSpaces(value);
+
+	return true;
+}
+
+void	BitcoinExchange::calculAndPrint(std::string& date, double price)
+{
+	if (price < 0) {
+		std::cout << "Error: not a positive number" << std::endl;
+		return;
+	}
+	
+	if (price > 1000) {
+		std::cout << "Error: too large a number" << std::endl;
+		return;
+	}
+
+	std::map<std::string, double>::iterator it = _price.lower_bound(date);
+
+	if (it == _price.begin() && date < it->first)
+		return;
+
+	double result;
+	if (it != _price.end() && it->first == date)
+		result = it->second * price;
+	else {
+		--it;
+		result = it->second * price;
+	}
+	std::cout << date << " => " << price << " = " << result << std::endl;
+}
+
 void	BitcoinExchange::parseInput(std::string const& filename)
 {
 	std::ifstream	ifs(filename);
 
 	if (!ifs) {
-		std::cout << "Erreur : Le fichier ne peut pas etre ouvert" << std::endl;
+		std::cout << "Error: The file cannot be opened" << std::endl;
 		return;
 	}
 
@@ -202,53 +276,15 @@ void	BitcoinExchange::parseInput(std::string const& filename)
 
 	while (getline(ifs, line))
 	{
-		if (line.empty())
+		std::string date;
+		std::string value;
+
+		if (!processLine(line, date, value))
 			continue;
 
-		size_t pos = line.find('|');
-		if (pos == std::string::npos) {
-			std::cout << "Erreur : pas de '|'" << std::endl;
-			continue;
-		}
-
-		std::string	date = line.substr(0, pos);
-		std::string	value;
-
-		if (pos != std::string::npos)
-			value = line.substr(pos + 1);
-		else {
-			std::cout << "valeur ne dois pas etre vide" << std::endl;
-			continue;
-		}
-
-		date.erase(0, date.find_first_not_of(" \t"));
-		date.erase(date.find_last_not_of(" \t") + 1);
-
-		value.erase(0, value.find_first_not_of(" \t"));
-		value.erase(value.find_last_not_of(" \t") + 1);
-		
-		if (validData(date, value, true))
-		{
-			double	price = strtod(value.c_str(), NULL);
-			if (price < 0) {
-				std::cout << "Error: not a positive number" << std::endl;
-				continue;
-			}
-			if (price > 1000) {
-				std::cout << "Error: too large a number" << std::endl;
-				continue;
-			}
-			std::map<std::string, double>::iterator it = _price.lower_bound(date);
-			if (it == _price.begin() && date < it->first) {
-				std::cout << "Erreur : aucune donnée avant cette date" << std::endl;
-				continue;
-			}
-			double result;
-			if (it != _price.end() && it->first == date)
-				result = it->second * price;
-			else
-				--it;
-			std::cout << date << " => " << price << " = " << result << std::endl;
+		if (validData(date, value)) {
+			double price = strtod(value.c_str(), NULL);
+			calculAndPrint(date, price);
 		}
 		else {
 			std::cout << "Error: bad input => " << date << std::endl;

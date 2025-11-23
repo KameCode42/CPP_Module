@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 10:18:11 by david             #+#    #+#             */
-/*   Updated: 2025/11/22 17:12:09 by david            ###   ########.fr       */
+/*   Updated: 2025/11/23 16:14:29 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ class	BitcoinExchange
 
 		void	parseData(std::string const& filename);
 		void	parseInput(std::string const& filename);
+		void	calculAndPrint(std::string& date, double price);
 
 	private:
 		std::map<std::string, double>	_price;
