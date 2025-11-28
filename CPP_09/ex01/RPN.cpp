@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 12:50:15 by david             #+#    #+#             */
-/*   Updated: 2025/11/27 17:27:25 by david            ###   ########.fr       */
+/*   Updated: 2025/11/28 15:03:58 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ RPN::~RPN() {}
 
 int	RPN::evaluate(std::string const& expression)
 {
-	std::stack<int> stack;
+	std::stack<int, std::list<int>> stack;
 	int	opCount = 0;
 
 	for (int i = 0; i < expression.size(); i++)

@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 12:50:06 by david             #+#    #+#             */
-/*   Updated: 2025/11/27 15:42:37 by david            ###   ########.fr       */
+/*   Updated: 2025/11/28 15:01:51 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <iostream>
 #include <stdexcept>
 #include <cstdlib>
+#include <list>
 #include <stack>
 #include <algorithm>
 
