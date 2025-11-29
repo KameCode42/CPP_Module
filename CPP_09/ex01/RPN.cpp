@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 12:50:15 by david             #+#    #+#             */
-/*   Updated: 2025/11/28 15:03:58 by david            ###   ########.fr       */
+/*   Updated: 2025/11/29 10:31:50 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,21 @@ RPN::~RPN() {}
 /*==================================================================================*/
 
 /*=== Fonction membre ===*/
+
+/*
+Etape evaluate: (exemple: 8 9 *)
+- container local stack qui prend list (car deque par defaut)
+- parcours l'expression string donner, si espace -> ignore
+- si pas digit -> erreur, si digit > 10 -> erreur
+- convertit en entier et push dans la stack (string = 8 9 *, stack = 8 9)
+- si operateur present, count++
+- minimum dans stack pour operation = 2 chiffre + operant
+- b = top = 9, plus besoin donc pop
+- a = top = 8, plus besoin donc pop, stack vide
+- calcul selon l'operant et push le resultat dans la stack
+- resultat final doit contenir un element sinon erreur
+- si aucun operant a la fin de la chaine -> erreur
+*/
 
 int	RPN::evaluate(std::string const& expression)
 {
