@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/30 16:04:47 by david             #+#    #+#             */
-/*   Updated: 2026/01/31 11:01:10 by david            ###   ########.fr       */
+/*   Updated: 2026/01/31 14:02:41 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define PMERGEME_HPP
 
 #include <iostream>
+#include <string>
 #include <sstream>
 #include <climits>
 #include <algorithm>
@@ -28,7 +29,8 @@ class PmergeMe
 		PmergeMe&	operator=(const PmergeMe& other);
 		~PmergeMe();
 
-		int	parseLine(const std::string& line);
+		int		parse(int argc, char **argv);
+		void	run();
 
 	private:
 		std::deque<int>		_myDeque;

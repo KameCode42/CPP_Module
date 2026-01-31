@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 12:49:35 by david             #+#    #+#             */
-/*   Updated: 2026/01/31 11:07:28 by david            ###   ########.fr       */
+/*   Updated: 2026/01/31 14:08:09 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,10 @@ int	main(int argc, char **argv)
 
 	PmergeMe pmergeme;
 
-	if (pmergeme.parseLine(argv[1]))
+	if (pmergeme.parse(argc, argv))
 		return 1;
 
+	pmergeme.run();
+	
 	return 0;
 }
