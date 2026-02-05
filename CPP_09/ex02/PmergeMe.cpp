@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/30 16:10:57 by david             #+#    #+#             */
-/*   Updated: 2026/02/05 14:31:13 by david            ###   ########.fr       */
+/*   Updated: 2026/02/05 17:04:23 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,12 +136,58 @@ static	std::vector<int> buildMainChain(const std::vector< std::pair<int,int> >& 
 
 /*==================================================================================*/
 
+//buildPendings, insertion des min en attente
+static	std::vector<int> buildPendings(const std::vector< std::pair<int,int> >& pairs)
+{
+	std::vector<int> pendingChain;
 
+	if (pendingChain.size() <= 1)
+		return pendingChain;
 
+	for (size_t i = 1; i < pendingChain.size(); i++)
+		pendingChain.push_back(pairs[i].first);
 
+	return pendingChain;
+}
 
+/*==================================================================================*/
 
+//Creation de la suite de Jacobsthal
+static	std::vector<size_t> jacobsthalSuite(size_t m)
+{
+	std::vector<size_t> jacob;
 
+	size_t j0 = 0;
+	size_t j1 = 1;
+
+	while (j1 <= m)
+	{
+		if (jacob.empty() || j1 != jacob.back())
+			jacob.push_back(j1);
+
+		size_t j2 = j1 + (2 * j0);
+		j0 = j1;
+		j1 = j2;
+	}
+	return jacob;
+}
+
+/*==================================================================================*/
+
+//Construire l’ordre final
+static	std::vector<size_t> buildJacobOrder(size_t m)
+{
+	std::vector<size_t> jacob;
+	std::vector<size_t> order;
+
+	jacob = jacobsthalSuite(m);
+
+	for (size_t j = 0; j < jacob.size(); j++)
+	{
+		order.push_back(jacob[j]);
+	}
+	
+}
 
 
 
@@ -191,6 +237,9 @@ void	PmergeMe::run()
 		std::cout << _myVector[i] << " ";
 	std::cout << std::endl;
 
+
+
+	
 	//caclul de temps
 
 	//afficher temps
@@ -262,6 +311,36 @@ push le premier nbr de la pair -> il sera de toute maniere le plus petit
 push tous les second trier par leur max
 ==================================================================================
 
+==================================================================================
+jacobsthalSuite: Creation de la suite afin d'utiliser les idx jacob pour insertion
+Vrai suite jacob : 0, 1, 1, 3, 5, 11, 21, 43, 85, 171, 341, 683, 1365,...
+-
+m = pending.size()
+Creer un vector local jacob, contiendra les index a utiliser pour l'insertion
+push j1 dans jacob car utile
+jacob = 1
+j2 = 1 + (2 * 0), j2 = 1
+j0 = 1
+j1 = 1
+push j1
+jacob = 1 1
+j3 = 1 + (2 * 1), j3 = 3
+j0 = 1
+j1 = 3
+push j3
+jacob = 1 1 3
+return jacob = index du vector pending
+si pending = 12 34 55
+12 = 1
+34 = 1
+55 = 3
+
+le 1 n'est pas utiliser 2 fois donc en insertion : 1,3 ensuite le 2
+pending[0] = 12 = 1
+pending[2] = 55 = 3
+pending[1] = 34 = 2
+donc on insert le 12 , 55, 34
+==================================================================================
 
 
 
