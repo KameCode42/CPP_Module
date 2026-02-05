@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/30 16:10:57 by david             #+#    #+#             */
-/*   Updated: 2026/01/31 14:15:40 by david            ###   ########.fr       */
+/*   Updated: 2026/02/05 14:31:13 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ PmergeMe::~PmergeMe() {}
 
 /*==================================================================================*/
 
-/*=== Fonction membre ===*/
+/*=== Parsing ===*/
 
 int	PmergeMe::parse(int argc, char **argv)
 {
@@ -78,6 +78,87 @@ int	PmergeMe::parse(int argc, char **argv)
 	return 0;
 }
 
+/*==================================================================================*/
+
+/*=== Fonction Ford-Johnson pour vector ===*/
+
+//Construire les paires + straggler
+static void	makePairsVector(const std::vector<int>& input, std::vector< std::pair<int,int> >& pairs, bool& hasLast, int& last)
+{
+	pairs.clear();
+	hasLast = false;
+	last = 0;
+
+	if (input.size() % 2 != 0){
+		hasLast = true;
+		last = input[input.size() - 1];
+	}
+
+	size_t i = 0;
+	while (i + 1 < input.size())
+	{
+		int a = input[i];
+		int b = input[i + 1];
+
+		if (a < b)
+			pairs.push_back(std::make_pair(a, b));
+		else
+			pairs.push_back(std::make_pair(b, a));
+		i += 2;
+	}
+}
+
+/*==================================================================================*/
+
+//Trier les paires par leur max
+static bool	comparePairBySecond(const std::pair<int, int>& a, const std::pair<int, int>& b) {
+	return a.second < b.second;
+}
+
+static void sortPairsByMax(std::vector< std::pair<int,int> >& pairs) {
+	std::sort(pairs.begin(), pairs.end(), comparePairBySecond);
+}
+
+/*==================================================================================*/
+
+//Construire la chaîne principale
+static	std::vector<int> buildMainChain(const std::vector< std::pair<int,int> >& pairs)
+{
+	std::vector<int> mainChain;
+
+	mainChain.push_back(pairs[0].first);
+
+	for (size_t i = 0; i < pairs.size(); i++)
+		mainChain.push_back(pairs[i].second);
+
+	return mainChain;
+}
+
+/*==================================================================================*/
+
+
+
+
+
+
+
+
+
+
+
+
+std::vector<int>	PmergeMe::fordJohnsonVector(std::vector<int> input)
+{
+	std::vector< std::pair<int,int> > pairs;
+	bool hasLast = false;
+	int last = 0;
+
+	makePairsVector(input, pairs, hasLast, last);
+	sortPairsByMax(pairs);
+	buildMainChain(pairs);
+
+	return input;
+}
 
 
 
@@ -87,10 +168,35 @@ int	PmergeMe::parse(int argc, char **argv)
 
 void	PmergeMe::run()
 {
-	std::cout << "Before : ";
+	std::cout << "Before: ";
 	for (size_t i = 0; i < _myVector.size(); i++)
 		std::cout << _myVector[i] << " ";
 	std::cout << std::endl;
+
+
+
+
+	
+	//temps de depart pour vector
+	clock_t startVector = clock();//temps de debut
+	_myVector = fordJohnsonVector(_myVector);
+	clock_t endVector = clock();//temps de fin
+
+	
+	//pareil pour deque
+
+	//afiche after
+	std::cout << "After: ";
+	for (size_t i = 0; i < _myVector.size(); i++)
+		std::cout << _myVector[i] << " ";
+	std::cout << std::endl;
+
+	//caclul de temps
+
+	//afficher temps
+	double timeVector = (endVector - startVector) * 1000000.0 / CLOCKS_PER_SEC;
+	std::cout << "Time to process a range of " << _myVector.size() << " elements with std::vector : " << timeVector << " us" << std::endl;
+	
 }
 
 
@@ -123,7 +229,7 @@ void	PmergeMe::run()
 /*=== Note ===*/
 /*
 ==================================================================================
-parseLine : ./a.out 34 4 66
+parseLine: ./a.out 34 4 66
 Creer deux containers local temporaire
 Boucle sur argc -> prend le premier nbr(argv[0])
 Affecte dans une string pour parcourir un nbr comme -> 34
@@ -133,5 +239,48 @@ Cast long en int
 Check si les containers contiennent des doublons
 Push dans les containers temporaire jusqu a la fin du parsing
 Une fois tout ok, copie le contenu dans les vrai containers
+==================================================================================
+
+==================================================================================
+makePairsVector: Creer des pairs pour reperer les min, max
+Si la taille est impair, met le dernier nombre de coter
+Boucle sur la taille de input
+Copie les valeurs i et i + 1 afin de les comparer
+Push dans le container pairs selon le min des pairs former
+Avance de i + 2
+==================================================================================
+
+==================================================================================
+sortPairsByMax: Trier les paires par leur max
+Compare le max du second de la pair et la trie
+==================================================================================
+
+==================================================================================
+buildMainChain: Construire la chaîne principale
+Creer un vector local
+push le premier nbr de la pair -> il sera de toute maniere le plus petit
+push tous les second trier par leur max
+==================================================================================
+
+
+
+
+
+
+
+
+
+==================================================================================
+fordJohnsonVector:
+Contenu input = 18, 9, 34, 100, 22, 12
+-
+makePairsVector:
+Contenu pairs = (9,18) (34,100) (12,22)
+-
+sortPairsByMax:
+Contenu pairs = (9,18) (12,22) (34,100)
+-
+buildMainChain:
+Contenu mainChain = 9, 18, 22, 100
 ==================================================================================
 */
