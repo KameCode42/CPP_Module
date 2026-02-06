@@ -6,9 +6,11 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 11:33:03 by david             #+#    #+#             */
-/*   Updated: 2026/02/06 11:33:06 by david            ###   ########.fr       */
+/*   Updated: 2026/02/06 16:59:12 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+//Generer 3000 nbr = ./pmergeme $(seq 1 3000 | shuf)
 
 #include <iostream>
 #include "PmergeMe.hpp"

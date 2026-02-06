@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 11:33:21 by david             #+#    #+#             */
-/*   Updated: 2026/02/06 11:33:49 by david            ###   ########.fr       */
+/*   Updated: 2026/02/06 16:41:51 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ class PmergeMe
 		~PmergeMe();
 
 		int					parse(int argc, char **argv);
-		std::vector<int>	fordJohnsonVector(std::vector<int> input);
+		std::vector<int>	fordJohnsonVector(std::vector<int> inputVector);
+		std::deque<int>		fordJohnsonDeque(std::deque<int> inputDeque);
 		void				run();
 
 	private:

@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 11:33:15 by david             #+#    #+#             */
-/*   Updated: 2026/02/06 13:43:49 by david            ###   ########.fr       */
+/*   Updated: 2026/02/06 16:52:17 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ static void sortPairsByMax(std::vector< std::pair<int,int> >& pairs) {
 }
 
 /*=== Construire la chaîne principale ===*/
-static	std::vector<int> buildMainChain(const std::vector< std::pair<int,int> >& pairs)
+static	std::vector<int> buildMainChainVector(const std::vector< std::pair<int,int> >& pairs)
 {
 	std::vector<int> mainChain;
 
@@ -131,7 +131,7 @@ static	std::vector<int> buildMainChain(const std::vector< std::pair<int,int> >& 
 }
 
 /*=== buildPendings, gerer les min en attente ===*/
-static	std::vector<int> buildPendings(const std::vector< std::pair<int,int> >& pairs)
+static	std::vector<int> buildPendingsVector(const std::vector< std::pair<int,int> >& pairs)
 {
 	std::vector<int> pendingChain;
 
@@ -170,6 +170,9 @@ static	std::vector<size_t> buildJacobOrder(size_t pendingSize)
 	std::vector<size_t> jacob;
 	std::vector<size_t> order;
 
+	if (pendingSize == 0)
+		return order;
+
 	jacob = jacobsthalSuite(pendingSize);
 
 	for (size_t i = 0; i < jacob.size(); i++)
@@ -200,75 +203,201 @@ static	std::vector<size_t> buildJacobOrder(size_t pendingSize)
 	return order;
 }
 
+/*=== Recherche pour insertion x ===*/
+static void binaryInsertVector(std::vector<int>& mainChain, int x)
+{
+	size_t left = 0;
+	size_t right = mainChain.size();
 
+	while (left < right)
+	{
+		size_t mid = (left + right) / 2;
 
+		if (mainChain[mid] < x)
+			left = mid + 1;
+		else
+			right = mid;
+	}
+	mainChain.insert(mainChain.begin() + left, x);
+}
 
+/*=== Insertion pending dans mainChain ===*/
+static void insertPendingsVector(std::vector<int>& mainChain, const std::vector<int>& pending, const std::vector<size_t>& order)
+{
+	for (size_t i = 0; i < order.size(); i++)
+	{
+		size_t indexOrder = order[i];
+		int x = pending[indexOrder - 1];
+		binaryInsertVector(mainChain, x);
+	}
+}
 
-
-
-
-
-
-
-/*=== Algorithm Ford-Johnson ===*/
-std::vector<int>	PmergeMe::fordJohnsonVector(std::vector<int> input)
+/*=== Algorithm Ford-Johnson (vector) ===*/
+std::vector<int>	PmergeMe::fordJohnsonVector(std::vector<int> inputVector)
 {
 	std::vector< std::pair<int,int> > pairs;
 	bool hasLast = false;
 	int last = 0;
 
-	makePairsVector(input, pairs, hasLast, last);
-	sortPairsByMax(pairs);
-	//buildMainChain(pairs);
+	if (inputVector.size() < 2)
+		return inputVector;
 
-	return input;
+	makePairsVector(inputVector, pairs, hasLast, last);
+	sortPairsByMax(pairs);
+
+	std::vector<int> mainChain = buildMainChainVector(pairs);
+	std::vector<int> pending = buildPendingsVector(pairs);
+	std::vector<size_t> order = buildJacobOrder(pending.size());
+	insertPendingsVector(mainChain, pending, order);
+
+	if (hasLast == true)
+		binaryInsertVector(mainChain, last);
+	return mainChain;
 }
 
+/*==================================================================================*/
+/*==================================================================================*/
+/*==================================================================================*/
+/*==================================================================================*/
+/*==================================================================================*/
+/*==================================================================================*/
 
+/*=== Fonction Ford-Johnson pour deque ===*/
 
+static void	makePairsDeque(const std::deque<int>& input, std::deque< std::pair<int,int> >& pairs, bool& hasLast, int& last)
+{
+	pairs.clear();
+	hasLast = false;
+	last = 0;
 
+	if (input.size() % 2 != 0){
+		hasLast = true;
+		last = input[input.size() - 1];
+	}
 
+	size_t i = 0;
+	while (i + 1 < input.size())
+	{
+		int a = input[i];
+		int b = input[i + 1];
 
+		if (a < b)
+			pairs.push_back(std::make_pair(a, b));
+		else
+			pairs.push_back(std::make_pair(b, a));
+		i += 2;
+	}
+}
 
+static void sortPairsByMax(std::deque< std::pair<int,int> >& pairs) {
+	std::sort(pairs.begin(), pairs.end(), comparePairBySecond);
+}
 
+static	std::deque<int> buildMainChainDeque(const std::deque< std::pair<int,int> >& pairs)
+{
+	std::deque<int> mainChain;
 
+	mainChain.push_back(pairs[0].first);
+
+	for (size_t i = 0; i < pairs.size(); i++)
+		mainChain.push_back(pairs[i].second);
+
+	return mainChain;
+}
+
+static	std::deque<int> buildPendingsDeque(const std::deque< std::pair<int,int> >& pairs)
+{
+	std::deque<int> pendingChain;
+
+	if (pairs.size() <= 1)
+		return pendingChain;
+
+	for (size_t i = 1; i < pairs.size(); i++)
+		pendingChain.push_back(pairs[i].first);
+
+	return pendingChain;
+}
+
+static void binaryInsertDeque(std::deque<int>& mainChain, int x)
+{
+	size_t left = 0;
+	size_t right = mainChain.size();
+
+	while (left < right)
+	{
+		size_t mid = (left + right) / 2;
+
+		if (mainChain[mid] < x)
+			left = mid + 1;
+		else
+			right = mid;
+	}
+	mainChain.insert(mainChain.begin() + left, x);
+}
+
+static void insertPendingsDeque(std::deque<int>& mainChain, const std::deque<int>& pending, const std::vector<size_t>& order)
+{
+	for (size_t i = 0; i < order.size(); i++)
+	{
+		size_t indexOrder = order[i];
+		int x = pending[indexOrder - 1];
+		binaryInsertDeque(mainChain, x);
+	}
+}
+
+/*=== Algorithm Ford-Johnson (deque) ===*/
+std::deque<int>	PmergeMe::fordJohnsonDeque(std::deque<int> inputDeque)
+{
+	std::deque< std::pair<int,int> > pairs;
+	bool hasLast = false;
+	int last = 0;
+
+	if (inputDeque.size() < 2)
+		return inputDeque;
+
+	makePairsDeque(inputDeque, pairs, hasLast, last);
+	sortPairsByMax(pairs);
+
+	std::deque<int> mainChain = buildMainChainDeque(pairs);
+	std::deque<int> pending = buildPendingsDeque(pairs);
+	std::vector<size_t> order = buildJacobOrder(pending.size());
+	insertPendingsDeque(mainChain, pending, order);
+
+	if (hasLast == true)
+		binaryInsertDeque(mainChain, last);
+	return mainChain;
+}
 
 /*==================================================================================*/
 /*==================================================================================*/
 
 /*=== Fonction principale run ===*/
+
 void	PmergeMe::run()
 {
-	std::cout << "Before: ";
+		std::cout << "Before: ";
 	for (size_t i = 0; i < _myVector.size(); i++)
 		std::cout << _myVector[i] << " ";
 	std::cout << std::endl;
 
-
-
-
-	
-	//temps de depart pour vector
-	clock_t startVector = clock();//temps de debut
+	/*=== Temps de depart et fin pour vector ===*/
+	clock_t startVector = clock();
 	_myVector = fordJohnsonVector(_myVector);
-	clock_t endVector = clock();//temps de fin
+	clock_t endVector = clock();
 
-	
-	//pareil pour deque
+	/*=== Temps de depart et fin pour deque ===*/
+	clock_t startDeque = clock();
+	_myDeque = fordJohnsonDeque(_myDeque);
+	clock_t endDeque = clock();
 
-	//afiche after
 	std::cout << "After: ";
 	for (size_t i = 0; i < _myVector.size(); i++)
 		std::cout << _myVector[i] << " ";
 	std::cout << std::endl;
 
-
-
-	
-	//caclul de temps
-
-	//afficher temps
 	double timeVector = (endVector - startVector) * 1000000.0 / CLOCKS_PER_SEC;
 	std::cout << "Time to process a range of " << _myVector.size() << " elements with std::vector : " << timeVector << " us" << std::endl;
-	
+
+	double timeDeque = (endDeque - startDeque) * 1000000.0 / CLOCKS_PER_SEC;
+	std::cout << "Time to process a range of " << _myDeque.size() << " elements with std::deque : " << timeDeque << " us" << std::endl;
 }
