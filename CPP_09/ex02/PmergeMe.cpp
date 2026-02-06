@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/30 16:10:57 by david             #+#    #+#             */
-/*   Updated: 2026/02/05 17:04:23 by david            ###   ########.fr       */
+/*   Created: 2026/02/06 11:33:15 by david             #+#    #+#             */
+/*   Updated: 2026/02/06 13:43:49 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ PmergeMe::~PmergeMe() {}
 /*==================================================================================*/
 
 /*=== Parsing ===*/
-
 int	PmergeMe::parse(int argc, char **argv)
 {
 	std::vector<int>	tmp_vector;
@@ -79,10 +78,11 @@ int	PmergeMe::parse(int argc, char **argv)
 }
 
 /*==================================================================================*/
+/*==================================================================================*/
 
 /*=== Fonction Ford-Johnson pour vector ===*/
 
-//Construire les paires + straggler
+/*=== Construire les paires + dernier si impair ===*/
 static void	makePairsVector(const std::vector<int>& input, std::vector< std::pair<int,int> >& pairs, bool& hasLast, int& last)
 {
 	pairs.clear();
@@ -108,9 +108,7 @@ static void	makePairsVector(const std::vector<int>& input, std::vector< std::pai
 	}
 }
 
-/*==================================================================================*/
-
-//Trier les paires par leur max
+/*=== Trier les paires par leur max ===*/
 static bool	comparePairBySecond(const std::pair<int, int>& a, const std::pair<int, int>& b) {
 	return a.second < b.second;
 }
@@ -119,9 +117,7 @@ static void sortPairsByMax(std::vector< std::pair<int,int> >& pairs) {
 	std::sort(pairs.begin(), pairs.end(), comparePairBySecond);
 }
 
-/*==================================================================================*/
-
-//Construire la chaîne principale
+/*=== Construire la chaîne principale ===*/
 static	std::vector<int> buildMainChain(const std::vector< std::pair<int,int> >& pairs)
 {
 	std::vector<int> mainChain;
@@ -134,33 +130,29 @@ static	std::vector<int> buildMainChain(const std::vector< std::pair<int,int> >& 
 	return mainChain;
 }
 
-/*==================================================================================*/
-
-//buildPendings, insertion des min en attente
+/*=== buildPendings, gerer les min en attente ===*/
 static	std::vector<int> buildPendings(const std::vector< std::pair<int,int> >& pairs)
 {
 	std::vector<int> pendingChain;
 
-	if (pendingChain.size() <= 1)
+	if (pairs.size() <= 1)
 		return pendingChain;
 
-	for (size_t i = 1; i < pendingChain.size(); i++)
+	for (size_t i = 1; i < pairs.size(); i++)
 		pendingChain.push_back(pairs[i].first);
 
 	return pendingChain;
 }
 
-/*==================================================================================*/
-
-//Creation de la suite de Jacobsthal
-static	std::vector<size_t> jacobsthalSuite(size_t m)
+/*=== Creation de la suite de Jacobsthal ===*/
+static	std::vector<size_t> jacobsthalSuite(size_t pendingSize)
 {
 	std::vector<size_t> jacob;
 
 	size_t j0 = 0;
 	size_t j1 = 1;
 
-	while (j1 <= m)
+	while (j1 <= pendingSize)
 	{
 		if (jacob.empty() || j1 != jacob.back())
 			jacob.push_back(j1);
@@ -172,27 +164,53 @@ static	std::vector<size_t> jacobsthalSuite(size_t m)
 	return jacob;
 }
 
-/*==================================================================================*/
-
-//Construire l’ordre final
-static	std::vector<size_t> buildJacobOrder(size_t m)
+/*=== Construire l’ordre final ===*/
+static	std::vector<size_t> buildJacobOrder(size_t pendingSize)
 {
 	std::vector<size_t> jacob;
 	std::vector<size_t> order;
 
-	jacob = jacobsthalSuite(m);
+	jacob = jacobsthalSuite(pendingSize);
 
-	for (size_t j = 0; j < jacob.size(); j++)
+	for (size_t i = 0; i < jacob.size(); i++)
+		order.push_back(jacob[i]);
+
+	size_t x;
+	for (size_t j = 0; j < jacob.size() - 1; j++)
 	{
-		order.push_back(jacob[j]);
+		size_t a = jacob[j];
+		size_t b = jacob[j + 1];
+
+		x = b - 1;
+		while (x > a)
+		{
+			order.push_back(x);
+			x -= 1;
+		}
 	}
-	
+
+	size_t last = jacob.back();
+
+	x = pendingSize;
+	while (x > last)
+	{
+		order.push_back(x);
+		x -= 1;
+	}
+	return order;
 }
 
 
 
 
 
+
+
+
+
+
+
+/*=== Algorithm Ford-Johnson ===*/
 std::vector<int>	PmergeMe::fordJohnsonVector(std::vector<int> input)
 {
 	std::vector< std::pair<int,int> > pairs;
@@ -201,7 +219,7 @@ std::vector<int>	PmergeMe::fordJohnsonVector(std::vector<int> input)
 
 	makePairsVector(input, pairs, hasLast, last);
 	sortPairsByMax(pairs);
-	buildMainChain(pairs);
+	//buildMainChain(pairs);
 
 	return input;
 }
@@ -212,6 +230,13 @@ std::vector<int>	PmergeMe::fordJohnsonVector(std::vector<int> input)
 
 
 
+
+
+
+/*==================================================================================*/
+/*==================================================================================*/
+
+/*=== Fonction principale run ===*/
 void	PmergeMe::run()
 {
 	std::cout << "Before: ";
@@ -247,119 +272,3 @@ void	PmergeMe::run()
 	std::cout << "Time to process a range of " << _myVector.size() << " elements with std::vector : " << timeVector << " us" << std::endl;
 	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*==================================================================================*/
-/*==================================================================================*/
-
-/*=== Note ===*/
-/*
-==================================================================================
-parseLine: ./a.out 34 4 66
-Creer deux containers local temporaire
-Boucle sur argc -> prend le premier nbr(argv[0])
-Affecte dans une string pour parcourir un nbr comme -> 34
-Check si 3 et 4 sont des digit, si oui -> erreur
-Extrait le premier nbr et check si negatif ou > a INT_MAX
-Cast long en int
-Check si les containers contiennent des doublons
-Push dans les containers temporaire jusqu a la fin du parsing
-Une fois tout ok, copie le contenu dans les vrai containers
-==================================================================================
-
-==================================================================================
-makePairsVector: Creer des pairs pour reperer les min, max
-Si la taille est impair, met le dernier nombre de coter
-Boucle sur la taille de input
-Copie les valeurs i et i + 1 afin de les comparer
-Push dans le container pairs selon le min des pairs former
-Avance de i + 2
-==================================================================================
-
-==================================================================================
-sortPairsByMax: Trier les paires par leur max
-Compare le max du second de la pair et la trie
-==================================================================================
-
-==================================================================================
-buildMainChain: Construire la chaîne principale
-Creer un vector local
-push le premier nbr de la pair -> il sera de toute maniere le plus petit
-push tous les second trier par leur max
-==================================================================================
-
-==================================================================================
-jacobsthalSuite: Creation de la suite afin d'utiliser les idx jacob pour insertion
-Vrai suite jacob : 0, 1, 1, 3, 5, 11, 21, 43, 85, 171, 341, 683, 1365,...
--
-m = pending.size()
-Creer un vector local jacob, contiendra les index a utiliser pour l'insertion
-push j1 dans jacob car utile
-jacob = 1
-j2 = 1 + (2 * 0), j2 = 1
-j0 = 1
-j1 = 1
-push j1
-jacob = 1 1
-j3 = 1 + (2 * 1), j3 = 3
-j0 = 1
-j1 = 3
-push j3
-jacob = 1 1 3
-return jacob = index du vector pending
-si pending = 12 34 55
-12 = 1
-34 = 1
-55 = 3
-
-le 1 n'est pas utiliser 2 fois donc en insertion : 1,3 ensuite le 2
-pending[0] = 12 = 1
-pending[2] = 55 = 3
-pending[1] = 34 = 2
-donc on insert le 12 , 55, 34
-==================================================================================
-
-
-
-
-
-
-
-
-==================================================================================
-fordJohnsonVector:
-Contenu input = 18, 9, 34, 100, 22, 12
--
-makePairsVector:
-Contenu pairs = (9,18) (34,100) (12,22)
--
-sortPairsByMax:
-Contenu pairs = (9,18) (12,22) (34,100)
--
-buildMainChain:
-Contenu mainChain = 9, 18, 22, 100
-==================================================================================
-*/
