@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 12:50:15 by david             #+#    #+#             */
-/*   Updated: 2025/11/29 10:31:50 by david            ###   ########.fr       */
+/*   Updated: 2026/02/07 10:22:44 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ RPN::~RPN() {}
 /*=== Fonction membre ===*/
 
 /*
-Etape evaluate: (exemple: 8 9 *)
+Etape evaluate: (exemple: 8 9 * 1 +)
 - container local stack qui prend list (car deque par defaut)
 - parcours l'expression string donner, si espace -> ignore
 - si pas digit -> erreur, si digit > 10 -> erreur
